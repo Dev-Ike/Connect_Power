@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Connect Power — Admin Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green-deep:#0B3B24;--green:#146B3A;--green-light:#E9F5EC;--gold:#F2B705;
+    --ink:#132018;--muted:#5B6B60;--line:#DCE7DF;
+    font-family:'Inter',system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--green-light);color:var(--ink);line-height:1.5;min-height:100vh;}
+  h1,h2{font-family:'Poppins',system-ui,sans-serif;}
+
+  .topbar{background:var(--green-deep);color:#fff;}
+  .topbar-inner{max-width:1100px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;}
+  .brand{display:flex;align-items:center;gap:12px;}
+  .brand b{font-family:'Poppins';font-size:1.2rem;}
+  .brand b span{color:var(--gold);}
+  .pill{border:1.5px solid rgba(255,255,255,.5);color:#fff;border-radius:999px;padding:8px 18px;font-size:.85rem;font-weight:600;text-decoration:none;cursor:pointer;background:transparent;font-family:inherit;}
+  .pill:hover{background:rgba(255,255,255,.12);}
+  .pill-solid{background:#fff;color:var(--green-deep);border-color:#fff;}
+
+  .wrap{max-width:1100px;margin:0 auto;padding:28px 20px 60px;}
+  .wrap h1{color:var(--green-deep);font-size:1.5rem;margin-bottom:4px;}
+  .wrap .sub{color:var(--muted);font-size:.9rem;margin-bottom:22px;}
+
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-bottom:24px;}
+  .stat{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:0 4px 12px rgba(11,59,36,.06);}
+  .stat b{display:block;font-size:1.6rem;color:var(--green-deep);font-family:'Poppins';}
+  .stat span{font-size:.8rem;color:var(--muted);font-weight:600;}
+
+  .table-card{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:auto;box-shadow:0 4px 12px rgba(11,59,36,.06);}
+  table{width:100%;border-collapse:collapse;min-width:860px;}
+  th{background:var(--green-deep);color:#fff;font-size:.75rem;text-align:left;padding:12px 14px;letter-spacing:.04em;}
+  td{padding:12px 14px;font-size:.85rem;border-bottom:1px solid var(--line);vertical-align:top;}
+  tr:last-child td{border-bottom:none;}
+  .paid{color:var(--green);font-weight:700;}
+  .docs a{display:inline-block;margin:2px 6px 2px 0;font-size:.78rem;font-weight:600;color:var(--green);text-decoration:underline;}
+  .empty{padding:40px;text-align:center;color:var(--muted);}
+  #error{color:#B3261E;font-size:.85rem;margin:10px 0;}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <svg width="40" height="40" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="24" cy="10" r="5" fill="#F2B705"/>
+        <path d="M24 16C24 16 10 20 10 34C10 34 24 34 24 20C24 34 38 34 38 34C38 20 24 16 24 16Z" fill="#146B3A"/>
+      </svg>
+      <b>Connect <span>Power</span> — Admin</b>
+    </div>
+    <div style="display:flex;gap:10px;">
+      <a class="pill" href="index.html">Back home</a>
+      <button class="pill pill-solid" onclick="adminLogout()">Logout</button>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <h1>Submitted Applications</h1>
+  <p class="sub">Every application saved after a verified ₦1,015 Paystack payment.</p>
+  <p id="error"></p>
+
+  <div class="stats">
+    <div class="stat"><b id="stat-total">0</b><span>Total applications</span></div>
+    <div class="stat"><b id="stat-paid">0</b><span>Payments verified</span></div>
+    <div class="stat"><b id="stat-tracks">0</b><span>Distinct tracks chosen</span></div>
+  </div>
+
+  <div class="table-card">
+    <table id="apps-table">
+      <thead>
+        <tr>
+          <th>Reference</th><th>Full name</th><th>Email</th><th>NIN</th>
+          <th>Track</th><th>Payment</th><th>Submitted</th><th>Documents</th>
+        </tr>
+      </thead>
+      <tbody id="apps-body">
+        <tr><td colspan="8" class="empty">Loading applications…</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+  /* Auth: the HttpOnly cookie normally carries the session. Some mobile browsers
+     drop it, so we also send the signed token as a Bearer header (stored at login).
+     Two independent channels = the dashboard never bounces a correctly logged-in
+     admin back to the login page at random. */
+  function adminToken() {
+    try { return localStorage.getItem('cp_admin_token') || ''; } catch (e) { return ''; }
+  }
+  function adminFetch(url) {
+    const headers = {};
+    const t = adminToken();
+    if (t) headers['Authorization'] = 'Bearer ' + t;
+    return fetch(url, { credentials: 'same-origin', headers: headers });
+  }
+
+  async function loadApplications() {
+    const errBox = document.getElementById('error');
+    try {
+      let res = await adminFetch('/api/admin/applications');
+      if (res.status === 401 && adminToken()) {
+        // Stale token — clear it and let the cookie have one shot before giving up.
+        try { localStorage.removeItem('cp_admin_token'); } catch (e) {}
+        res = await fetch('/api/admin/applications', { credentials: 'same-origin' });
+      }
+      if (res.status === 401) {
+        window.location.href = 'admin-login.html';
+        return;
+      }
+      const data = await res.json();
+      if (!data.success) {
+        errBox.textContent = data.message || 'Could not load applications.';
+        return;
+      }
+      render(data.applications || []);
+    } catch (e) {
+      errBox.textContent = 'Could not reach the server. Please refresh.';
+    }
+  }
+
+  function render(apps) {
+    const body = document.getElementById('apps-body');
+    document.getElementById('stat-total').textContent = apps.length;
+    document.getElementById('stat-paid').textContent = apps.filter(a => String(a.paymentStatus).includes('PAID')).length;
+    document.getElementById('stat-tracks').textContent = new Set(apps.map(a => a.track)).size;
+
+    if (!apps.length) {
+      body.innerHTML = '<tr><td colspan="8" class="empty">No applications yet. They will appear here as soon as applicants complete payment.</td></tr>';
+      return;
+    }
+
+    body.innerHTML = apps.map(a => {
+      const docs = a.documents || {};
+      const docLinks = Object.keys(docs).map(slot =>
+        '<a href="/api/admin/applications/' + encodeURIComponent(a.reference) +
+        '/documents/' + encodeURIComponent(slot) + '" download>' + slot + '</a>'
+      ).join('') || '<span style="color:var(--muted);">None uploaded</span>';
+      return '<tr>' +
+        '<td><b>' + esc(a.reference) + '</b></td>' +
+        '<td>' + esc(a.fullname || '—') + '</td>' +
+        '<td>' + esc(a.email) + '</td>' +
+        '<td>' + esc(a.nin || '—') + '</td>' +
+        '<td>' + esc(a.track || '—') + '</td>' +
+        '<td class="paid">' + esc(a.paymentStatus || '—') + '</td>' +
+        '<td>' + new Date(a.submittedAt).toLocaleString() + '</td>' +
+        '<td class="docs">' + docLinks + '</td>' +
+        '</tr>';
+    }).join('');
+  }
+
+  function esc(s) {
+    return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+
+  async function adminLogout() {
+    try { await fetch('/api/admin/logout', { method: 'POST', credentials: 'same-origin' }); } catch (e) {}
+    try { localStorage.removeItem('cp_admin_token'); } catch (e) {}
+    window.location.href = 'admin-login.html';
+  }
+
+  loadApplications();
+</script>
+</body>
+</html>

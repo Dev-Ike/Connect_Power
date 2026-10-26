@@ -1,0 +1,30 @@
+body {
+  background: #0b1020;
+  color: #f8fafc;
+  font-family: Arial, sans-serif;
+}
+
+.signin_title {
+  display: block;
+  color: #a5b4fc;
+  text-decoration: none;
+  font-weight: bold;
+  text-align: center;
+  font-size: 45px;
+}
+
+.signin {
+  width: min(420px, calc(100% - 32px));
+  margin: 80px auto;
+}
+
+.signup {
+    width: min(420px, calc(100% - 32px));
+  margin: 46px auto;
+}
+
+#auth-container {
+  display: flex;
+  justify-content: center;
+  margin: 28px 0;
+}

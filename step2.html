@@ -1,0 +1,1624 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Connect Power — Step 2: Personal Details</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --green-deep: #0b3b24;
+        --green: #146b3a;
+        --green-light: #e9f5ec;
+        --gold: #f2b705;
+        --ink: #132018;
+        --muted: #5b6b60;
+        --line: #dce7df;
+        font-family: "Inter", system-ui, sans-serif;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--green-light);
+        color: var(--ink);
+        line-height: 1.5;
+        min-height: 100vh;
+        padding-bottom: 60px;
+      }
+      h1,
+      h2,
+      .step-title {
+        font-family: "Poppins", system-ui, sans-serif;
+      }
+
+      /* ===== SHARED APPLICATION TOP BAR ===== */
+      .app-topbar {
+        background: var(--green-deep);
+        color: #fff;
+      }
+      .app-topbar-inner {
+        max-width: 1040px;
+        margin: 0 auto;
+        padding: 14px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        flex-wrap: wrap;
+      }
+      .app-brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        color: #fff;
+        text-decoration: none;
+      }
+      .app-brand .leaf {
+        width: 40px;
+        height: 40px;
+        flex-shrink: 0;
+      }
+      .app-brand-text {
+        font-family: "Poppins", sans-serif;
+        font-weight: 700;
+        font-size: 1.25rem;
+        line-height: 1.05;
+      }
+      .app-brand-text b {
+        color: var(--gold);
+      }
+      .app-brand-text small {
+        display: block;
+        font-size: 0.62rem;
+        letter-spacing: 0.18em;
+        font-weight: 600;
+        color: #b9cec0;
+      }
+      .app-topbar-actions {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+      }
+      .pill {
+        border: 1.5px solid rgba(255, 255, 255, 0.5);
+        color: #fff;
+        border-radius: 999px;
+        padding: 8px 18px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        text-decoration: none;
+        cursor: pointer;
+        background: transparent;
+        font-family: inherit;
+      }
+      .pill:hover {
+        background: rgba(255, 255, 255, 0.12);
+      }
+      .pill-solid {
+        background: #fff;
+        color: var(--green-deep);
+        border-color: #fff;
+      }
+      .pill-solid:hover {
+        background: var(--gold);
+        border-color: var(--gold);
+      }
+      .app-progress {
+        background: #fff;
+        border-bottom: 1px solid var(--line);
+      }
+      .app-progress-inner {
+        max-width: 1040px;
+        margin: 0 auto;
+        padding: 18px 20px 22px;
+      }
+      .app-progress-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      .app-progress-top h1 {
+        color: var(--green-deep);
+        font-size: 1.6rem;
+      }
+      .cand {
+        text-align: right;
+      }
+      .cand span {
+        display: block;
+        font-size: 0.66rem;
+        letter-spacing: 0.14em;
+        color: var(--muted);
+        font-weight: 700;
+      }
+      .cand b {
+        font-family: "Poppins";
+        color: var(--green-deep);
+        font-size: 1.05rem;
+      }
+      .app-progress-meta {
+        display: flex;
+        justify-content: space-between;
+        color: var(--muted);
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        margin: 8px 0 14px;
+      }
+      .autosave {
+        color: var(--green);
+        font-weight: 700;
+      }
+      .stepper {
+        list-style: none;
+        display: flex;
+        align-items: center;
+        padding: 0;
+        margin: 0;
+      }
+      .stepper li {
+        display: flex;
+        align-items: center;
+        flex: 1;
+        min-width: 0;
+      }
+      .stepper li:last-child {
+        flex: 0;
+      }
+      .step-dot {
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        border: 2px solid var(--line);
+        background: #fff;
+        color: var(--muted);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 0.85rem;
+        flex-shrink: 0;
+        font-family: "Poppins";
+      }
+      .step-dot.done {
+        background: var(--green-deep);
+        border-color: var(--green-deep);
+        color: #fff;
+      }
+      .step-dot.now {
+        background: var(--green);
+        border-color: var(--green);
+        color: #fff;
+        box-shadow: 0 0 0 4px rgba(20, 107, 58, 0.15);
+      }
+      .step-name {
+        margin-left: 8px;
+        font-size: 0.8rem;
+        font-weight: 700;
+        color: var(--green-deep);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .step-line {
+        flex: 1;
+        height: 2px;
+        background: var(--line);
+        margin: 0 8px;
+        min-width: 12px;
+      }
+      .step-line.done {
+        background: var(--green-deep);
+      }
+      @media (max-width: 640px) {
+        .step-name {
+          display: none;
+        }
+      }
+
+      .step-card {
+        max-width: 760px;
+        margin: 28px auto 0;
+        background: linear-gradient(160deg, var(--green-deep), var(--green));
+        border-radius: 22px;
+        padding: 6px;
+      }
+      .step-title {
+        padding: 20px 26px;
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: #fff;
+      }
+      .step-title span {
+        color: var(--gold);
+      }
+      .inner {
+        background: #fff;
+        border-radius: 18px;
+        padding: 30px 28px;
+      }
+      .row {
+        display: grid;
+        gap: 16px;
+        margin-bottom: 18px;
+      }
+      .row-3 {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .row-2 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      @media (max-width: 640px) {
+        .row-3,
+        .row-2 {
+          grid-template-columns: 1fr;
+        }
+      }
+      .field label {
+        display: block;
+        font-size: 0.82rem;
+        font-weight: 600;
+        color: var(--green-deep);
+        margin-bottom: 6px;
+      }
+      .field input,
+      .field select {
+        width: 100%;
+        padding: 12px 14px;
+        border-radius: 9px;
+        border: 1.5px solid var(--green);
+        font-size: 0.92rem;
+        font-family: inherit;
+        color: var(--ink);
+        background: #fff;
+      }
+      .field input:focus,
+      .field select:focus {
+        outline: 2px solid var(--gold);
+        outline-offset: 1px;
+      }
+      .save-btn {
+        width: 100%;
+        margin-top: 8px;
+        background: var(--green-deep);
+        color: #fff;
+        padding: 15px;
+        border-radius: 10px;
+        border: none;
+        font-weight: 700;
+        font-size: 1rem;
+        cursor: pointer;
+      }
+      .back-link {
+        display: block;
+        margin-top: 16px;
+        font-size: 0.85rem;
+        color: var(--muted);
+        text-decoration: none;
+        text-align: center;
+      }
+      input.invalid,
+      select.invalid {
+        border-color: #c0392b !important;
+        background: #fdf3f2;
+      }
+      input.valid,
+      select.valid {
+        border-color: #146b3a !important;
+      }
+      .error-msg {
+        color: #c0392b;
+        font-size: 0.82rem;
+        margin: 4px 0 0;
+        min-height: 1em;
+      }
+    </style>
+  </head>
+  <body data-step="2" hidden>
+    <header class="app-topbar">
+      <div class="app-topbar-inner">
+        <a class="app-brand" href="index.html">
+          <svg
+            class="leaf"
+            viewBox="0 0 48 48"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle cx="24" cy="10" r="5" fill="#F2B705" />
+            <path
+              d="M24 16C24 16 10 20 10 34C10 34 24 34 24 20C24 34 38 34 38 34C38 20 24 16 24 16Z"
+              fill="#146B3A"
+            />
+          </svg>
+          <span class="app-brand-text"
+            >Connect <b>Power</b><small>APPLICATION PORTAL</small></span
+          >
+        </a>
+        <div class="app-topbar-actions">
+          <a class="pill" href="index.html">Back home</a>
+          <!-- <button class="pill pill-solid" onclick="doLogout()">Logout</button> -->
+          <button class="pill pill-solid" id="logout-btn" type="button">
+            Log out
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <section class="app-progress">
+      <div class="app-progress-inner">
+        <div class="app-progress-top">
+          <h1>MY APPLICATIONS</h1>
+          <div class="cand"><span>CANDIDATE ID</span><b id="cand-id">—</b></div>
+        </div>
+        <div class="app-progress-meta">
+          <span>STEP <span id="step-now">2</span> OF 5</span>
+          <span class="autosave">● Auto-saved</span>
+        </div>
+        <ol class="stepper" id="stepper"></ol>
+      </div>
+    </section>
+
+    <div class="step-card">
+      <div class="step-title"><span>STEP 2:</span> Personal Details</div>
+      <div class="inner">
+        <form onsubmit="return handleStep2Submit(event);">
+          <div class="row row-3">
+            <div class="field">
+              <label for="surname">Surname</label
+              ><input id="surname" type="text" required />
+            </div>
+            <div class="field">
+              <label for="firstname">First Name</label
+              ><input id="firstname" type="text" required />
+            </div>
+            <div class="field">
+              <label for="middlename">Middle Name</label
+              ><input id="middlename" type="text" />
+            </div>
+          </div>
+
+          <div class="row row-2">
+            <div class="field">
+              <label for="gender">Gender</label>
+              <select id="gender" required>
+                <option value="" disabled selected>Select</option>
+                <option>Female</option>
+                <option>Male</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="marital">Marital Status</label>
+              <select id="marital" required>
+                <option value="" disabled selected>Select</option>
+                <option>Single</option>
+                <option>Married</option>
+                <option>Divorced</option>
+                <option>Widowed</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row row-2">
+            <div class="field">
+              <label for="dob">Date of Birth</label
+              ><input id="dob" type="date" required />
+              <p id="dob-error" class="error-msg"></p>
+            </div>
+            <div class="field">
+              <label for="phone">Phone Number</label>
+              <input
+                id="phone"
+                type="tel"
+                inputmode="numeric"
+                autocomplete="tel"
+                maxlength="20"
+                placeholder="08012345678"
+                required
+              />
+              <p id="phone-error" class="error-msg"></p>
+            </div>
+          </div>
+
+          <div class="row row-2">
+            <div class="field">
+              <label for="employment">Employment Status</label>
+              <select id="employment" required>
+                <option value="" disabled selected>Select</option>
+                <option>Employed</option>
+                <option>Unemployed</option>
+                <option>Self-employed</option>
+                <option>Student</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="profession">Current Profession</label>
+              <select id="profession">
+                <option value="" disabled selected>Select</option>
+                <option>Teacher</option>
+                <option>Trader</option>
+                <option>Farmer</option>
+                <option>Artisan / Skilled Tradesperson</option>
+                <option>Civil Servant</option>
+                <option>Healthcare Worker</option>
+                <option>Engineer</option>
+                <option>IT / Tech Professional</option>
+                <option>Driver</option>
+                <option>Tailor / Fashion Designer</option>
+                <option>Hairdresser / Barber</option>
+                <option>Business Owner</option>
+                <option>Student</option>
+                <option>Unemployed</option>
+                <option>Other</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="field">
+              <label for="disability">Physical Disability Status</label>
+              <select id="disability" required>
+                <option value="" disabled selected>Select</option>
+                <option>None</option>
+                <option>Visual impairment</option>
+                <option>Hearing impairment</option>
+                <option>Mobility impairment</option>
+                <option>Other</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row row-2">
+            <div class="field">
+              <label for="state">State of Origin</label>
+              <select id="state" required onchange="populateLgaOptions()">
+                <option value="" disabled selected>Select state</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="lga">LGA</label>
+              <select id="lga" required disabled>
+                <option value="" disabled selected>Select state first</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="field">
+              <label for="address">Residential Address</label
+              ><input
+                id="address"
+                type="text"
+                placeholder="Street, city, state"
+                required
+              />
+            </div>
+          </div>
+
+          <button type="submit" class="save-btn">SAVE &amp; CONTINUE →</button>
+        </form>
+        <script>
+          const stateLgaData = {
+            Abia: [
+              "Aba North",
+              "Aba South",
+              "Arochukwu",
+              "Bende",
+              "Ikawuno",
+              "Ikwuano",
+              "Isiala Ngwa North",
+              "Isiala Ngwa South",
+              "Isuikwuato",
+              "Obi Ngwa",
+              "Ohafia",
+              "Osisioma",
+              "Ugwunagbo",
+              "Ukwa East",
+              "Ukwa West",
+              "Umuahia North",
+              "Umuahia South",
+              "Umu Nneochi",
+            ],
+            Adamawa: [
+              "Demsa",
+              "Fufure",
+              "Ganye",
+              "Gayuk",
+              "Gombi",
+              "Grie",
+              "Hong",
+              "Jada",
+              "Larmurde",
+              "Madagali",
+              "Maiha",
+              "Mayo Belwa",
+              "Michika",
+              "Mubi North",
+              "Mubi South",
+              "Numan",
+              "Shelleng",
+              "Song",
+              "Toungo",
+              "Yola North",
+              "Yola South",
+            ],
+            "Akwa Ibom": [
+              "Abak",
+              "Eastern Obolo",
+              "Eket",
+              "Esit Eket",
+              "Essien Udim",
+              "Etim Ekpo",
+              "Etinan",
+              "Ibeno",
+              "Ibesikpo Asutan",
+              "Ibiono-Ibom",
+              "Ika",
+              "Ikono",
+              "Ikot Abasi",
+              "Ikot Ekpene",
+              "Ini",
+              "Itu",
+              "Mbo",
+              "Mkpat-Enin",
+              "Nsit-Atai",
+              "Nsit-Ibom",
+              "Nsit-Ubium",
+              "Obot Akara",
+              "Okobo",
+              "Onna",
+              "Oron",
+              "Oruk Anam",
+              "Udung-Uko",
+              "Ukanafun",
+              "Uruan",
+              "Urue-Offong/Oruko",
+              "Uyo",
+            ],
+            Anambra: [
+              "Aguata",
+              "Anambra East",
+              "Anambra West",
+              "Anaocha",
+              "Awka North",
+              "Awka South",
+              "Ayamelum",
+              "Dunukofia",
+              "Ekwusigo",
+              "Idemili North",
+              "Idemili South",
+              "Ihiala",
+              "Njikoka",
+              "Nnewi North",
+              "Nnewi South",
+              "Ogbaru",
+              "Onitsha North",
+              "Onitsha South",
+              "Orumba North",
+              "Orumba South",
+              "Oyi",
+            ],
+            Bauchi: [
+              "Alkaleri",
+              "Bauchi",
+              "Bogoro",
+              "Damban",
+              "Darazo",
+              "Dass",
+              "Gamawa",
+              "Ganjuwa",
+              "Giade",
+              "Itas/Gadau",
+              "Jama'are",
+              "Katagum",
+              "Kirfi",
+              "Misau",
+              "Ningi",
+              "Shira",
+              "Tafawa Balewa",
+              "Toro",
+              "Warji",
+              "Zaki",
+            ],
+            Bayelsa: [
+              "Brass",
+              "Ekeremor",
+              "Kolokuma/Opokuma",
+              "Nembe",
+              "Ogbia",
+              "Sagbama",
+              "Southern Ijaw",
+              "Yenagoa",
+            ],
+            Benue: [
+              "Ado",
+              "Agatu",
+              "Apa",
+              "Buruku",
+              "Gboko",
+              "Guma",
+              "Gwer East",
+              "Gwer West",
+              "Katsina-Ala",
+              "Konshisha",
+              "Kwande",
+              "Logo",
+              "Makurdi",
+              "Obi",
+              "Ogbadibo",
+              "Ohimini",
+              "Oju",
+              "Okpokwu",
+              "Oturkpo",
+              "Tarka",
+              "Ukum",
+              "Ushongo",
+              "Vandeikya",
+            ],
+            Borno: [
+              "Abadam",
+              "Askira/Uba",
+              "Bama",
+              "Bayo",
+              "Biu",
+              "Chibok",
+              "Damboa",
+              "Dikwa",
+              "Gubio",
+              "Guzamala",
+              "Gwoza",
+              "Hawul",
+              "Jere",
+              "Kaga",
+              "Kala/Balge",
+              "Konduga",
+              "Kukawa",
+              "Kwaya Kusar",
+              "Mafa",
+              "Magumeri",
+              "Maiduguri",
+              "Marte",
+              "Mobbar",
+              "Monguno",
+              "Ngala",
+              "Nganzai",
+              "Shani",
+            ],
+            "Cross River": [
+              "Abi",
+              "Akamkpa",
+              "Akpabuyo",
+              "Bakassi",
+              "Bekwarra",
+              "Biase",
+              "Boki",
+              "Calabar Municipal",
+              "Calabar South",
+              "Etung",
+              "Ikom",
+              "Obanliku",
+              "Obubra",
+              "Obudu",
+              "Odukpani",
+              "Ogoja",
+              "Yakuur",
+              "Yala",
+            ],
+            Delta: [
+              "Aniocha North",
+              "Aniocha South",
+              "Bomadi",
+              "Burutu",
+              "Ethiope East",
+              "Ethiope West",
+              "Ika North East",
+              "Ika South",
+              "Isoko North",
+              "Isoko South",
+              "Ndokwa East",
+              "Ndokwa West",
+              "Okpe",
+              "Oshimili North",
+              "Oshimili South",
+              "Patani",
+              "Sapele",
+              "Udu",
+              "Ughelli North",
+              "Ughelli South",
+              "Ukwuani",
+              "Uvwie",
+              "Warri North",
+              "Warri South",
+              "Warri South West",
+            ],
+            Ebonyi: [
+              "Abakaliki",
+              "Afikpo North",
+              "Afikpo South",
+              "Ebonyi",
+              "Ezza North",
+              "Ezza South",
+              "Ikwo",
+              "Ishielu",
+              "Ivo",
+              "Izzi",
+              "Ohaozara",
+              "Ohaukwu",
+              "Onicha",
+            ],
+            Edo: [
+              "Akoko-Edo",
+              "Egor",
+              "Esan Central",
+              "Esan North-East",
+              "Esan South-East",
+              "Esan West",
+              "Etsako Central",
+              "Etsako East",
+              "Etsako West",
+              "Igueben",
+              "Ikpoba Okha",
+              "Orhionmwon",
+              "Oredo",
+              "Ovia North-East",
+              "Ovia South-West",
+              "Owan East",
+              "Owan West",
+              "Uhunmwonde",
+            ],
+            Ekiti: [
+              "Ado Ekiti",
+              "Efon",
+              "Ekiti East",
+              "Ekiti South-West",
+              "Ekiti West",
+              "Emure",
+              "Gbonyin",
+              "Ido Osi",
+              "Ijero",
+              "Ikere",
+              "Ikole",
+              "Ilejemeje",
+              "Irepodun/Ifelodun",
+              "Ise/Orun",
+              "Moba",
+              "Oye",
+            ],
+            Enugu: [
+              "Aninri",
+              "Awgu",
+              "Enugu East",
+              "Enugu North",
+              "Enugu South",
+              "Ezeagu",
+              "Igbo Etiti",
+              "Igbo Eze North",
+              "Igbo Eze South",
+              "Isi Uzo",
+              "Nkanu East",
+              "Nkanu West",
+              "Nsukka",
+              "Oji River",
+              "Udenu",
+              "Udi",
+              "Uzo-Uwani",
+            ],
+            Gombe: [
+              "Akko",
+              "Balanga",
+              "Billiri",
+              "Dukku",
+              "Funakaye",
+              "Gombe",
+              "Kaltungo",
+              "Kwami",
+              "Nafada",
+              "Shongom",
+              "Yamaltu/Deba",
+            ],
+            Imo: [
+              "Aboh Mbaise",
+              "Ahiazu Mbaise",
+              "Ehime Mbano",
+              "Ezinihitte",
+              "Ideato North",
+              "Ideato South",
+              "Ihitte/Uboma",
+              "Ikeduru",
+              "Isiala Mbano",
+              "Isu",
+              "Mbaitoli",
+              "Ngor Okpala",
+              "Njaba",
+              "Nkwerre",
+              "Nwangele",
+              "Obowo",
+              "Oguta",
+              "Ohaji/Egbema",
+              "Okigwe",
+              "Orlu",
+              "Orsu",
+              "Oru East",
+              "Oru West",
+              "Owerri Municipal",
+              "Owerri North",
+              "Owerri West",
+              "Unuimo",
+            ],
+            Jigawa: [
+              "Auyo",
+              "Babura",
+              "Biriniwa",
+              "Birnin Kudu",
+              "Buji",
+              "Dutse",
+              "Gagarawa",
+              "Garki",
+              "Gumel",
+              "Guri",
+              "Gwaram",
+              "Gwiwa",
+              "Hadejia",
+              "Jahun",
+              "Kafin Hausa",
+              "Kazaure",
+              "Kiri Kasama",
+              "Kiyawa",
+              "Maigatari",
+              "Malam Madori",
+              "Miga",
+              "Ringim",
+              "Roni",
+              "Sule Tankarkar",
+              "Taura",
+              "Yankwashi",
+            ],
+            Kaduna: [
+              "Birnin Gwari",
+              "Chikun",
+              "Giwa",
+              "Igabi",
+              "Ikara",
+              "Jaba",
+              "Jema'a",
+              "Kachia",
+              "Kaduna North",
+              "Kaduna South",
+              "Kagarko",
+              "Kajuru",
+              "Kaura",
+              "Kauru",
+              "Kubau",
+              "Kudan",
+              "Lere",
+              "Makarfi",
+              "Sabon Gari",
+              "Sanga",
+              "Soba",
+              "Zangon Kataf",
+              "Zaria",
+            ],
+            Kano: [
+              "Ajingi",
+              "Albasu",
+              "Bagwai",
+              "Bebeji",
+              "Bichi",
+              "Bunkure",
+              "Dala",
+              "Dambatta",
+              "Dawakin Kudu",
+              "Dawakin Tofa",
+              "Doguwa",
+              "Fagge",
+              "Gabasawa",
+              "Garko",
+              "Garun Mallam",
+              "Gaya",
+              "Gezawa",
+              "Gwale",
+              "Gwarzo",
+              "Kabo",
+              "Kano Municipal",
+              "Karaye",
+              "Kibiya",
+              "Kiru",
+              "Kumbotso",
+              "Kunchi",
+              "Kura",
+              "Madobi",
+              "Makoda",
+              "Minjibir",
+              "Nasarawa",
+              "Rano",
+              "Rimin Gado",
+              "Rogo",
+              "Shanono",
+              "Sumaila",
+              "Takai",
+              "Tarauni",
+              "Tofa",
+              "Tsanyawa",
+              "Tudun Wada",
+              "Ungogo",
+              "Warawa",
+              "Wudil",
+            ],
+            Katsina: [
+              "Bakori",
+              "Batagarawa",
+              "Batsari",
+              "Baure",
+              "Bindawa",
+              "Charanchi",
+              "Dan Musa",
+              "Dandume",
+              "Danja",
+              "Daura",
+              "Dutsi",
+              "Dutsin-Ma",
+              "Faskari",
+              "Funtua",
+              "Ingawa",
+              "Jibia",
+              "Kafur",
+              "Kaita",
+              "Kankara",
+              "Kankia",
+              "Katsina",
+              "Kurfi",
+              "Kusada",
+              "Mai'Adua",
+              "Malumfashi",
+              "Mani",
+              "Mashi",
+              "Matazu",
+              "Musawa",
+              "Rimi",
+              "Sabuwa",
+              "Safana",
+              "Sandamu",
+              "Zango",
+            ],
+            Kebbi: [
+              "Aleiro",
+              "Arewa Dandi",
+              "Argungu",
+              "Augie",
+              "Bagudo",
+              "Birnin Kebbi",
+              "Bunza",
+              "Dandi",
+              "Fakai",
+              "Gwandu",
+              "Jega",
+              "Kalgo",
+              "Koko/Besse",
+              "Maiyama",
+              "Ngaski",
+              "Sakaba",
+              "Shanga",
+              "Suru",
+              "Wasagu/Danko",
+              "Yauri",
+              "Zuru",
+            ],
+            Kogi: [
+              "Adavi",
+              "Ajaokuta",
+              "Ankpa",
+              "Bassa",
+              "Dekina",
+              "Ibaji",
+              "Idah",
+              "Igalamela Odolu",
+              "Ijumu",
+              "Kabba/Bunu",
+              "Kogi",
+              "Lokoja",
+              "Mopa Muro",
+              "Ofu",
+              "Ogori/Magongo",
+              "Okehi",
+              "Okene",
+              "Olamaboro",
+              "Omala",
+              "Yagba East",
+              "Yagba West",
+            ],
+            Kwara: [
+              "Asa",
+              "Baruten",
+              "Edu",
+              "Ekiti",
+              "Ifelodun",
+              "Ilorin East",
+              "Ilorin South",
+              "Ilorin West",
+              "Irepodun",
+              "Isin",
+              "Kaiama",
+              "Moro",
+              "Offa",
+              "Oke Ero",
+              "Oyun",
+              "Pategi",
+            ],
+            Lagos: [
+              "Agege",
+              "Ajeromi-Ifelodun",
+              "Alimosho",
+              "Amuwo-Odofin",
+              "Apapa",
+              "Badagry",
+              "Epe",
+              "Eti Osa",
+              "Ibeju-Lekki",
+              "Ifako-Ijaiye",
+              "Ikeja",
+              "Ikorodu",
+              "Kosofe",
+              "Lagos Island",
+              "Lagos Mainland",
+              "Mushin",
+              "Ojo",
+              "Oshodi-Isolo",
+              "Shomolu",
+              "Surulere",
+            ],
+            Nasarawa: [
+              "Akwanga",
+              "Awe",
+              "Doma",
+              "Karu",
+              "Keana",
+              "Keffi",
+              "Kokona",
+              "Lafia",
+              "Nasarawa",
+              "Nasarawa Egon",
+              "Obi",
+              "Toto",
+              "Wamba",
+            ],
+            Niger: [
+              "Agaie",
+              "Agwara",
+              "Bida",
+              "Borgu",
+              "Bosso",
+              "Chanchaga",
+              "Edati",
+              "Gbako",
+              "Gurara",
+              "Katcha",
+              "Kontagora",
+              "Lapai",
+              "Lavun",
+              "Magama",
+              "Mariga",
+              "Mashegu",
+              "Mokwa",
+              "Moya",
+              "Paikoro",
+              "Rafi",
+              "Rijau",
+              "Shiroro",
+              "Suleja",
+              "Tafa",
+              "Wushishi",
+            ],
+            Ogun: [
+              "Abeokuta North",
+              "Abeokuta South",
+              "Ado-Odo/Ota",
+              "Egbado North",
+              "Egbado South",
+              "Ewekoro",
+              "Ifo",
+              "Ijebu East",
+              "Ijebu North",
+              "Ijebu North East",
+              "Ijebu Ode",
+              "Ikenne",
+              "Imeko Afon",
+              "Ipokia",
+              "Obafemi Owode",
+              "Odeda",
+              "Odogbolu",
+              "Ogun Waterside",
+              "Remo North",
+              "Shagamu",
+            ],
+            Ondo: [
+              "Akoko North-East",
+              "Akoko North-West",
+              "Akoko South-East",
+              "Akoko South-West",
+              "Akure North",
+              "Akure South",
+              "Ese Odo",
+              "Idanre",
+              "Ifedore",
+              "Ilaje",
+              "Ile Oluji/Okeigbo",
+              "Irele",
+              "Odigbo",
+              "Okitipupa",
+              "Ondo East",
+              "Ondo West",
+              "Ose",
+              "Owo",
+            ],
+            Osun: [
+              "Atakunmosa East",
+              "Atakunmosa West",
+              "Aiyedaade",
+              "Aiyedire",
+              "Boluwaduro",
+              "Boripe",
+              "Ede North",
+              "Ede South",
+              "Egbedore",
+              "Ejigbo",
+              "Ife Central",
+              "Ife East",
+              "Ife North",
+              "Ife South",
+              "Ifedayo",
+              "Ifelodun",
+              "Ila",
+              "Ilesa East",
+              "Ilesa West",
+              "Irepodun",
+              "Irewole",
+              "Isokan",
+              "Iwo",
+              "Obokun",
+              "Odo Otin",
+              "Ola Oluwa",
+              "Olorunda",
+              "Oriade",
+              "Orolu",
+              "Osogbo",
+            ],
+            Oyo: [
+              "Afijio",
+              "Akinyele",
+              "Atiba",
+              "Atisbo",
+              "Egbeda",
+              "Ibadan North",
+              "Ibadan North-East",
+              "Ibadan North-West",
+              "Ibadan South-East",
+              "Ibadan South-West",
+              "Ibarapa Central",
+              "Ibarapa East",
+              "Ibarapa North",
+              "Ido",
+              "Irepo",
+              "Iseyin",
+              "Itesiwaju",
+              "Iwajowa",
+              "Kajola",
+              "Lagelu",
+              "Ogbomosho North",
+              "Ogbomosho South",
+              "Ogo Oluwa",
+              "Olorunsogo",
+              "Oluyole",
+              "Ona Ara",
+              "Orelope",
+              "Ori Ire",
+              "Oyo East",
+              "Oyo West",
+              "Saki East",
+              "Saki West",
+              "Surulere",
+            ],
+            Plateau: [
+              "Barkin Ladi",
+              "Bassa",
+              "Bokkos",
+              "Jos East",
+              "Jos North",
+              "Jos South",
+              "Kanam",
+              "Kanke",
+              "Langtang North",
+              "Langtang South",
+              "Mangu",
+              "Mikang",
+              "Pankshin",
+              "Qua'an Pan",
+              "Riyom",
+              "Shendam",
+              "Wase",
+            ],
+            Rivers: [
+              "Abua/Odual",
+              "Ahoada East",
+              "Ahoada West",
+              "Akuku-Toru",
+              "Andoni",
+              "Asari-Toru",
+              "Bonny",
+              "Degema",
+              "Eleme",
+              "Emuoha",
+              "Etche",
+              "Gokana",
+              "Ikwerre",
+              "Khana",
+              "Obio/Akpor",
+              "Ogba/Egbema/Ndoni",
+              "Ogu/Bolo",
+              "Okrika",
+              "Omuma",
+              "Opobo/Nkoro",
+              "Oyigbo",
+              "Port Harcourt",
+              "Tai",
+            ],
+            Sokoto: [
+              "Binji",
+              "Bodinga",
+              "Dange Shuni",
+              "Gada",
+              "Goronyo",
+              "Gudu",
+              "Gwadabawa",
+              "Illela",
+              "Isa",
+              "Kebbe",
+              "Kware",
+              "Rabah",
+              "Sabon Birni",
+              "Shagari",
+              "Silame",
+              "Sokoto North",
+              "Sokoto South",
+              "Tambuwal",
+              "Tangaza",
+              "Tureta",
+              "Wamako",
+              "Wurno",
+              "Yabo",
+            ],
+            Taraba: [
+              "Ardo Kola",
+              "Bali",
+              "Donga",
+              "Gashaka",
+              "Gassol",
+              "Ibi",
+              "Jalingo",
+              "Karim Lamido",
+              "Kumi",
+              "Lau",
+              "Sardauna",
+              "Takum",
+              "Ussa",
+              "Wukari",
+              "Yorro",
+              "Zing",
+            ],
+            Yobe: [
+              "Bade",
+              "Bursari",
+              "Damaturu",
+              "Fika",
+              "Fune",
+              "Geidam",
+              "Gujba",
+              "Gulani",
+              "Jakusko",
+              "Karasuwa",
+              "Machina",
+              "Nangere",
+              "Nguru",
+              "Potiskum",
+              "Tarmuwa",
+              "Yunusari",
+              "Yusufari",
+            ],
+            Zamfara: [
+              "Anka",
+              "Bakura",
+              "Birnin Magaji/Kiyaw",
+              "Bukkuyum",
+              "Bungudu",
+              "Chafe",
+              "Gummi",
+              "Gusau",
+              "Kaura Namoda",
+              "Maradun",
+              "Maru",
+              "Shinkafi",
+              "Talata Mafara",
+              "Tsafe",
+              "Zurmi",
+            ],
+            FCT: [
+              "Abaji",
+              "Abuja Municipal",
+              "Bwari",
+              "Gwagwalada",
+              "Kuje",
+              "Kwali",
+            ],
+          };
+
+          /* ===== Date of Birth: must be a real date AND 18 years or older ===== */
+          const MIN_AGE = 18;
+
+          function ageFromDate(value) {
+            const dob = new Date(value + "T00:00:00");
+            if (isNaN(dob.getTime())) return null;
+            const today = new Date();
+            let age = today.getFullYear() - dob.getFullYear();
+            const m = today.getMonth() - dob.getMonth();
+            if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) age--;
+            return age;
+          }
+
+          function checkDob(showErrors) {
+            const input = document.getElementById("dob");
+            const err = document.getElementById("dob-error");
+            const value = input.value;
+            input.classList.remove("invalid", "valid");
+            if (!value) {
+              if (showErrors) {
+                input.classList.add("invalid");
+                err.textContent = "Please enter your date of birth.";
+              } else err.textContent = "";
+              return false;
+            }
+            const age = ageFromDate(value);
+            if (age === null) {
+              input.classList.add("invalid");
+              err.textContent = "Please enter a valid date of birth.";
+              return false;
+            }
+            if (age < 0) {
+              input.classList.add("invalid");
+              err.textContent = "Date of birth cannot be in the future.";
+              return false;
+            }
+            if (age < MIN_AGE) {
+              input.classList.add("invalid");
+              err.textContent =
+                "You must be at least " +
+                MIN_AGE +
+                " years old to apply. You are " +
+                age +
+                ".";
+              return false;
+            }
+            input.classList.add("valid");
+            err.textContent = "";
+            return true;
+          }
+
+          /* ===== Phone: exactly 11 digits, live feedback ===== */
+          function checkPhone(showErrors) {
+            const input = document.getElementById("phone");
+            const err = document.getElementById("phone-error");
+            const digits = input.value.replace(/\D/g, "");
+            if (digits !== input.value) input.value = digits;
+            input.classList.remove("invalid", "valid");
+
+            if (!digits.length) {
+              if (showErrors) {
+                input.classList.add("invalid");
+                err.textContent = "Please enter your phone number.";
+              } else err.textContent = "";
+              return false;
+            }
+            if (digits.length > 11) {
+              input.classList.add("invalid");
+              err.textContent =
+                "Too many digits \u2014 a Nigerian phone number is exactly 11 digits, you have entered " +
+                digits.length +
+                ". Please delete " +
+                (digits.length - 11) +
+                ".";
+              return false;
+            }
+            if (digits.length < 11) {
+              input.classList.add("invalid");
+              err.textContent =
+                "Phone number must be exactly 11 digits (" +
+                digits.length +
+                "/11 so far).";
+              return false;
+            }
+            input.classList.add("valid");
+            err.textContent = "";
+            return true;
+          }
+
+          (function initStep2Guards() {
+            const dob = document.getElementById("dob");
+            const phone = document.getElementById("phone");
+            // Hard ceiling in the browser picker: nobody can even pick a date < 18 years ago.
+            const latest = new Date();
+            latest.setFullYear(latest.getFullYear() - MIN_AGE);
+            dob.max = latest.toISOString().slice(0, 10);
+
+            dob.addEventListener("change", function () {
+              checkDob(true);
+            });
+            dob.addEventListener("input", function () {
+              checkDob(false);
+            });
+            phone.addEventListener("input", function () {
+              checkPhone(false);
+            });
+            phone.addEventListener("blur", function () {
+              checkPhone(true);
+            });
+          })();
+
+          function populateStateOptions() {
+            const stateSelect = document.getElementById("state");
+            Object.keys(stateLgaData)
+              .sort()
+              .forEach(function (stateName) {
+                const opt = document.createElement("option");
+                opt.value = stateName;
+                opt.textContent = stateName;
+                stateSelect.appendChild(opt);
+              });
+          }
+          function populateLgaOptions() {
+            const stateSelect = document.getElementById("state");
+            const lgaSelect = document.getElementById("lga");
+            const selectedState = stateSelect.value;
+            lgaSelect.innerHTML = "";
+            if (!selectedState || !stateLgaData[selectedState]) {
+              lgaSelect.disabled = true;
+              const placeholder = document.createElement("option");
+              placeholder.value = "";
+              placeholder.disabled = true;
+              placeholder.selected = true;
+              placeholder.textContent = "Select state first";
+              lgaSelect.appendChild(placeholder);
+              return;
+            }
+            lgaSelect.disabled = false;
+            const placeholder = document.createElement("option");
+            placeholder.value = "";
+            placeholder.disabled = true;
+            placeholder.selected = true;
+            placeholder.textContent = "Select LGA";
+            lgaSelect.appendChild(placeholder);
+            stateLgaData[selectedState].forEach(function (lgaName) {
+              const opt = document.createElement("option");
+              opt.value = lgaName;
+              opt.textContent = lgaName;
+              lgaSelect.appendChild(opt);
+            });
+          }
+          populateStateOptions();
+
+          function handleStep2Submit(event) {
+            event.preventDefault();
+
+            // 1. Phone: exactly 11 digits, no more, no less.
+            const phone = document
+              .getElementById("phone")
+              .value.replace(/\D/g, "");
+            const phoneError = document.getElementById("phone-error");
+            if (phone.length !== 11) {
+              phoneError.textContent =
+                phone.length > 11
+                  ? "Too many digits \u2014 a phone number must be exactly 11 digits, you entered " +
+                    phone.length +
+                    "."
+                  : "Phone number must be exactly 11 digits (" +
+                    phone.length +
+                    "/11 so far).";
+              document.getElementById("phone").focus();
+              return false;
+            }
+            phoneError.textContent = "";
+
+            // 2. Date of birth: real date, not in the future, applicant is 18+.
+            if (!checkDob(true)) {
+              document.getElementById("dob").focus();
+              return false;
+            }
+
+            localStorage.setItem("cp_reg_phone", phone);
+            localStorage.setItem(
+              "cp_dob",
+              document.getElementById("dob").value,
+            );
+            localStorage.setItem(
+              "cp_fullname",
+              document.getElementById("firstname").value.trim() +
+                " " +
+                document.getElementById("surname").value.trim(),
+            );
+            window.location.href = "step3.html";
+            return false;
+          }
+        </script>
+        <a href="step1.html" class="back-link">← Back to Step 1</a>
+      </div>
+    </div>
+
+    <script>
+      const STEP_LABELS = [
+        "Identification",
+        "Personal Details",
+        "Education",
+        "Documents & Track",
+        "Payment",
+      ];
+      (function initStepChrome() {
+        if (!localStorage.getItem("cp_candidate_ref")) {
+          localStorage.setItem(
+            "cp_candidate_ref",
+            "CP-2026-" + Math.floor(100000 + Math.random() * 900000),
+          );
+        }
+        const cur = parseInt(document.body.dataset.step, 10) || 1;
+        const ol = document.getElementById("stepper");
+        let html = "";
+        for (let i = 1; i <= 5; i++) {
+          const cls = i < cur ? "done" : i === cur ? "now" : "";
+          const dot = i < cur ? "✓" : String(i);
+          html +=
+            "<li>" +
+            (i > 1
+              ? '<span class="step-line' +
+                (i <= cur ? " done" : "") +
+                '"></span>'
+              : "") +
+            '<span class="step-dot ' +
+            cls +
+            '">' +
+            dot +
+            "</span>" +
+            (i === cur
+              ? '<span class="step-name">' + STEP_LABELS[i - 1] + "</span>"
+              : "") +
+            "</li>";
+        }
+        ol.innerHTML = html;
+        document.getElementById("cand-id").textContent =
+          localStorage.getItem("cp_candidate_ref");
+        document.getElementById("step-now").textContent = cur;
+      })();
+      function doLogout() {
+        [
+          "cp_reg_email",
+          "cp_reg_phone",
+          "cp_nin",
+          "cp_fullname",
+          "cp_ref",
+          "cp_email",
+          "cp_track",
+          "cp_candidate_ref",
+        ].forEach((k) => localStorage.removeItem(k));
+        sessionStorage.removeItem("cp_passport_photo");
+        window.location.href = "index.html";
+      }
+      import { setupLogoutButton } from "./src/logout.js";
+      setupLogoutButton("#logout-btn");
+    </script>
+    <script type="module" src="/src/step2.js"></script>
+  </body>
+</html>

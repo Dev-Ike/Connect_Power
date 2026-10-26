@@ -1,0 +1,588 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Connect Power — Step 1: Verify Your Details</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --green-deep: #0b3b24;
+        --green: #146b3a;
+        --green-light: #e9f5ec;
+        --gold: #f2b705;
+        --ink: #132018;
+        --muted: #5b6b60;
+        --line: #dce7df;
+        font-family: "Inter", system-ui, sans-serif;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--green-light);
+        color: var(--ink);
+        line-height: 1.5;
+        min-height: 100vh;
+        padding-bottom: 60px;
+      }
+      h1,
+      h2,
+      .step-title {
+        font-family: "Poppins", system-ui, sans-serif;
+      }
+
+      /* ===== SHARED APPLICATION TOP BAR (logo · logout · back home · candidate ID · stepper) ===== */
+      .app-topbar {
+        background: var(--green-deep);
+        color: #fff;
+      }
+      .app-topbar-inner {
+        max-width: 1040px;
+        margin: 0 auto;
+        padding: 14px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        flex-wrap: wrap;
+      }
+      .app-brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        color: #fff;
+        text-decoration: none;
+      }
+      .app-brand .leaf {
+        width: 40px;
+        height: 40px;
+        flex-shrink: 0;
+      }
+      .app-brand-text {
+        font-family: "Poppins", sans-serif;
+        font-weight: 700;
+        font-size: 1.25rem;
+        line-height: 1.05;
+      }
+      .app-brand-text b {
+        color: var(--gold);
+      }
+      .app-brand-text small {
+        display: block;
+        font-size: 0.62rem;
+        letter-spacing: 0.18em;
+        font-weight: 600;
+        color: #b9cec0;
+      }
+      .app-topbar-actions {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+      }
+      .pill {
+        border: 1.5px solid rgba(255, 255, 255, 0.5);
+        color: #fff;
+        border-radius: 999px;
+        padding: 8px 18px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        text-decoration: none;
+        cursor: pointer;
+        background: transparent;
+        font-family: inherit;
+      }
+      .pill:hover {
+        background: rgba(255, 255, 255, 0.12);
+      }
+      .pill-solid {
+        background: #fff;
+        color: var(--green-deep);
+        border-color: #fff;
+      }
+      .pill-solid:hover {
+        background: var(--gold);
+        border-color: var(--gold);
+      }
+
+      .app-progress {
+        background: #fff;
+        border-bottom: 1px solid var(--line);
+      }
+      .app-progress-inner {
+        max-width: 1040px;
+        margin: 0 auto;
+        padding: 18px 20px 22px;
+      }
+      .app-progress-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      .app-progress-top h1 {
+        color: var(--green-deep);
+        font-size: 1.6rem;
+      }
+      .cand {
+        text-align: right;
+      }
+      .cand span {
+        display: block;
+        font-size: 0.66rem;
+        letter-spacing: 0.14em;
+        color: var(--muted);
+        font-weight: 700;
+      }
+      .cand b {
+        font-family: "Poppins";
+        color: var(--green-deep);
+        font-size: 1.05rem;
+      }
+      .app-progress-meta {
+        display: flex;
+        justify-content: space-between;
+        color: var(--muted);
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        margin: 8px 0 14px;
+      }
+      .autosave {
+        color: var(--green);
+        font-weight: 700;
+      }
+      .stepper {
+        list-style: none;
+        display: flex;
+        align-items: center;
+        padding: 0;
+        margin: 0;
+      }
+      .stepper li {
+        display: flex;
+        align-items: center;
+        flex: 1;
+        min-width: 0;
+      }
+      .stepper li:last-child {
+        flex: 0;
+      }
+      .step-dot {
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        border: 2px solid var(--line);
+        background: #fff;
+        color: var(--muted);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 0.85rem;
+        flex-shrink: 0;
+        font-family: "Poppins";
+      }
+      .step-dot.done {
+        background: var(--green-deep);
+        border-color: var(--green-deep);
+        color: #fff;
+      }
+      .step-dot.now {
+        background: var(--green);
+        border-color: var(--green);
+        color: #fff;
+        box-shadow: 0 0 0 4px rgba(20, 107, 58, 0.15);
+      }
+      .step-name {
+        margin-left: 8px;
+        font-size: 0.8rem;
+        font-weight: 700;
+        color: var(--green-deep);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .step-line {
+        flex: 1;
+        height: 2px;
+        background: var(--line);
+        margin: 0 8px;
+        min-width: 12px;
+      }
+      .step-line.done {
+        background: var(--green-deep);
+      }
+      @media (max-width: 640px) {
+        .step-name {
+          display: none;
+        }
+      }
+
+      /* ===== STEP CARD ===== */
+      .step-wrap {
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        padding: 16px 5vw 32px;
+      }
+      .step-card {
+        width: 100%;
+        max-width: 520px;
+        background: linear-gradient(160deg, var(--green-deep), var(--green));
+        border-radius: 22px;
+        padding: 6px;
+      }
+      .step-title {
+        padding: 20px 26px;
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: #fff;
+      }
+      .step-title span {
+        color: var(--gold);
+      }
+
+      .inner {
+        background: #fff;
+        border-radius: 18px;
+        padding: 32px 26px;
+        text-align: center;
+      }
+      .icon-wrap {
+        width: 84px;
+        height: 84px;
+        margin: 0 auto 20px;
+        border-radius: 50%;
+        background: var(--green-light);
+        border: 2px solid var(--green);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.1rem;
+      }
+      .inner h2 {
+        font-size: 1.2rem;
+        color: var(--green-deep);
+        margin-bottom: 10px;
+      }
+      .inner p {
+        font-size: 0.9rem;
+        color: var(--muted);
+        max-width: 38ch;
+        margin: 0 auto 26px;
+      }
+
+      .field {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        border: 1.5px solid var(--green);
+        border-radius: 10px;
+        padding: 14px 16px;
+        margin-bottom: 16px;
+        text-align: left;
+      }
+      .field .ico {
+        font-size: 1.2rem;
+        flex-shrink: 0;
+      }
+      .field-text {
+        flex: 1;
+      }
+      .field label {
+        display: block;
+        font-size: 0.78rem;
+        font-weight: 600;
+        color: var(--green-deep);
+      }
+      .field input {
+        width: 100%;
+        border: none;
+        outline: none;
+        font-size: 0.95rem;
+        font-family: inherit;
+        color: var(--ink);
+        margin-top: 2px;
+      }
+
+      .continue-btn {
+        width: 100%;
+        margin-top: 6px;
+        background: var(--gold);
+        color: var(--green-deep);
+        padding: 15px;
+        border-radius: 10px;
+        border: none;
+        font-weight: 700;
+        font-size: 1rem;
+        cursor: pointer;
+      }
+      .back-link {
+        display: block;
+        margin-top: 16px;
+        font-size: 0.85rem;
+        color: var(--muted);
+        text-decoration: none;
+      }
+      .privacy-note {
+        font-size: 0.76rem;
+        color: var(--muted);
+        margin-top: 14px;
+        line-height: 1.5;
+      }
+      .error-msg {
+        display: block;
+        line-height: 1.35;
+        color: #b3261e;
+        font-size: 0.82rem;
+        margin: -6px 0 12px;
+        min-height: 1.2em;
+        text-align: left;
+      }
+    </style>
+  </head>
+  <body data-step="1">
+    <!-- Top bar: logo · logout · back home -->
+    <header class="app-topbar">
+      <div class="app-topbar-inner">
+        <a class="app-brand" href="index.html">
+          <svg
+            class="leaf"
+            viewBox="0 0 48 48"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle cx="24" cy="10" r="5" fill="#F2B705" />
+            <path
+              d="M24 16C24 16 10 20 10 34C10 34 24 34 24 20C24 34 38 34 38 34C38 20 24 16 24 16Z"
+              fill="#146B3A"
+            />
+          </svg>
+          <span class="app-brand-text"
+            >Connect <b>Power</b><small>APPLICATION PORTAL</small></span
+          >
+        </a>
+        <div class="app-topbar-actions">
+          <a class="pill" href="index.html">Back home</a>
+          <!-- <button class="pill pill-solid" onclick="doLogout()">Logout</button> -->
+          <button class="pill pill-solid" id="logout-btn" type="button">
+            Log out
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Progress: STEP x OF 5 · candidate ID · stepper with ticks -->
+    <section class="app-progress">
+      <div class="app-progress-inner">
+        <div class="app-progress-top">
+          <h1>MY APPLICATIONS</h1>
+          <div class="cand">
+            <span>CANDIDATE ID</span>
+            <b id="cand-id">—</b>
+          </div>
+        </div>
+        <div class="app-progress-meta">
+          <span>STEP <span id="step-now">1</span> OF 5</span>
+          <span class="autosave">● Auto-saved</span>
+        </div>
+        <ol class="stepper" id="stepper"></ol>
+      </div>
+    </section>
+
+    <div class="step-wrap">
+      <div class="step-card">
+        <div class="step-title">
+          <span>STEP 1:</span> Identification &amp; Verification
+        </div>
+        <div class="inner">
+          <div class="icon-wrap">🪪</div>
+          <h2>Identification &amp; Verification</h2>
+          <p>Enter your NIN to confirm your identity.</p>
+
+          <form id="step1-form" onsubmit="return validateStep1(event);">
+            <div class="field">
+              <span class="ico">🪪</span>
+              <div class="field-text">
+                <label for="nin">National Identity Number (NIN)</label>
+                <input
+                  id="nin"
+                  type="text"
+                  inputmode="numeric"
+                  autocomplete="off"
+                  maxlength="20"
+                  placeholder="11-digit NIN"
+                  required
+                />
+              </div>
+            </div>
+            <p id="nin-error" class="error-msg"></p>
+            <button type="submit" class="continue-btn">CONTINUE →</button>
+          </form>
+          <p class="privacy-note">
+            Your NIN is used only to confirm your identity and is stored
+            securely. It is never shared with third parties.
+          </p>
+          <a href="index.html" class="back-link">← Back to home</a>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      /* ===== Shared step-header logic: candidate ID + progress ticks ===== */
+      const STEP_LABELS = [
+        "Identification",
+        "Personal Details",
+        "Education",
+        "Documents & Track",
+        "Payment",
+      ];
+
+      (function initStepChrome() {
+        // Give this session a stable candidate ID (used as the payment reference later).
+        if (!localStorage.getItem("cp_candidate_ref")) {
+          localStorage.setItem(
+            "cp_candidate_ref",
+            "CP-2026-" + Math.floor(100000 + Math.random() * 900000),
+          );
+        }
+        const cur = parseInt(document.body.dataset.step, 10) || 1;
+        const ol = document.getElementById("stepper");
+        let html = "";
+        for (let i = 1; i <= 5; i++) {
+          const cls = i < cur ? "done" : i === cur ? "now" : "";
+          const dot = i < cur ? "✓" : String(i);
+          html +=
+            "<li>" +
+            (i > 1
+              ? '<span class="step-line' +
+                (i <= cur ? " done" : "") +
+                '"></span>'
+              : "") +
+            '<span class="step-dot ' +
+            cls +
+            '">' +
+            dot +
+            "</span>" +
+            (i === cur
+              ? '<span class="step-name">' + STEP_LABELS[i - 1] + "</span>"
+              : "") +
+            "</li>";
+        }
+        ol.innerHTML = html;
+        document.getElementById("cand-id").textContent =
+          localStorage.getItem("cp_candidate_ref");
+        document.getElementById("step-now").textContent = cur;
+      })();
+
+      function doLogout() {
+        [
+          "cp_reg_email",
+          "cp_reg_phone",
+          "cp_nin",
+          "cp_fullname",
+          "cp_ref",
+          "cp_email",
+          "cp_track",
+          "cp_candidate_ref",
+        ].forEach((k) => localStorage.removeItem(k));
+        sessionStorage.removeItem("cp_passport_photo");
+        window.location.href = "index.html";
+      }
+
+      /* ===== Step 1 validation ===== */
+
+      /* ===== Live NIN guard: flags too-short AND past-11 immediately =====
+     (maxlength is 20 on purpose: if the field silently swallowed the 12th key
+     the applicant would never be told they typed too many digits.) */
+      function attachNinGuard(inputId, errorId, label) {
+        const input = document.getElementById(inputId);
+        const err = document.getElementById(errorId);
+        if (!input || !err) return null;
+        const MAX = 11;
+
+        function check() {
+          const raw = input.value;
+          const digits = raw.replace(/\D/g, "");
+          if (digits !== raw) input.value = digits; // letters/spaces never allowed
+          input.classList.remove("invalid", "valid");
+
+          if (!digits.length) {
+            err.textContent = "";
+            return { ok: false };
+          }
+
+          if (digits.length > MAX) {
+            input.classList.add("invalid");
+            err.textContent =
+              "Too many digits \u2014 " +
+              label +
+              " must be exactly 11 digits, you have entered " +
+              digits.length +
+              ". Please delete " +
+              (digits.length - MAX) +
+              " digit(s).";
+            return { ok: false };
+          }
+          if (digits.length < MAX) {
+            input.classList.add("invalid");
+            err.textContent =
+              label +
+              " must be exactly 11 digits (" +
+              digits.length +
+              "/11 so far).";
+            return { ok: false };
+          }
+          input.classList.add("valid");
+          err.textContent = "";
+          return { ok: true, value: digits };
+        }
+
+        input.addEventListener("input", check);
+        input.addEventListener("blur", check);
+        input.addEventListener("paste", function () {
+          setTimeout(check, 0);
+        });
+        check();
+        return check;
+      }
+
+      const ninCheck = attachNinGuard("nin", "nin-error", "Your NIN");
+
+      function validateStep1(e) {
+        e.preventDefault();
+        const nin = document.getElementById("nin").value.trim();
+        const errorBox = document.getElementById("nin-error");
+
+        if (nin.length > 11) {
+          errorBox.textContent =
+            "Too many digits \u2014 your NIN must be exactly 11 digits, you have entered " +
+            nin.length +
+            ".";
+          return false;
+        }
+        if (!/^\d{11}$/.test(nin)) {
+          errorBox.textContent =
+            "Incorrect NIN. Please enter a valid 11-digit NIN.";
+          return false;
+        }
+
+        errorBox.textContent = "";
+        localStorage.setItem("cp_nin", nin);
+        window.location.href = "step2.html";
+        return false;
+      }
+      import { setupLogoutButton } from "./src/logout.js";
+      setupLogoutButton("#logout-btn");
+    </script>
+  </body>
+</html>

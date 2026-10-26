@@ -1,0 +1,772 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Connect Power — Step 3: Education & Qualifications</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --green-deep: #0b3b24;
+        --green: #146b3a;
+        --green-light: #e9f5ec;
+        --gold: #f2b705;
+        --ink: #132018;
+        --muted: #5b6b60;
+        --line: #dce7df;
+        font-family: "Inter", system-ui, sans-serif;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      /* Makes the hidden attribute win over any display rule (e.g. .row) */
+      [hidden] {
+        display: none !important;
+      }
+      body {
+        background: var(--green-light);
+        color: var(--ink);
+        line-height: 1.5;
+        min-height: 100vh;
+        padding-bottom: 60px;
+      }
+      h1,
+      h2,
+      .step-title {
+        font-family: "Poppins", system-ui, sans-serif;
+      }
+
+      /* ===== SHARED APPLICATION TOP BAR ===== */
+      .app-topbar {
+        background: var(--green-deep);
+        color: #fff;
+      }
+      .app-topbar-inner {
+        max-width: 1040px;
+        margin: 0 auto;
+        padding: 14px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        flex-wrap: wrap;
+      }
+      .app-brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        color: #fff;
+        text-decoration: none;
+      }
+      .app-brand .leaf {
+        width: 40px;
+        height: 40px;
+        flex-shrink: 0;
+      }
+      .app-brand-text {
+        font-family: "Poppins", sans-serif;
+        font-weight: 700;
+        font-size: 1.25rem;
+        line-height: 1.05;
+      }
+      .app-brand-text b {
+        color: var(--gold);
+      }
+      .app-brand-text small {
+        display: block;
+        font-size: 0.62rem;
+        letter-spacing: 0.18em;
+        font-weight: 600;
+        color: #b9cec0;
+      }
+      .app-topbar-actions {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+      }
+      .pill {
+        border: 1.5px solid rgba(255, 255, 255, 0.5);
+        color: #fff;
+        border-radius: 999px;
+        padding: 8px 18px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        text-decoration: none;
+        cursor: pointer;
+        background: transparent;
+        font-family: inherit;
+      }
+      .pill:hover {
+        background: rgba(255, 255, 255, 0.12);
+      }
+      .pill-solid {
+        background: #fff;
+        color: var(--green-deep);
+        border-color: #fff;
+      }
+      .pill-solid:hover {
+        background: var(--gold);
+        border-color: var(--gold);
+      }
+      .app-progress {
+        background: #fff;
+        border-bottom: 1px solid var(--line);
+      }
+      .app-progress-inner {
+        max-width: 1040px;
+        margin: 0 auto;
+        padding: 18px 20px 22px;
+      }
+      .app-progress-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      .app-progress-top h1 {
+        color: var(--green-deep);
+        font-size: 1.6rem;
+      }
+      .cand {
+        text-align: right;
+      }
+      .cand span {
+        display: block;
+        font-size: 0.66rem;
+        letter-spacing: 0.14em;
+        color: var(--muted);
+        font-weight: 700;
+      }
+      .cand b {
+        font-family: "Poppins";
+        color: var(--green-deep);
+        font-size: 1.05rem;
+      }
+      .app-progress-meta {
+        display: flex;
+        justify-content: space-between;
+        color: var(--muted);
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        margin: 8px 0 14px;
+      }
+      .autosave {
+        color: var(--green);
+        font-weight: 700;
+      }
+      .stepper {
+        list-style: none;
+        display: flex;
+        align-items: center;
+        padding: 0;
+        margin: 0;
+      }
+      .stepper li {
+        display: flex;
+        align-items: center;
+        flex: 1;
+        min-width: 0;
+      }
+      .stepper li:last-child {
+        flex: 0;
+      }
+      .step-dot {
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        border: 2px solid var(--line);
+        background: #fff;
+        color: var(--muted);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 0.85rem;
+        flex-shrink: 0;
+        font-family: "Poppins";
+      }
+      .step-dot.done {
+        background: var(--green-deep);
+        border-color: var(--green-deep);
+        color: #fff;
+      }
+      .step-dot.now {
+        background: var(--green);
+        border-color: var(--green);
+        color: #fff;
+        box-shadow: 0 0 0 4px rgba(20, 107, 58, 0.15);
+      }
+      .step-name {
+        margin-left: 8px;
+        font-size: 0.8rem;
+        font-weight: 700;
+        color: var(--green-deep);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .step-line {
+        flex: 1;
+        height: 2px;
+        background: var(--line);
+        margin: 0 8px;
+        min-width: 12px;
+      }
+      .step-line.done {
+        background: var(--green-deep);
+      }
+      @media (max-width: 640px) {
+        .step-name {
+          display: none;
+        }
+      }
+
+      .step-card {
+        max-width: 760px;
+        margin: 28px auto 0;
+        background: linear-gradient(160deg, var(--green-deep), var(--green));
+        border-radius: 22px;
+        padding: 6px;
+      }
+      .step-title {
+        padding: 20px 26px;
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: #fff;
+      }
+      .step-title span {
+        color: var(--gold);
+      }
+      .inner {
+        background: #fff;
+        border-radius: 18px;
+        padding: 30px 28px;
+      }
+      .inner .sub {
+        color: var(--muted);
+        font-size: 0.88rem;
+        margin-bottom: 22px;
+      }
+      .row {
+        display: grid;
+        gap: 16px;
+        margin-bottom: 18px;
+      }
+      .row-2 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      @media (max-width: 640px) {
+        .row-2 {
+          grid-template-columns: 1fr;
+        }
+      }
+      .field label {
+        display: block;
+        font-size: 0.82rem;
+        font-weight: 600;
+        color: var(--green-deep);
+        margin-bottom: 6px;
+      }
+      .field-input {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        border: 1.5px solid var(--green);
+        border-radius: 9px;
+        padding: 12px 14px;
+      }
+      .field-input .ico {
+        font-size: 1.1rem;
+        flex-shrink: 0;
+      }
+      .field input,
+      .field select {
+        width: 100%;
+        border: none;
+        outline: none;
+        font-size: 0.92rem;
+        font-family: inherit;
+        color: var(--ink);
+        background: transparent;
+      }
+      .field-plain {
+        width: 100%;
+        padding: 12px 14px;
+        border-radius: 9px;
+        border: 1.5px solid var(--green);
+        font-size: 0.92rem;
+        font-family: inherit;
+        color: var(--ink);
+        background: #fff;
+      }
+      .field select:focus,
+      .field-plain:focus {
+        outline: 2px solid var(--gold);
+        outline-offset: 1px;
+      }
+      .save-btn {
+        width: 100%;
+        margin-top: 8px;
+        background: var(--green-deep);
+        color: #fff;
+        padding: 15px;
+        border-radius: 10px;
+        border: none;
+        font-weight: 700;
+        font-size: 1rem;
+        cursor: pointer;
+      }
+      .back-link {
+        display: block;
+        margin-top: 16px;
+        font-size: 0.85rem;
+        color: var(--muted);
+        text-decoration: none;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body data-step="3">
+    <header class="app-topbar">
+      <div class="app-topbar-inner">
+        <a class="app-brand" href="index.html">
+          <svg
+            class="leaf"
+            viewBox="0 0 48 48"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle cx="24" cy="10" r="5" fill="#F2B705" />
+            <path
+              d="M24 16C24 16 10 20 10 34C10 34 24 34 24 20C24 34 38 34 38 34C38 20 24 16 24 16Z"
+              fill="#146B3A"
+            />
+          </svg>
+          <span class="app-brand-text"
+            >Connect <b>Power</b><small>APPLICATION PORTAL</small></span
+          >
+        </a>
+        <div class="app-topbar-actions">
+          <a class="pill" href="index.html">Back home</a>
+          <!-- <button class="pill pill-solid" onclick="doLogout()">Logout</button> -->
+          <button class="pill pill-solid" id="logout-btn" type="button">
+            Log out
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <section class="app-progress">
+      <div class="app-progress-inner">
+        <div class="app-progress-top">
+          <h1>MY APPLICATIONS</h1>
+          <div class="cand"><span>CANDIDATE ID</span><b id="cand-id">—</b></div>
+        </div>
+        <div class="app-progress-meta">
+          <span>STEP <span id="step-now">3</span> OF 5</span>
+          <span class="autosave">● Auto-saved</span>
+        </div>
+        <ol class="stepper" id="stepper"></ol>
+      </div>
+    </section>
+
+    <div class="step-card">
+      <div class="step-title">
+        <span>STEP 3:</span> Education &amp; Qualifications
+      </div>
+      <div class="inner">
+        <p class="sub">Tell us about your academic background.</p>
+
+        <form id="education-form" novalidate="false">
+          <!-- ===== ALWAYS VISIBLE ===== -->
+          <div class="row">
+            <div class="field">
+              <label for="qualification">Highest Qualification</label>
+              <select id="qualification" class="field-plain" required>
+                <option value="" disabled selected>Select</option>
+                <option>SSCE</option>
+                <option>NCE</option>
+                <option>OND</option>
+                <option>HND</option>
+                <option>Degree</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- ===== SSCE ONLY ===== -->
+          <div id="ssce-section" hidden>
+            <div class="row">
+              <div class="field">
+                <label for="ssce-body">Examination Body</label>
+                <select id="ssce-body" class="field-plain" required disabled>
+                  <option value="" disabled selected>Select</option>
+                  <option>WAEC</option>
+                  <option>NECO</option>
+                  <option>NABTEB</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="field">
+                <label for="ssce-school">Name of School</label>
+                <div class="field-input">
+                  <span class="ico">🏫</span>
+                  <input
+                    id="ssce-school"
+                    type="text"
+                    placeholder="Name of school"
+                    autocomplete="off"
+                    required
+                    disabled
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="field">
+                <label for="ssce-examno">Examination Number</label>
+                <div class="field-input">
+                  <span class="ico">🔢</span>
+                  <input
+                    id="ssce-examno"
+                    type="text"
+                    placeholder="Enter your examination number"
+                    autocomplete="off"
+                    required
+                    disabled
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="field">
+                <label for="ssce-gradyear">Graduation Year</label>
+                <select
+                  id="ssce-gradyear"
+                  class="field-plain"
+                  data-years="20"
+                  required
+                  disabled
+                >
+                  <option value="" disabled selected>Select year</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="row row-2">
+              <div class="field">
+                <label for="ssce-startyear">Start Year</label>
+                <select
+                  id="ssce-startyear"
+                  class="field-plain"
+                  data-years="30"
+                  required
+                  disabled
+                >
+                  <option value="" disabled selected>Select year</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="ssce-endyear">End Year</label>
+                <select
+                  id="ssce-endyear"
+                  class="field-plain"
+                  data-years="30"
+                  required
+                  disabled
+                >
+                  <option value="" disabled selected>Select year</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- ===== NCE / OND / HND / DEGREE (original form) ===== -->
+          <div id="standard-section" hidden>
+            <div class="row">
+              <div class="field">
+                <label for="institution">Institution Name</label>
+                <div class="field-input">
+                  <span class="ico">🏛️</span>
+                  <input
+                    id="institution"
+                    type="text"
+                    placeholder="Name of school/institution"
+                    required
+                    disabled
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="field">
+                <label for="course">Course of Study (optional)</label>
+                <div class="field-input">
+                  <span class="ico">📚</span>
+                  <input
+                    id="course"
+                    type="text"
+                    placeholder="e.g. Computer Science (optional)"
+                    disabled
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="field">
+                <label for="grade">Grade</label>
+                <select id="grade" class="field-plain" required disabled>
+                  <option value="" disabled selected>Select</option>
+                  <option>Distinction</option>
+                  <option>First Class</option>
+                  <option>Second Class Upper</option>
+                  <option>Second Class Lower</option>
+                  <option>Third Class</option>
+                  <option>Merit</option>
+                  <option>Credit</option>
+                  <option>Pass</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="row row-2">
+              <div class="field">
+                <label for="startdate">Start Date</label
+                ><input
+                  id="startdate"
+                  type="date"
+                  class="field-plain"
+                  required
+                  disabled
+                />
+              </div>
+              <div class="field">
+                <label for="enddate">End Date</label
+                ><input
+                  id="enddate"
+                  type="date"
+                  class="field-plain"
+                  required
+                  disabled
+                />
+              </div>
+            </div>
+
+            <div class="row row-2">
+              <div class="field">
+                <label for="gradyear">Graduation Year</label>
+                <select
+                  id="gradyear"
+                  class="field-plain"
+                  data-years="20"
+                  required
+                  disabled
+                >
+                  <option value="" disabled selected>Select year</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="nysc">NYSC Certificate Status (optional)</label>
+                <select id="nysc" class="field-plain" disabled>
+                  <option value="" disabled selected>Select</option>
+                  <option>Completed</option>
+                  <option>Exempted</option>
+                  <option>Currently serving</option>
+                  <option>Not applicable</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <button type="submit" class="save-btn">SAVE &amp; CONTINUE →</button>
+        </form>
+        <a href="step2.html" class="back-link">← Back to Step 2</a>
+      </div>
+    </div>
+
+    <!-- Step chrome (classic script) -->
+    <script>
+      const STEP_LABELS = [
+        "Identification",
+        "Personal Details",
+        "Education",
+        "Documents & Track",
+        "Payment",
+      ];
+      (function initStepChrome() {
+        if (!localStorage.getItem("cp_candidate_ref")) {
+          localStorage.setItem(
+            "cp_candidate_ref",
+            "CP-2026-" + Math.floor(100000 + Math.random() * 900000),
+          );
+        }
+        const cur = parseInt(document.body.dataset.step, 10) || 1;
+        const ol = document.getElementById("stepper");
+        let html = "";
+        for (let i = 1; i <= 5; i++) {
+          const cls = i < cur ? "done" : i === cur ? "now" : "";
+          const dot = i < cur ? "✓" : String(i);
+          html +=
+            "<li>" +
+            (i > 1
+              ? '<span class="step-line' +
+                (i <= cur ? " done" : "") +
+                '"></span>'
+              : "") +
+            '<span class="step-dot ' +
+            cls +
+            '">' +
+            dot +
+            "</span>" +
+            (i === cur
+              ? '<span class="step-name">' + STEP_LABELS[i - 1] + "</span>"
+              : "") +
+            "</li>";
+        }
+        ol.innerHTML = html;
+        document.getElementById("cand-id").textContent =
+          localStorage.getItem("cp_candidate_ref");
+        document.getElementById("step-now").textContent = cur;
+      })();
+      function doLogout() {
+        [
+          "cp_reg_email",
+          "cp_reg_phone",
+          "cp_nin",
+          "cp_fullname",
+          "cp_ref",
+          "cp_email",
+          "cp_track",
+          "cp_candidate_ref",
+          "cp_education",
+          "cp_step4",
+          "cp_docs",
+        ].forEach((k) => localStorage.removeItem(k));
+        sessionStorage.removeItem("cp_passport_photo");
+        window.location.href = "index.html";
+      }
+    </script>
+
+    <!-- Conditional education form (classic script) -->
+    <script>
+      (function initEducationForm() {
+        const form = document.getElementById("education-form");
+        const qualification = document.getElementById("qualification");
+        const ssceSection = document.getElementById("ssce-section");
+        const standardSection = document.getElementById("standard-section");
+        const startYear = document.getElementById("ssce-startyear");
+        const endYear = document.getElementById("ssce-endyear");
+
+        // Populate every year dropdown (newest year first)
+        const thisYear = new Date().getFullYear();
+        document.querySelectorAll("select[data-years]").forEach((select) => {
+          const count = parseInt(select.dataset.years, 10);
+          for (let i = 0; i < count; i++) {
+            const option = document.createElement("option");
+            option.textContent = String(thisYear - i);
+            select.appendChild(option);
+          }
+        });
+
+        // Show one section, hide the other. Fields in the hidden section are
+        // disabled so their "required" rules never block form submission.
+        function toggleSection(section, show) {
+          section.hidden = !show;
+          section
+            .querySelectorAll("input, select, textarea")
+            .forEach((el) => {
+              el.disabled = !show;
+            });
+        }
+
+        function updateQualificationView() {
+          const value = qualification.value;
+          const isSSCE = value === "SSCE";
+          const isOther = value !== "" && !isSSCE;
+
+          toggleSection(ssceSection, isSSCE);
+          toggleSection(standardSection, isOther);
+        }
+
+        function validateYearRange() {
+          const start = parseInt(startYear.value, 10);
+          const end = parseInt(endYear.value, 10);
+          endYear.setCustomValidity(
+            start && end && end < start
+              ? "End year cannot be earlier than start year."
+              : "",
+          );
+        }
+
+        qualification.addEventListener("change", updateQualificationView);
+        startYear.addEventListener("change", validateYearRange);
+        endYear.addEventListener("change", validateYearRange);
+
+        /* ---- Auto-save: keep every filled value so Step 4/5 can use it ---- */
+        const EDU_KEY = "cp_education";
+
+        function saveEducation() {
+          const data = {};
+          form.querySelectorAll("input, select").forEach((el) => {
+            if (el.id && !el.disabled && el.value) data[el.id] = el.value;
+          });
+          try {
+            localStorage.setItem(EDU_KEY, JSON.stringify(data));
+          } catch (e) {}
+        }
+
+        function restoreEducation() {
+          let data = null;
+          try {
+            data = JSON.parse(localStorage.getItem(EDU_KEY) || "null");
+          } catch (e) {}
+          if (!data || typeof data !== "object") return;
+          if (data.qualification) qualification.value = data.qualification;
+          updateQualificationView();
+          Object.keys(data).forEach((id) => {
+            const el = document.getElementById(id);
+            if (el && form.contains(el) && id !== "qualification") {
+              el.value = data[id];
+            }
+          });
+        }
+
+        form.addEventListener("input", saveEducation);
+        form.addEventListener("change", saveEducation);
+
+        form.addEventListener("submit", (event) => {
+          event.preventDefault();
+          validateYearRange();
+          if (!form.reportValidity()) return;
+          saveEducation();
+          window.location.href = "step4.html";
+        });
+
+        // Restore any previously saved answers (also handles browsers
+        // restoring a previously chosen value)
+        restoreEducation();
+        updateQualificationView();
+      })();
+    </script>
+
+    <!-- Clerk logout (ES module; `import` is not allowed in a classic script) -->
+    <script type="module">
+      import { setupLogoutButton } from "./src/logout.js";
+      setupLogoutButton("#logout-btn");
+    </script>
+  </body>
+</html>

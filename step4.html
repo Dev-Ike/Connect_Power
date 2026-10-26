@@ -1,0 +1,1267 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Step 4 — Programme Stream, Uploads &amp; Submission</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --green-deep: #0b5d33;
+        --green-bright: #1e8449;
+        --mint: #eaf6ef;
+        --gold: #f5c518;
+        --ink: #0f2a1d;
+        --ink-soft: #4b6459;
+        --line: #cbe3d4;
+        --card: #ffffff;
+        --danger-bg: #fdeded;
+        --danger-text: #b3261e;
+        --tech: #2e6fdb;
+        --agro: #2e9b4f;
+        --health: #d93b3b;
+        --build: #e8871e;
+        --teach: #7b4fa6;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--mint);
+        color: var(--ink);
+        font-family: "Inter", system-ui, sans-serif;
+        line-height: 1.5;
+        padding-bottom: 80px;
+      }
+      .wrap {
+        max-width: 1040px;
+        margin: 0 auto;
+      }
+
+      /* ===== SHARED APPLICATION TOP BAR ===== */
+      .app-topbar {
+        background: var(--green-deep);
+        color: #fff;
+      }
+      .app-topbar-inner {
+        max-width: 1040px;
+        margin: 0 auto;
+        padding: 14px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        flex-wrap: wrap;
+      }
+      .app-brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        color: #fff;
+        text-decoration: none;
+      }
+      .app-brand .leaf {
+        width: 40px;
+        height: 40px;
+        flex-shrink: 0;
+      }
+      .app-brand-text {
+        font-family: "Space Grotesk", sans-serif;
+        font-weight: 700;
+        font-size: 1.25rem;
+        line-height: 1.05;
+      }
+      .app-brand-text b {
+        color: var(--gold);
+      }
+      .app-brand-text small {
+        display: block;
+        font-size: 0.62rem;
+        letter-spacing: 0.18em;
+        font-weight: 600;
+        color: #b9cec0;
+        font-family: "Inter";
+      }
+      .app-topbar-actions {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+      }
+      .pill {
+        border: 1.5px solid rgba(255, 255, 255, 0.5);
+        color: #fff;
+        border-radius: 999px;
+        padding: 8px 18px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        text-decoration: none;
+        cursor: pointer;
+        background: transparent;
+        font-family: inherit;
+      }
+      .pill:hover {
+        background: rgba(255, 255, 255, 0.12);
+      }
+      .pill-solid {
+        background: #fff;
+        color: var(--green-deep);
+        border-color: #fff;
+      }
+      .pill-solid:hover {
+        background: var(--gold);
+        border-color: var(--gold);
+      }
+      .app-progress {
+        background: #fff;
+        border-bottom: 1px solid var(--line);
+      }
+      .app-progress-inner {
+        max-width: 1040px;
+        margin: 0 auto;
+        padding: 18px 20px 22px;
+      }
+      .app-progress-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      .app-progress-top h1 {
+        color: var(--green-deep);
+        font-family: "Space Grotesk";
+        font-size: 1.6rem;
+        margin: 0;
+      }
+      .cand {
+        text-align: right;
+      }
+      .cand span {
+        display: block;
+        font-size: 0.66rem;
+        letter-spacing: 0.14em;
+        color: var(--ink-soft);
+        font-weight: 700;
+      }
+      .cand b {
+        font-family: "Space Grotesk";
+        color: var(--green-deep);
+        font-size: 1.05rem;
+      }
+      .app-progress-meta {
+        display: flex;
+        justify-content: space-between;
+        color: var(--ink-soft);
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        margin: 8px 0 14px;
+      }
+      .autosave {
+        color: var(--green-bright);
+        font-weight: 700;
+      }
+      .stepper {
+        list-style: none;
+        display: flex;
+        align-items: center;
+        padding: 0;
+        margin: 0;
+      }
+      .stepper li {
+        display: flex;
+        align-items: center;
+        flex: 1;
+        min-width: 0;
+      }
+      .stepper li:last-child {
+        flex: 0;
+      }
+      .step-dot {
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        border: 2px solid var(--line);
+        background: #fff;
+        color: var(--ink-soft);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 0.85rem;
+        flex-shrink: 0;
+        font-family: "Space Grotesk";
+      }
+      .step-dot.done {
+        background: var(--green-deep);
+        border-color: var(--green-deep);
+        color: #fff;
+      }
+      .step-dot.now {
+        background: var(--green-bright);
+        border-color: var(--green-bright);
+        color: #fff;
+        box-shadow: 0 0 0 4px rgba(30, 132, 73, 0.15);
+      }
+      .step-name {
+        margin-left: 8px;
+        font-size: 0.8rem;
+        font-weight: 700;
+        color: var(--green-deep);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .step-line {
+        flex: 1;
+        height: 2px;
+        background: var(--line);
+        margin: 0 8px;
+        min-width: 12px;
+      }
+      .step-line.done {
+        background: var(--green-deep);
+      }
+      @media (max-width: 640px) {
+        .step-name {
+          display: none;
+        }
+      }
+
+      .banner {
+        background: linear-gradient(
+          120deg,
+          var(--green-deep),
+          var(--green-bright)
+        );
+        border-radius: 20px;
+        padding: 28px 32px;
+        color: #fff;
+        margin: 24px 0;
+      }
+      .banner .step {
+        font-family: "Space Grotesk", sans-serif;
+        color: var(--gold);
+        font-size: 15px;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+      }
+      .banner h1 {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: clamp(22px, 3.4vw, 32px);
+        margin: 4px 0 0;
+        font-weight: 600;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: 1.1fr 1fr;
+        gap: 20px;
+      }
+      @media (max-width: 820px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .card {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        padding: 22px;
+        margin-bottom: 20px;
+      }
+      .card h2 {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 17px;
+        margin: 0 0 4px;
+      }
+      .card .sub {
+        color: var(--ink-soft);
+        font-size: 13.5px;
+        margin: 0 0 16px;
+      }
+
+      .tracks {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 10px;
+      }
+      @media (max-width: 520px) {
+        .tracks {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      .track {
+        border: none;
+        border-radius: 12px;
+        padding: 14px 8px 12px;
+        color: #fff;
+        cursor: pointer;
+        font-family: "Inter", sans-serif;
+        font-weight: 600;
+        font-size: 13px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        transition:
+          box-shadow 0.15s ease,
+          transform 0.1s ease;
+      }
+      .track:active {
+        transform: translateY(1px);
+      }
+      .track svg {
+        width: 26px;
+        height: 26px;
+      }
+      .track[data-track="tech"] {
+        background: var(--tech);
+      }
+      .track[data-track="agro"] {
+        background: var(--agro);
+      }
+      .track[data-track="health"] {
+        background: var(--health);
+      }
+      .track[data-track="build"] {
+        background: var(--build);
+      }
+      .track[data-track="teach"] {
+        background: var(--teach);
+      }
+      .track.selected {
+        box-shadow:
+          0 0 0 3px var(--card),
+          0 0 0 6px var(--green-deep);
+      }
+      .track-hint {
+        margin-top: 12px;
+        font-size: 13px;
+        color: var(--ink-soft);
+      }
+
+      .slip-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-bottom: 14px;
+      }
+      .slip-head .ref {
+        font-family: "Space Grotesk", sans-serif;
+        font-weight: 700;
+      }
+      .slip-head .date {
+        color: var(--ink-soft);
+        font-size: 13px;
+      }
+      .slip-sections {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px 20px;
+      }
+      @media (max-width: 480px) {
+        .slip-sections {
+          grid-template-columns: 1fr;
+        }
+      }
+      .slip-section h3 {
+        font-size: 12.5px;
+        color: var(--green-deep);
+        margin: 0 0 8px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .slip-section h3 .num {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: var(--green-deep);
+        color: #fff;
+        font-size: 11px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex: none;
+      }
+      .field {
+        margin-bottom: 9px;
+      }
+      .field label {
+        display: block;
+        font-size: 11.5px;
+        color: var(--ink-soft);
+        margin-bottom: 3px;
+      }
+      .field input,
+      .field select {
+        width: 100%;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 8px 10px;
+        font-size: 13.5px;
+        font-family: inherit;
+        color: var(--ink);
+        background: #fff;
+      }
+      .field input:focus,
+      .field select:focus {
+        outline: 2px solid var(--green-bright);
+        outline-offset: 1px;
+      }
+
+      .upload-row {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        border: 1px dashed var(--line);
+        border-radius: 12px;
+        padding: 12px 14px;
+        margin-bottom: 10px;
+        background: #fbfefc;
+        cursor: pointer;
+      }
+      .upload-row:focus-within {
+        outline: 2px solid var(--green-bright);
+        outline-offset: 2px;
+      }
+      .upload-row.done {
+        border-style: solid;
+        border-color: var(--green-bright);
+        background: #f1faf4;
+      }
+      .upload-icon {
+        width: 38px;
+        height: 38px;
+        border-radius: 10px;
+        background: var(--green-deep);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: none;
+      }
+      .upload-icon svg {
+        width: 18px;
+        height: 18px;
+      }
+      .upload-body {
+        flex: 1;
+        min-width: 0;
+      }
+      .upload-body .label {
+        font-weight: 600;
+        font-size: 13.5px;
+      }
+      .upload-body .hint {
+        font-size: 12px;
+        color: var(--ink-soft);
+      }
+      .upload-body .filename {
+        font-size: 12.5px;
+        color: var(--green-deep);
+        font-weight: 600;
+        margin-top: 2px;
+        word-break: break-all;
+      }
+      .upload-btn {
+        border: 1px solid var(--green-deep);
+        background: #fff;
+        color: var(--green-deep);
+        font-weight: 600;
+        font-size: 12.5px;
+        padding: 7px 12px;
+        border-radius: 8px;
+        cursor: pointer;
+        flex: none;
+      }
+      .upload-row.done .upload-btn {
+        background: var(--green-deep);
+        color: #fff;
+      }
+      .upload-row input[type="file"] {
+        display: none;
+      }
+
+      .submit-btn {
+        width: 100%;
+        background: var(--gold);
+        color: var(--ink);
+        border: none;
+        border-radius: 10px;
+        padding: 14px;
+        font-weight: 700;
+        font-size: 15px;
+        font-family: "Space Grotesk", sans-serif;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+      }
+      .submit-btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+      .notice {
+        background: var(--danger-bg);
+        color: var(--danger-text);
+        border-radius: 10px;
+        padding: 12px 14px;
+        font-size: 12.5px;
+        margin-top: 12px;
+        text-align: center;
+      }
+      .error-msg {
+        color: var(--danger-text);
+        font-size: 12.5px;
+        margin-top: 10px;
+        display: none;
+      }
+    </style>
+  </head>
+  <body data-step="4">
+    <header class="app-topbar">
+      <div class="app-topbar-inner">
+        <a class="app-brand" href="index.html">
+          <svg
+            class="leaf"
+            viewBox="0 0 48 48"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle cx="24" cy="10" r="5" fill="#F5C518" />
+            <path
+              d="M24 16C24 16 10 20 10 34C10 34 24 34 24 20C24 34 38 34 38 34C38 20 24 16 24 16Z"
+              fill="#1E8449"
+            />
+          </svg>
+          <span class="app-brand-text"
+            >Connect <b>Power</b><small>APPLICATION PORTAL</small></span
+          >
+        </a>
+        <div class="app-topbar-actions">
+          <a class="pill" href="index.html">Back home</a>
+          <!-- <button class="pill pill-solid" onclick="doLogout()">Logout</button> -->
+          <button class="pill pill-solid" id="logout-btn" type="button">
+            Log out
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <section class="app-progress">
+      <div class="app-progress-inner">
+        <div class="app-progress-top">
+          <h1>MY APPLICATIONS</h1>
+          <div class="cand"><span>CANDIDATE ID</span><b id="cand-id">—</b></div>
+        </div>
+        <div class="app-progress-meta">
+          <span>STEP <span id="step-now">4</span> OF 5</span>
+          <span class="autosave">● Auto-saved</span>
+        </div>
+        <ol class="stepper" id="stepper"></ol>
+      </div>
+    </section>
+
+    <div class="wrap">
+      <div class="banner">
+        <div class="step">STEP 4</div>
+        <h1>Programme stream, uploads &amp; submission</h1>
+      </div>
+
+      <form id="step4-form">
+        <div class="grid">
+          <div>
+            <div class="card">
+              <h2>Choose your programme track</h2>
+              <p class="sub">Select one stream to continue.</p>
+              <div class="tracks" id="tracks">
+                <button type="button" class="track" data-track="tech">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <rect x="3" y="4" width="18" height="12" rx="1.5" />
+                    <path d="M2 20h20" stroke-linecap="round" />
+                    <path
+                      d="M9 8l-2 2 2 2M15 8l2 2-2 2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                  Tech Connect
+                </button>
+                <button type="button" class="track" data-track="agro">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M12 21c0-6 4-8 8-8-1 6-4 8-8 8Z" />
+                    <path d="M12 21c0-6-4-8-8-8 1 6 4 8 8 8Z" />
+                    <path d="M12 21V9" />
+                  </svg>
+                  Agro Connect
+                </button>
+                <button type="button" class="track" data-track="health">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      d="M20.8 8.6c0 5-8.8 10-8.8 10s-8.8-5-8.8-10a4.6 4.6 0 0 1 8.8-2 4.6 4.6 0 0 1 8.8 2Z"
+                    />
+                  </svg>
+                  Health Connect
+                </button>
+                <button type="button" class="track" data-track="build">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M3 20h18" />
+                    <path d="M5 20V10l7-5 7 5v10" />
+                    <path d="M9 20v-6h6v6" />
+                  </svg>
+                  Build Connect
+                </button>
+                <button type="button" class="track" data-track="teach">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M2 9l10-5 10 5-10 5-10-5Z" />
+                    <path d="M6 11v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5" />
+                  </svg>
+                  Teach Connect
+                </button>
+              </div>
+              <p class="track-hint" id="track-hint">No track selected yet.</p>
+            </div>
+
+            <div class="card">
+              <div class="slip-head">
+                <span class="ref"
+                  >Application review slip · <span id="app-ref">—</span></span
+                >
+                <span class="date" id="app-date"></span>
+              </div>
+
+              <div class="slip-sections">
+                <div class="slip-section">
+                  <h3><span class="num">1</span>Identity</h3>
+                  <div class="field">
+                    <label for="nin">NIN number (required)</label
+                    ><input
+                      id="nin"
+                      name="nin"
+                      inputmode="numeric"
+                      autocomplete="off"
+                      maxlength="20"
+                      placeholder="11 digits"
+                      required
+                    />
+                    <p
+                      id="nin-error"
+                      class="error-msg"
+                      style="color: #c0392b; font-size: 12px; margin: 4px 0 0"
+                    ></p>
+                  </div>
+                  <div class="field">
+                    <label for="natid">National ID number (required)</label
+                    ><input
+                      id="natid"
+                      name="natid"
+                      inputmode="numeric"
+                      autocomplete="off"
+                      maxlength="20"
+                      placeholder="11 digits"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div class="slip-section">
+                  <h3><span class="num">2</span>Personal data</h3>
+                  <div class="field">
+                    <label for="fullname">Full name</label
+                    ><input id="fullname" name="fullname" required />
+                  </div>
+                  <div class="field">
+                    <label for="dob">Date of birth</label
+                    ><input id="dob" type="date" name="dob" required />
+                    <p
+                      id="dob-error"
+                      class="error-msg"
+                      style="color: #c0392b; font-size: 12px; margin: 4px 0 0"
+                    ></p>
+                  </div>
+                  <div class="field">
+                    <label for="gender">Gender</label>
+                    <select id="gender" name="gender" required>
+                      <option value="">Select</option>
+                      <option>Female</option>
+                      <option>Male</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="slip-section">
+                  <h3><span class="num">3</span>Education</h3>
+                  <div class="field">
+                    <label for="qualification">Qualification</label
+                    ><input
+                      id="qualification"
+                      name="qualification"
+                      placeholder="e.g. HND, BSc"
+                      required
+                    />
+                  </div>
+                  <div class="field">
+                    <label for="course">Course (optional)</label
+                    ><input id="course" name="course" />
+                  </div>
+                  <div class="field">
+                    <label for="lga">LGA</label
+                    ><input id="lga" name="lga" required />
+                  </div>
+                </div>
+
+                <div class="slip-section">
+                  <h3><span class="num">4</span>Location</h3>
+                  <div class="field">
+                    <label for="state">State of origin</label
+                    ><input id="state" name="state" required />
+                  </div>
+                  <div class="field">
+                    <label for="address">Residential address</label
+                    ><input id="address" name="address" required />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="card" id="upload-card">
+              <h2>Document upload</h2>
+              <p class="sub">
+                Required documents are marked with <span style="color: #c0392b; font-weight: bold">&#42</span> the rest are optional.
+              </p>
+
+              <label class="upload-row" data-upload="nin">
+                <div class="upload-icon">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M12 15l-6-2.2V6l6 2.2 6-2.2v6.8L12 15Z" />
+                    <path d="M12 15v5" />
+                    <path d="M9 20l3-1.4 3 1.4" />
+                  </svg>
+                </div>
+                <div class="upload-body">
+                  <div class="label">National Identification Number (NIN)</div>
+                  <div class="hint"><span style="color: #c0392b; font-weight: bold">&#42</span> Required</div>
+                  <div class="filename"></div>
+                </div>
+                <span class="upload-btn">Upload</span>
+                <input type="file" accept="image/*,.pdf" data-slot="nin" />
+              </label>
+
+              <label class="upload-row" data-upload="govid">
+                <div class="upload-icon">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <rect x="3" y="6" width="18" height="12" rx="2" />
+                    <circle cx="8.5" cy="12" r="2" />
+                    <path d="M13 10h5M13 14h5" stroke-linecap="round" />
+                  </svg>
+                </div>
+                <div class="upload-body">
+                  <div class="label">Local Government Area Certificate</div>
+                  <div class="hint"><span style="color: #c0392b; font-weight: bold">&#42</span> Required</div>
+                  <div class="filename"></div>
+                </div>
+                <span class="upload-btn">Upload</span>
+                <input type="file" accept="image/*,.pdf" data-slot="govid" />
+              </label>
+
+              <label class="upload-row" data-upload="photo">
+                <div class="upload-icon">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <rect x="3" y="5" width="18" height="14" rx="2" />
+                    <circle cx="12" cy="12" r="3.2" />
+                    <path d="M8 5l1.2-2h5.6L16 5" />
+                  </svg>
+                </div>
+                <div class="upload-body">
+                  <div class="label">Passport Photograph</div>
+                  <div class="hint"><span style="color: #c0392b; font-weight: bold">&#42</span> Required</div>
+                  <div class="filename"></div>
+                </div>
+                <span class="upload-btn">Upload</span>
+                <input type="file" accept="image/*" data-slot="photo" />
+              </label>
+
+
+              <label class="upload-row" data-upload="prof">
+                <div class="upload-icon">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M12 15l-6-2.2V6l6 2.2 6-2.2v6.8L12 15Z" />
+                    <path d="M12 15v5" />
+                    <path d="M9 20l3-1.4 3 1.4" />
+                  </svg>
+                </div>
+                <div class="upload-body">
+                  <div class="label">Professional Certificate</div>
+                  <div class="hint">Optional</div>
+                  <div class="filename"></div>
+                </div>
+                <span class="upload-btn">Upload</span>
+                <input type="file" accept="image/*,.pdf" data-slot="prof" />
+              </label>
+
+              <label class="upload-row" data-upload="age_cert">
+                <div class="upload-icon">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M12 15l-6-2.2V6l6 2.2 6-2.2v6.8L12 15Z" />
+                    <path d="M12 15v5" />
+                    <path d="M9 20l3-1.4 3 1.4" />
+                  </svg>
+                </div>
+                <div class="upload-body">
+                  <div class="label">Birth Certificate or Age Declaration</div>
+                  <div class="hint"><span style="color: #c0392b; font-weight: bold">&#42</span> Required</div>
+                  <div class="filename"></div>
+                </div>
+                <span class="upload-btn">Upload</span>
+                <input type="file" accept="image/*,.pdf" data-slot="age_cert" />
+              </label>
+
+              <label class="upload-row" data-upload="degree">
+                <div class="upload-icon">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M12 15l-6-2.2V6l6 2.2 6-2.2v6.8L12 15Z" />
+                    <path d="M12 15v5" />
+                    <path d="M9 20l3-1.4 3 1.4" />
+                  </svg>
+                </div>
+                <div class="upload-body">
+                  <div class="label">
+                    Tertiary Degree Certificate / Statement of Result
+                  </div>
+                  <div class="hint"><span style="color: #c0392b; font-weight: bold">&#42</span> 
+                    Required — B.Sc, B.A, B.Tech or HND
+                  </div>
+                  <div class="filename"></div>
+                </div>
+                <span class="upload-btn">Upload</span>
+                <input type="file" accept="image/*,.pdf" data-slot="degree" />
+              </label>
+
+              <label class="upload-row" data-upload="cv">
+                <div class="upload-icon">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M12 15l-6-2.2V6l6 2.2 6-2.2v6.8L12 15Z" />
+                    <path d="M12 15v5" />
+                    <path d="M9 20l3-1.4 3 1.4" />
+                  </svg>
+                </div>
+                <div class="upload-body">
+                  <div class="label">Curriculum Vitae (CV) / Resume</div>
+                  <div class="hint">Optional — NCE, OND etc.</div>
+                  <div class="filename"></div>
+                </div>
+                <span class="upload-btn">Upload</span>
+                <input type="file" accept="image/*,.pdf" data-slot="cv" />
+              </label>
+
+              <div class="field" style="margin-top: 14px">
+                <label for="pay-email">Email address</label>
+                <input
+                  id="pay-email"
+                  type="email"
+                  placeholder="you@example.com"
+                  required
+                  style="
+                    width: 100%;
+                    border: 1px solid var(--line);
+                    border-radius: 8px;
+                    padding: 8px 10px;
+                    font-size: 13.5px;
+                    font-family: inherit;
+                  "
+                />
+              </div>
+
+              <button type="submit" class="submit-btn" id="submit-btn" disabled>
+                Continue to payment →
+              </button>
+              <p class="error-msg" id="error-msg">
+                Select a track, fill every field, and upload all required
+                documents to continue.
+              </p>
+
+              <div class="notice">
+                Clicking Continue will take you to the review and payment page,
+                where you can check every detail before paying. Your
+                acknowledgment slip becomes available to print once payment is
+                confirmed.
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <!-- Step chrome (classic script) -->
+    <script>
+      const STEP_LABELS = [
+        "Identification",
+        "Personal Details",
+        "Education",
+        "Documents & Track",
+        "Payment",
+      ];
+      (function initStepChrome() {
+        if (!localStorage.getItem("cp_candidate_ref")) {
+          localStorage.setItem(
+            "cp_candidate_ref",
+            "CP-2026-" + Math.floor(100000 + Math.random() * 900000),
+          );
+        }
+        const cur = parseInt(document.body.dataset.step, 10) || 1;
+        const ol = document.getElementById("stepper");
+        let html = "";
+        for (let i = 1; i <= 5; i++) {
+          const cls = i < cur ? "done" : i === cur ? "now" : "";
+          const dot = i < cur ? "✓" : String(i);
+          html +=
+            "<li>" +
+            (i > 1
+              ? '<span class="step-line' + (i <= cur ? " done" : "") + '"></span>'
+              : "") +
+            '<span class="step-dot ' + cls + '">' + dot + "</span>" +
+            (i === cur
+              ? '<span class="step-name">' + STEP_LABELS[i - 1] + "</span>"
+              : "") +
+            "</li>";
+        }
+        ol.innerHTML = html;
+        document.getElementById("cand-id").textContent =
+          localStorage.getItem("cp_candidate_ref");
+        document.getElementById("step-now").textContent = cur;
+      })();
+      function doLogout() {
+        [
+          "cp_reg_email",
+          "cp_reg_phone",
+          "cp_nin",
+          "cp_fullname",
+          "cp_ref",
+          "cp_email",
+          "cp_track",
+          "cp_candidate_ref",
+          "cp_education",
+          "cp_step4",
+          "cp_docs",
+        ].forEach((k) => localStorage.removeItem(k));
+        sessionStorage.removeItem("cp_passport_photo");
+        window.location.href = "index.html";
+      }
+    </script>
+
+    <!-- Step 4 form: track, fields, uploads, auto-save (classic script) -->
+    <script>
+      (function initStep4Form() {
+        const TRACKS = {
+          tech: "Tech Connect",
+          agro: "Agro Connect",
+          health: "Health Connect",
+          build: "Build Connect",
+          teach: "Teach Connect",
+        };
+        const FIELD_IDS = [
+          "nin", "natid", "fullname", "dob", "gender",
+          "qualification", "course", "lga", "state", "address", "pay-email",
+        ];
+        const REQUIRED_FIELDS = [
+          "nin", "natid", "fullname", "dob", "gender",
+          "qualification", "lga", "state", "address", "pay-email",
+        ];
+        const REQUIRED_DOCS = ["nin", "govid", "photo", "age_cert", "degree"];
+
+        const form = document.getElementById("step4-form");
+        const submitBtn = document.getElementById("submit-btn");
+        const errorMsg = document.getElementById("error-msg");
+        const ninError = document.getElementById("nin-error");
+        const dobError = document.getElementById("dob-error");
+        const trackHint = document.getElementById("track-hint");
+        const dobEl = document.getElementById("dob");
+
+        function readJSON(key) {
+          try {
+            const v = JSON.parse(localStorage.getItem(key) || "null");
+            return v && typeof v === "object" ? v : {};
+          } catch (e) {
+            return {};
+          }
+        }
+        function writeJSON(key, value) {
+          try {
+            localStorage.setItem(key, JSON.stringify(value));
+          } catch (e) {}
+        }
+
+        const saved = readJSON("cp_step4");
+        const edu = readJSON("cp_education");
+        let docs = readJSON("cp_docs");
+        let touched = false;
+
+        /* ---- header slip: reference + date ---- */
+        document.getElementById("app-ref").textContent =
+          localStorage.getItem("cp_ref") ||
+          localStorage.getItem("cp_candidate_ref") ||
+          "—";
+        document.getElementById("app-date").textContent =
+          new Date().toLocaleDateString("en-GB", {
+            day: "numeric", month: "long", year: "numeric",
+          });
+
+        /* ---- date of birth can never be in the future ---- */
+        const today = new Date();
+        const todayIso =
+          today.getFullYear() + "-" +
+          String(today.getMonth() + 1).padStart(2, "0") + "-" +
+          String(today.getDate()).padStart(2, "0");
+        dobEl.max = todayIso;
+
+        /* ---- prefill: saved Step 4 values first, then earlier steps ---- */
+        const fallback = {
+          nin: localStorage.getItem("cp_nin"),
+          fullname: localStorage.getItem("cp_fullname"),
+          "pay-email":
+            localStorage.getItem("cp_email") ||
+            localStorage.getItem("cp_reg_email"),
+          qualification: edu.qualification,
+          course: edu.course,
+        };
+        FIELD_IDS.forEach((id) => {
+          const el = document.getElementById(id);
+          const v = saved[id] || fallback[id] || "";
+          if (el && v) el.value = v;
+        });
+
+        /* ---- track ---- */
+        const trackBtns = document.querySelectorAll(".track");
+        function selectedTrackKey() {
+          const el = document.querySelector(".track.selected");
+          return el ? el.dataset.track : "";
+        }
+        function markTrack(key) {
+          trackBtns.forEach((b) =>
+            b.classList.toggle("selected", b.dataset.track === key),
+          );
+          trackHint.textContent = key
+            ? "Selected: " + TRACKS[key] + "."
+            : "No track selected yet.";
+        }
+        const savedTrackLabel = localStorage.getItem("cp_track");
+        const savedTrackKey = Object.keys(TRACKS).find(
+          (k) => TRACKS[k] === savedTrackLabel,
+        );
+        if (savedTrackKey) markTrack(savedTrackKey);
+        trackBtns.forEach((b) =>
+          b.addEventListener("click", () => {
+            touched = true;
+            markTrack(b.dataset.track);
+            localStorage.setItem("cp_track", TRACKS[b.dataset.track]);
+            refresh();
+          }),
+        );
+
+        /* ---- uploads ---- */
+        function renderDocs() {
+          document.querySelectorAll(".upload-row").forEach((row) => {
+            const slot = row.dataset.upload;
+            const d = docs[slot];
+            const done = !!(d && d.name);
+            row.classList.toggle("done", done);
+            row.querySelector(".filename").textContent = done ? d.name : "";
+            row.querySelector(".upload-btn").textContent = done
+              ? "Change"
+              : "Upload";
+          });
+        }
+
+        function storePassportPhoto(file) {
+          const reader = new FileReader();
+          reader.onload = function () {
+            const img = new Image();
+            img.onload = function () {
+              const max = 400;
+              const r = Math.min(1, max / Math.max(img.width, img.height));
+              const c = document.createElement("canvas");
+              c.width = Math.round(img.width * r);
+              c.height = Math.round(img.height * r);
+              c.getContext("2d").drawImage(img, 0, 0, c.width, c.height);
+              try {
+                sessionStorage.setItem(
+                  "cp_passport_photo",
+                  c.toDataURL("image/jpeg", 0.85),
+                );
+              } catch (e) {}
+            };
+            img.src = reader.result;
+          };
+          reader.readAsDataURL(file);
+        }
+
+        document.querySelectorAll('input[type="file"]').forEach((input) =>
+          input.addEventListener("change", () => {
+            const file = input.files && input.files[0];
+            if (!file) return;
+            touched = true;
+            const slot = input.dataset.slot;
+            docs[slot] = { name: file.name, size: file.size };
+            writeJSON("cp_docs", docs);
+            if (slot === "photo") storePassportPhoto(file);
+            renderDocs();
+            refresh();
+          }),
+        );
+
+        /* ---- validation ---- */
+        function val(id) {
+          return (document.getElementById(id).value || "").trim();
+        }
+        function dobProblem() {
+          const v = val("dob");
+          if (!v) return "";
+          if (v > todayIso) return "Date of birth cannot be in the future.";
+          return "";
+        }
+        function isComplete() {
+          if (!selectedTrackKey()) return false;
+          if (!REQUIRED_FIELDS.every((id) => val(id))) return false;
+          if (!/^\d{11}$/.test(val("nin"))) return false;
+          if (dobProblem()) return false;
+          if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val("pay-email"))) return false;
+          return REQUIRED_DOCS.every((s) => docs[s] && docs[s].name);
+        }
+
+        function persistFields() {
+          const data = {};
+          FIELD_IDS.forEach((id) => {
+            data[id] = val(id);
+          });
+          writeJSON("cp_step4", data);
+          if (data.nin) localStorage.setItem("cp_nin", data.nin);
+          else localStorage.removeItem("cp_nin");
+          if (data.fullname) localStorage.setItem("cp_fullname", data.fullname);
+          if (data["pay-email"]) localStorage.setItem("cp_email", data["pay-email"]);
+        }
+
+        function refresh() {
+          const v = val("nin");
+          ninError.textContent =
+            v && !/^\d{11}$/.test(v) ? "NIN must be exactly 11 digits." : "";
+          dobError.textContent = dobProblem();
+          const ok = isComplete();
+          submitBtn.disabled = !ok;
+          errorMsg.style.display = touched && !ok ? "block" : "none";
+        }
+
+        document.getElementById("nin").addEventListener("input", (e) => {
+          e.target.value = e.target.value.replace(/\D/g, "").slice(0, 11);
+        });
+
+        form.addEventListener("input", () => {
+          touched = true;
+          persistFields();
+          refresh();
+        });
+        form.addEventListener("change", () => {
+          persistFields();
+          refresh();
+        });
+
+        form.addEventListener("submit", (e) => {
+          e.preventDefault();
+          touched = true;
+          persistFields();
+          refresh();
+          if (!isComplete()) return;
+          window.location.href = "step5.html";
+        });
+
+        renderDocs();
+        persistFields();
+        refresh();
+      })();
+    </script>
+
+    <!-- Clerk logout (ES module; `import` is not allowed in a classic script) -->
+    <script type="module">
+      import { setupLogoutButton } from "./src/logout.js";
+      setupLogoutButton("#logout-btn");
+    </script>
+  </body>
+</html>
