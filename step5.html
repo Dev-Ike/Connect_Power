@@ -668,19 +668,239 @@
         }
       }
 
+      /* ===== ACKNOWLEDGEMENT LETTER (screen + print) ===== */
+      .done-sub {
+        color: var(--muted);
+        font-size: 0.88rem;
+        margin: 6px 0 4px;
+      }
+      .letter {
+        background: #fff;
+        border: 1.5px solid var(--green);
+        border-radius: 12px;
+        overflow: hidden;
+        margin: 16px 0;
+        text-align: left;
+      }
+      .lt-band {
+        background: #000;
+        border-bottom: 4px solid var(--gold);
+        padding: 12px;
+        text-align: center;
+      }
+      .lt-band img {
+        display: block;
+        margin: 0 auto;
+        height: 120px;
+        width: auto;
+      }
+      .lt-body {
+        padding: 22px 22px 16px;
+      }
+      .lt-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 16px;
+      }
+      .lt-head h3 {
+        font-family: "Poppins", sans-serif;
+        font-size: 1.2rem;
+        color: var(--green-deep);
+        line-height: 1.25;
+      }
+      .lt-head h4 {
+        font-family: "Poppins", sans-serif;
+        font-size: 0.92rem;
+        color: var(--green);
+        margin-top: 4px;
+      }
+      .lt-head p {
+        color: var(--muted);
+        font-size: 0.8rem;
+        margin-top: 2px;
+      }
+      .lt-pill {
+        display: inline-block;
+        margin-top: 10px;
+        font-size: 0.68rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        padding: 5px 12px;
+        border-radius: 999px;
+        background: var(--green-light);
+        color: var(--green-deep);
+        border: 1px solid #bfe0c8;
+      }
+      .lt-pill.pending {
+        background: #fff6d6;
+        color: #8a6500;
+        border-color: #f0d98a;
+      }
+      .letter .ack-photo {
+        width: 96px;
+        height: 118px;
+      }
+      .lt-dear {
+        font-weight: 700;
+        margin: 20px 0 6px;
+      }
+      .lt-text {
+        font-size: 0.88rem;
+      }
+      .lt-h {
+        font-family: "Poppins", sans-serif;
+        font-size: 0.82rem;
+        letter-spacing: 0.05em;
+        color: var(--green);
+        border-bottom: 2px solid var(--line);
+        padding-bottom: 6px;
+        margin: 20px 0 4px;
+      }
+      .lt-row {
+        display: flex;
+        gap: 10px;
+        font-size: 0.86rem;
+        padding: 6px 0;
+        border-bottom: 1px dotted var(--line);
+      }
+      .lt-row:last-child {
+        border-bottom: none;
+      }
+      .lt-row .k {
+        flex: 0 0 40%;
+        max-width: 40%;
+        color: var(--muted);
+      }
+      .lt-row .v {
+        color: var(--green-deep);
+        font-weight: 700;
+        word-break: break-word;
+      }
+      .lt-list {
+        margin: 6px 0 0 18px;
+        font-size: 0.84rem;
+      }
+      .lt-list li {
+        margin: 4px 0;
+      }
+      .lt-sign {
+        margin-top: 18px;
+        font-size: 0.88rem;
+      }
+      .lt-sign b {
+        display: block;
+        color: var(--green-deep);
+      }
+      .lt-foot {
+        border-top: 2px solid var(--green-deep);
+        margin-top: 18px;
+        padding-top: 10px;
+        text-align: center;
+        font-size: 0.72rem;
+        color: var(--muted);
+      }
+      .lt-foot b {
+        color: var(--green-deep);
+      }
+      .ack-actions {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-top: 14px;
+      }
+      .ack-actions .submit-btn {
+        flex: 1 1 200px;
+      }
+      .ack-actions .btn-outline {
+        background: #fff;
+        color: var(--green-deep);
+        border: 2px solid var(--green);
+      }
+      .ack-actions .btn-outline:hover {
+        background: var(--green-light);
+      }
+
+      @media (max-width: 560px) {
+        .lt-body {
+          padding: 18px 14px 14px;
+        }
+        .lt-head {
+          flex-direction: column-reverse;
+        }
+        .lt-row {
+          flex-direction: column;
+          gap: 2px;
+        }
+        .lt-row .k {
+          flex: none;
+          max-width: 100%;
+        }
+      }
+
       @media print {
+        @page {
+          size: A4;
+          margin: 8mm;
+        }
+        * {
+          -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
+        }
+        body {
+          background: #fff;
+          padding: 0;
+        }
         body * {
           visibility: hidden;
         }
-        #print-area,
-        #print-area * {
+        .letter,
+        .letter * {
           visibility: visible;
         }
-        #print-area {
+        .lt-band {
+          padding: 8px;
+        }
+        .lt-band img {
+          height: 90px;
+        }
+        .lt-body {
+          padding: 14px 18px 8px;
+        }
+        .letter .ack-photo {
+          width: 86px;
+          height: 106px;
+        }
+        .lt-dear {
+          margin: 12px 0 4px;
+        }
+        .lt-text {
+          font-size: 0.82rem;
+        }
+        .lt-h {
+          margin: 12px 0 2px;
+        }
+        .lt-row {
+          padding: 3px 0;
+          font-size: 0.8rem;
+        }
+        .lt-list {
+          font-size: 0.8rem;
+        }
+        .lt-sign {
+          margin-top: 10px;
+        }
+        .lt-foot {
+          margin-top: 10px;
+        }
+        .letter {
           position: absolute;
           top: 0;
           left: 0;
           width: 100%;
+          margin: 0;
+          border: none;
+          border-radius: 0;
         }
       }
     </style>
@@ -807,69 +1027,20 @@
           <div class="success" id="success-view">
             <div class="check">✓</div>
             <h2>Application submitted successfully!</h2>
-
-            <div id="print-area">
-              <div class="ack" id="ack-success">
-                <div class="ack-header">
-                  <div>
-                    <h3>APPLICATION ACKNOWLEDGEMENT</h3>
-                    <div class="ack-sub">
-                      Connect Power — Youth Empowerment Programme
-                    </div>
-                  </div>
-                  <div class="ack-photo" id="ack-photo-success">
-                    Passport<br />Photo
-                  </div>
-                </div>
-                <div class="ack-details">
-                  <div class="row-line">
-                    <span class="k">Applicant Name</span
-                    ><span class="v" id="r-name">—</span>
-                  </div>
-                  <div class="row-line">
-                    <span class="k">Application Reference</span
-                    ><span class="v" id="r-ref">—</span>
-                  </div>
-                  <div class="row-line">
-                    <span class="k">Programme</span
-                    ><span class="v" id="r-track">—</span>
-                  </div>
-                  <div class="row-line">
-                    <span class="k">NIN</span
-                    ><span class="v" id="r-nin">—</span>
-                  </div>
-                  <div class="row-line">
-                    <span class="k">Email</span
-                    ><span class="v" id="r-email">—</span>
-                  </div>
-                  <div class="row-line">
-                    <span class="k">Amount Paid</span
-                    ><span class="v">₦1,015</span>
-                  </div>
-                  <div class="row-line">
-                    <span class="k">Submission Status</span
-                    ><span class="v" style="color: var(--green)"
-                      >CONFIRMED</span
-                    >
-                  </div>
-                  <div class="row-line">
-                    <span class="k">Date</span
-                    ><span class="v" id="r-date">—</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <p style="color: var(--muted); font-size: 0.85rem">
-              You'll be contacted via the email you provided.
+            <p class="done-sub">
+              Your payment has been verified. Download your acknowledgement
+              slip as a PDF or print it, and keep it safe.
             </p>
-            <button
-              class="submit-btn"
-              style="margin-top: 14px"
-              onclick="window.print()"
-            >
-              🖨 Print Acknowledgement Slip
-            </button>
+            <div class="letter" id="letter-r"></div>
+            <div class="ack-actions">
+              <button type="button" class="submit-btn" data-act="pdf">
+                ⬇ Download PDF
+              </button>
+              <button type="button" class="submit-btn btn-outline" data-act="print">
+                🖨 Print
+              </button>
+            </div>
+            <p class="status-msg" data-pdf-msg></p>
           </div>
 
           <div class="success" id="pending-view">
@@ -880,72 +1051,22 @@
               !
             </div>
             <h2>Payment received — confirming with our system</h2>
-
-            <div id="print-area-pending" style="display: contents">
-              <div class="ack">
-                <div class="ack-header">
-                  <div>
-                    <h3>APPLICATION ACKNOWLEDGEMENT</h3>
-                    <div class="ack-sub">
-                      Connect Power — Youth Empowerment Programme
-                    </div>
-                  </div>
-                  <div class="ack-photo" id="ack-photo-pending">
-                    Passport<br />Photo
-                  </div>
-                </div>
-                <div class="ack-details">
-                  <div class="row-line">
-                    <span class="k">Applicant Name</span
-                    ><span class="v" id="p-name">—</span>
-                  </div>
-                  <div class="row-line">
-                    <span class="k">Application Reference</span
-                    ><span class="v" id="p-ref">—</span>
-                  </div>
-                  <div class="row-line">
-                    <span class="k">Programme</span
-                    ><span class="v" id="p-track">—</span>
-                  </div>
-                  <div class="row-line">
-                    <span class="k">NIN</span
-                    ><span class="v" id="p-nin">—</span>
-                  </div>
-                  <div class="row-line">
-                    <span class="k">Email</span
-                    ><span class="v" id="p-email">—</span>
-                  </div>
-                  <div class="row-line">
-                    <span class="k">Amount Paid</span
-                    ><span class="v">₦1,015</span>
-                  </div>
-                  <div class="row-line">
-                    <span class="k">Submission Status</span
-                    ><span class="v" style="color: #b8860b"
-                      >PAYMENT RECEIVED — CONFIRMING</span
-                    >
-                  </div>
-                  <div class="row-line">
-                    <span class="k">Date</span
-                    ><span class="v" id="p-date">—</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <p style="color: var(--muted); font-size: 0.85rem">
+            <p class="done-sub">
               Your payment went through with Paystack, but we could not reach
               our server to finalize your application automatically. Please
-              print or screenshot this slip as proof of payment and contact
+              download or print this slip as proof of payment and contact
               support with your reference number.
             </p>
-            <button
-              class="submit-btn"
-              style="margin-top: 14px"
-              onclick="window.print()"
-            >
-              🖨 Print Acknowledgement Slip
-            </button>
+            <div class="letter" id="letter-p"></div>
+            <div class="ack-actions">
+              <button type="button" class="submit-btn" data-act="pdf">
+                ⬇ Download PDF
+              </button>
+              <button type="button" class="submit-btn btn-outline" data-act="print">
+                🖨 Print
+              </button>
+            </div>
+            <p class="status-msg" data-pdf-msg></p>
           </div>
 
           <a href="step4.html" class="back-link">← Back to Step 4</a>
@@ -1011,6 +1132,7 @@
           "cp_education",
           "cp_step4",
           "cp_docs",
+          "cp_receipt",
         ].forEach((k) => localStorage.removeItem(k));
         sessionStorage.removeItem("cp_passport_photo");
         window.location.href = "index.html";
@@ -1333,24 +1455,555 @@
 
       let paymentCallbackFired = false; // guards against onClose firing after a real successful payment
 
-      function fillReceipt(prefix, email, statusText, statusColor) {
-        document.getElementById(prefix + "-name").textContent = savedName;
-        document.getElementById(prefix + "-ref").textContent = ref;
-        document.getElementById(prefix + "-track").textContent = savedTrack;
-        document.getElementById(prefix + "-nin").textContent = NIN;
-        document.getElementById(prefix + "-email").textContent = email;
-        document.getElementById(prefix + "-date").textContent =
-          new Date().toLocaleString();
+      /* ===== ACKNOWLEDGEMENT SLIP: on-screen letter + downloadable PDF ===== */
+      let currentReceipt = null;
+
+      function readStore(key) {
+        try {
+          const v = JSON.parse(localStorage.getItem(key) || "null");
+          return v && typeof v === "object" ? v : {};
+        } catch (e) {
+          return {};
+        }
+      }
+      function fmtLongDate(iso) {
+        const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso || "");
+        if (!m) return iso || "";
+        return new Date(+m[1], +m[2] - 1, +m[3]).toLocaleDateString("en-GB", {
+          day: "numeric",
+          month: "long",
+          year: "numeric",
+        });
+      }
+      function maskNin(n) {
+        return /^\d{11}$/.test(n) ? "*******" + n.slice(-4) : n || "";
+      }
+
+      function buildReceipt(kind, email) {
+        const s4 = readStore("cp_step4");
+        const edu = readStore("cp_education");
+        return {
+          kind: kind,
+          name: localStorage.getItem("cp_fullname") || s4.fullname || "Applicant",
+          candidate: localStorage.getItem("cp_candidate_ref") || "",
+          appRef: ref,
+          payRef: sessionStorage.getItem("cp_last_pay_ref") || "",
+          track: savedTrack,
+          nin: maskNin(NIN),
+          email: email,
+          phone: localStorage.getItem("cp_reg_phone") || "",
+          dob: fmtLongDate(s4.dob),
+          gender: s4.gender || "",
+          state: s4.state || "",
+          lga: s4.lga || "",
+          qualification: edu.qualification || s4.qualification || "",
+          amount: "₦1,015.00",
+          date: new Date().toLocaleString("en-GB", {
+            day: "numeric",
+            month: "long",
+            year: "numeric",
+            hour: "2-digit",
+            minute: "2-digit",
+          }),
+        };
+      }
+
+      function receiptRows(d) {
+        const ok = d.kind === "success";
+        return [
+          ["Applicant Name", d.name],
+          ["Candidate ID", d.candidate && d.candidate !== d.appRef ? d.candidate : ""],
+          ["Application Reference", d.appRef],
+          ["Payment Reference", d.payRef],
+          ["Programme Track", d.track],
+          ["NIN", d.nin],
+          ["Email Address", d.email],
+          ["Phone Number", d.phone],
+          ["Date of Birth", d.dob],
+          ["Gender", d.gender],
+          ["State / LGA", [d.state, d.lga].filter(Boolean).join(" / ")],
+          ["Highest Qualification", d.qualification],
+          ["Amount Paid", d.amount],
+          ["Payment Status", ok ? "PAID — VERIFIED" : "PAID — AWAITING CONFIRMATION"],
+          ["Submission Status", ok ? "CONFIRMED" : "PENDING CONFIRMATION"],
+          ["Date & Time", d.date],
+        ].filter(function (r) {
+          return r[1];
+        });
+      }
+      function receiptIntro(d) {
+        return d.kind === "success"
+          ? "Thank you for applying to the Connect Power Programme. We hereby acknowledge receipt of your application and application fee. Your payment has been verified and your application has been successfully submitted."
+          : "Thank you for applying to the Connect Power Programme. We acknowledge receipt of your application fee payment through Paystack. However, we could not reach our server to finalize your application automatically. Please keep this slip as proof of payment and contact support with your references below.";
+      }
+      function receiptSteps(d) {
+        return d.kind === "success"
+          ? [
+              "Keep this acknowledgement slip and your application reference for all future correspondence.",
+              "You will be contacted via the email address you provided.",
+              "Do not make a second payment for this application.",
+            ]
+          : [
+              "Download or print this slip now as proof of payment.",
+              "Contact support with your application reference and payment reference so your application can be confirmed.",
+              "Do not make a second payment for this application.",
+            ];
+      }
+      const RECEIPT_PILL = {
+        success: "PAYMENT VERIFIED  |  APPLICATION SUBMITTED",
+        pending: "PAYMENT RECEIVED  |  CONFIRMATION PENDING",
+      };
+      const RECEIPT_FOOT1 = "Motto: Empowering Nigeria for a Sustainable Future";
+      const RECEIPT_FOOT2 =
+        "This is a system-generated acknowledgement and does not require a signature. Keep it as proof of your application.";
+
+      function logoSrc() {
+        const img = document.querySelector(".rv-brand img");
+        return img ? img.src : "";
+      }
+
+      function renderLetter(box, d) {
+        function el(tag, cls, text) {
+          const e = document.createElement(tag);
+          if (cls) e.className = cls;
+          if (text != null) e.textContent = text;
+          return e;
+        }
+        box.textContent = "";
+
+        const band = el("div", "lt-band");
+        const logo = document.createElement("img");
+        logo.alt = "Connect Power";
+        logo.src = logoSrc();
+        band.appendChild(logo);
+        box.appendChild(band);
+
+        const body = el("div", "lt-body");
+        const head = el("div", "lt-head");
+        const titles = el("div");
+        titles.appendChild(el("h3", null, "CONNECT POWER PROGRAMME"));
+        titles.appendChild(el("h4", null, "APPLICATION ACKNOWLEDGEMENT"));
+        titles.appendChild(el("p", null, "Youth Empowerment Programme"));
+        titles.appendChild(
+          el("span", "lt-pill" + (d.kind === "success" ? "" : " pending"), RECEIPT_PILL[d.kind]),
+        );
+        const photoBox = el("div", "ack-photo");
         const photo = sessionStorage.getItem("cp_passport_photo");
-        const photoBox = document.getElementById("ack-photo-" + prefix);
-        if (photo && photoBox)
-          photoBox.innerHTML = '<img src="' + photo + '" alt="Passport photo">';
+        if (photo) {
+          const img = document.createElement("img");
+          img.alt = "Passport photo";
+          img.src = photo;
+          photoBox.appendChild(img);
+        } else {
+          photoBox.innerHTML = "Passport<br />Photo";
+        }
+        head.appendChild(titles);
+        head.appendChild(photoBox);
+        body.appendChild(head);
+
+        body.appendChild(el("p", "lt-dear", "Dear " + d.name + ","));
+        body.appendChild(el("p", "lt-text", receiptIntro(d)));
+
+        body.appendChild(el("h5", "lt-h", "APPLICATION DETAILS"));
+        receiptRows(d).forEach(function (r) {
+          const row = el("div", "lt-row");
+          row.appendChild(el("span", "k", r[0]));
+          row.appendChild(el("span", "v", r[1]));
+          body.appendChild(row);
+        });
+
+        body.appendChild(el("h5", "lt-h", "WHAT HAPPENS NEXT"));
+        const ul = el("ul", "lt-list");
+        receiptSteps(d).forEach(function (t) {
+          ul.appendChild(el("li", null, t));
+        });
+        body.appendChild(ul);
+
+        const sign = el("div", "lt-sign");
+        sign.appendChild(el("span", null, "Thank you."));
+        sign.appendChild(el("b", null, "Connect Power Support Team"));
+        body.appendChild(sign);
+
+        const foot = el("div", "lt-foot");
+        foot.appendChild(el("b", null, RECEIPT_FOOT1));
+        foot.appendChild(document.createElement("br"));
+        foot.appendChild(document.createTextNode(RECEIPT_FOOT2));
+        body.appendChild(foot);
+
+        box.appendChild(body);
+      }
+
+      function showReceipt(d) {
+        currentReceipt = d;
+        const prefix = d.kind === "success" ? "r" : "p";
+        renderLetter(document.getElementById("letter-" + prefix), d);
         document.getElementById("submit-view").style.display = "none";
         document.getElementById(
           prefix === "r" ? "success-view" : "pending-view",
         ).style.display = "block";
         window.scrollTo(0, 0);
       }
+
+      function fillReceipt(prefix, email) {
+        const d = buildReceipt(prefix === "r" ? "success" : "pending", email);
+        try {
+          localStorage.setItem("cp_receipt", JSON.stringify(d));
+        } catch (e) {}
+        showReceipt(d);
+      }
+
+      /* ---------- dependency-free PDF writer (A4, Helvetica, embedded JPEGs) ---------- */
+      const AckPdf = (function () {
+        const PW = 595.28,
+          PH = 841.89;
+        const WID = {"R": [278, 278, 355, 556, 556, 889, 667, 191, 333, 333, 389, 584, 278, 333, 278, 278, 556, 556, 556, 556, 556, 556, 556, 556, 556, 556, 278, 278, 584, 584, 584, 556, 1015, 667, 667, 722, 722, 667, 611, 778, 722, 278, 500, 667, 556, 833, 722, 778, 667, 778, 722, 667, 611, 722, 667, 944, 667, 667, 611, 278, 278, 278, 469, 556, 333, 556, 556, 500, 556, 556, 278, 556, 556, 222, 222, 500, 222, 833, 556, 556, 556, 556, 333, 500, 278, 556, 500, 722, 500, 500, 500, 334, 260, 334, 584], "B": [278, 333, 474, 556, 556, 889, 722, 238, 333, 333, 389, 584, 278, 333, 278, 278, 556, 556, 556, 556, 556, 556, 556, 556, 556, 556, 333, 333, 584, 584, 584, 611, 975, 722, 722, 722, 722, 667, 611, 778, 722, 278, 556, 722, 611, 833, 722, 778, 667, 778, 722, 667, 611, 722, 667, 944, 667, 667, 611, 333, 278, 333, 584, 556, 333, 556, 611, 556, 611, 556, 333, 611, 611, 278, 278, 556, 278, 889, 611, 611, 611, 611, 389, 556, 333, 611, 556, 778, 556, 556, 500, 389, 280, 389, 584], "I": [278, 278, 355, 556, 556, 889, 667, 191, 333, 333, 389, 584, 278, 333, 278, 278, 556, 556, 556, 556, 556, 556, 556, 556, 556, 556, 278, 278, 584, 584, 584, 556, 1015, 667, 667, 722, 722, 667, 611, 778, 722, 278, 500, 667, 556, 833, 722, 778, 667, 778, 722, 667, 611, 722, 667, 944, 667, 667, 611, 278, 278, 278, 469, 556, 333, 556, 556, 500, 556, 556, 278, 556, 556, 222, 222, 500, 222, 833, 556, 556, 556, 556, 333, 500, 278, 556, 500, 722, 500, 500, 500, 334, 260, 334, 584]};
+        const CP = { 8364: 128, 8218: 130, 402: 131, 8222: 132, 8230: 133, 8224: 134, 8225: 135, 710: 136, 8240: 137, 352: 138, 8249: 139, 338: 140, 381: 142, 8216: 145, 8217: 146, 8220: 147, 8221: 148, 8226: 149, 8211: 150, 8212: 151, 732: 152, 8482: 153, 353: 154, 8250: 155, 339: 156, 382: 158, 376: 159 };
+        const GREEN_DEEP = [0.043, 0.231, 0.141];
+        const GREEN = [0.078, 0.42, 0.227];
+        const MUTED = [0.357, 0.42, 0.376];
+        const INK = [0.075, 0.125, 0.094];
+        const LINE = [0.78, 0.86, 0.81];
+
+        function enc(str) {
+          str = String(str).replace(/\u20a6/g, "NGN ").replace(/\u2713/g, "");
+          let o = "";
+          for (const ch of str) {
+            const c = ch.codePointAt(0);
+            if (c < 32 || c === 127) o += " ";
+            else if (c < 127 || (c >= 160 && c <= 255)) o += ch;
+            else o += String.fromCharCode(CP[c] || 63);
+          }
+          return o;
+        }
+        function width(s, font, size) {
+          const t = enc(s);
+          let w = 0;
+          for (let i = 0; i < t.length; i++) {
+            const c = t.charCodeAt(i);
+            w += c >= 32 && c <= 126 ? WID[font][c - 32] : 556;
+          }
+          return (w * size) / 1000;
+        }
+        function esc(s) {
+          return enc(s).replace(/\\/g, "\\\\").replace(/\(/g, "\\(").replace(/\)/g, "\\)");
+        }
+        function wrap(text, font, size, maxW) {
+          const words = String(text).split(/\s+/);
+          const lines = [];
+          let cur = "";
+          words.forEach(function (w) {
+            const test = cur ? cur + " " + w : w;
+            if (width(test, font, size) <= maxW || !cur) cur = test;
+            else {
+              lines.push(cur);
+              cur = w;
+            }
+          });
+          if (cur) lines.push(cur);
+          return lines;
+        }
+        const f = function (n) {
+          return Math.round(n * 100) / 100;
+        };
+        function latin1(str) {
+          const b = new Uint8Array(str.length);
+          for (let i = 0; i < str.length; i++) b[i] = str.charCodeAt(i) & 255;
+          return b;
+        }
+        function dataUrlBytes(url) {
+          const bin = atob(url.split(",")[1]);
+          const b = new Uint8Array(bin.length);
+          for (let i = 0; i < bin.length; i++) b[i] = bin.charCodeAt(i);
+          return b;
+        }
+        function jpegInfo(b) {
+          let i = 2;
+          while (i < b.length) {
+            if (b[i] !== 0xff) {
+              i++;
+              continue;
+            }
+            const m = b[i + 1];
+            if (m >= 0xc0 && m <= 0xcf && m !== 0xc4 && m !== 0xc8 && m !== 0xcc) {
+              return { h: (b[i + 5] << 8) | b[i + 6], w: (b[i + 7] << 8) | b[i + 8], c: b[i + 9] };
+            }
+            i += 2 + ((b[i + 2] << 8) | b[i + 3]);
+          }
+          throw new Error("bad jpeg");
+        }
+        /* any image data-URL -> JPEG bytes */
+        function toJpegBytes(url) {
+          return new Promise(function (resolve, reject) {
+            if (/^data:image\/jpe?g/i.test(url)) return resolve(dataUrlBytes(url));
+            const img = new Image();
+            img.onload = function () {
+              const c = document.createElement("canvas");
+              c.width = img.width;
+              c.height = img.height;
+              const ctx = c.getContext("2d");
+              ctx.fillStyle = "#fff";
+              ctx.fillRect(0, 0, c.width, c.height);
+              ctx.drawImage(img, 0, 0);
+              resolve(dataUrlBytes(c.toDataURL("image/jpeg", 0.9)));
+            };
+            img.onerror = reject;
+            img.src = url;
+          });
+        }
+
+        function Page() {
+          const ops = [];
+          return {
+            fill: function (c) { ops.push(c.join(" ") + " rg"); },
+            stroke: function (c) { ops.push(c.join(" ") + " RG"); },
+            rect: function (x, y, w, h, mode) {
+              ops.push(f(x) + " " + f(PH - y - h) + " " + f(w) + " " + f(h) + " re " + mode);
+            },
+            line: function (x1, y1, x2, y2, wd) {
+              ops.push(wd + " w " + f(x1) + " " + f(PH - y1) + " m " + f(x2) + " " + f(PH - y2) + " l S");
+            },
+            text: function (x, y, s, font, size) {
+              ops.push("BT /" + (font === "B" ? "F2" : "F1") + " " + size + " Tf " + f(x) + " " + f(PH - y) + " Td (" + esc(s) + ") Tj ET");
+            },
+            image: function (name, x, y, w, h) {
+              ops.push("q " + f(w) + " 0 0 " + f(h) + " " + f(x) + " " + f(PH - y - h) + " cm /" + name + " Do Q");
+            },
+            toString: function () { return ops.join("\n"); },
+          };
+        }
+
+        function build(d, logoBytes, photoBytes, tight) {
+          const L = 48,
+            R = PW - 48,
+            CW = R - L;
+          const pg = Page();
+          const logo = jpegInfo(logoBytes);
+          const photo = photoBytes ? jpegInfo(photoBytes) : null;
+          const ok = d.kind === "success";
+
+          /* black brand band + gold stripe */
+          const bandH = tight ? 92 : 104;
+          pg.fill([0, 0, 0]);
+          pg.rect(0, 0, PW, bandH, "f");
+          pg.fill([0.949, 0.718, 0.02]);
+          pg.rect(0, bandH, PW, 4, "f");
+          const lh = bandH - 16,
+            lw = (lh * logo.w) / logo.h;
+          pg.image("Im1", (PW - lw) / 2, (bandH - lh) / 2, lw, lh);
+
+          /* title block (left) + passport photo (right) */
+          const top = bandH + (tight ? 18 : 22);
+          const phW = tight ? 85 : 91,
+            phH = tight ? 104 : 112,
+            phX = R - phW;
+          pg.fill(GREEN_DEEP);
+          pg.text(L, top + 18, "CONNECT POWER PROGRAMME", "B", 20);
+          pg.fill(GREEN);
+          pg.text(L, top + 42, "APPLICATION ACKNOWLEDGEMENT", "B", 13.5);
+          pg.fill(MUTED);
+          pg.text(L, top + 59, "Youth Empowerment Programme", "R", 10);
+
+          const pill = RECEIPT_PILL[d.kind];
+          const pillW = width(pill, "B", 8.5) + 24;
+          pg.fill(ok ? [0.914, 0.961, 0.925] : [1, 0.965, 0.839]);
+          pg.stroke(ok ? [0.749, 0.878, 0.784] : [0.941, 0.851, 0.541]);
+          pg.rect(L, top + 74, pillW, 22, "B");
+          pg.fill(ok ? GREEN_DEEP : [0.541, 0.396, 0]);
+          pg.text(L + 12, top + 88.5, pill, "B", 8.5);
+
+          if (photo) {
+            pg.image("Im2", phX, top, phW, phH);
+          } else {
+            pg.fill([0.914, 0.961, 0.925]);
+            pg.rect(phX, top, phW, phH, "f");
+            pg.fill(MUTED);
+            pg.text(phX + (phW - width("Passport Photo", "R", 8)) / 2, top + phH / 2 + 3, "Passport Photo", "R", 8);
+          }
+          pg.stroke(GREEN);
+          pg.rect(phX, top, phW, phH, "S");
+
+          /* greeting + intro */
+          let y = top + phH + (tight ? 20 : 26);
+          pg.fill(INK);
+          pg.text(L, y, "Dear " + d.name + ",", "B", 11.5);
+          y += 18;
+          wrap(receiptIntro(d), "R", 10.5, CW).forEach(function (ln) {
+            pg.text(L, y, ln, "R", 10.5);
+            y += 15;
+          });
+
+          /* details */
+          y += tight ? 8 : 12;
+          pg.fill(GREEN);
+          pg.text(L, y, "APPLICATION DETAILS", "B", 11.5);
+          y += 7;
+          pg.stroke(LINE);
+          pg.line(L, y, R, y, 1.5);
+          y += 4;
+          const VX = L + 160;
+          receiptRows(d).forEach(function (r) {
+            const lines = wrap(r[1], "B", 10, R - VX);
+            y += tight ? 12 : 13.5;
+            pg.fill(INK);
+            pg.text(L, y, r[0], "R", 10);
+            pg.text(VX - 12, y, ":", "R", 10);
+            pg.fill(GREEN_DEEP);
+            lines.forEach(function (ln, i) {
+              pg.text(VX, y + i * 13, ln, "B", 10);
+            });
+            y += (lines.length - 1) * 13 + (tight ? 3 : 4.5);
+            pg.stroke(LINE);
+            pg.line(L, y, R, y, 0.4);
+          });
+
+          /* what happens next */
+          y += tight ? 14 : 20;
+          pg.fill(GREEN);
+          pg.text(L, y, "WHAT HAPPENS NEXT", "B", 11.5);
+          y += 7;
+          pg.stroke(LINE);
+          pg.line(L, y, R, y, 1.5);
+          y += 6;
+          receiptSteps(d).forEach(function (t, i) {
+            wrap(t, "R", 10, CW - 18).forEach(function (ln, k) {
+              y += 13.5;
+              pg.fill(INK);
+              if (k === 0) pg.text(L + 2, y, (i + 1) + ".", "B", 10);
+              pg.text(L + 18, y, ln, "R", 10);
+            });
+            y += 2;
+          });
+
+          /* closing */
+          y += tight ? 14 : 18;
+          pg.fill(INK);
+          pg.text(L, y, "Thank you.", "R", 10.5);
+          y += 14;
+          pg.fill(GREEN_DEEP);
+          pg.text(L, y, "Connect Power Support Team", "B", 10.5);
+
+          /* footer */
+          const fy = PH - 58;
+          if (!tight && y > fy - 14) return build(d, logoBytes, photoBytes, true);
+          pg.stroke(GREEN_DEEP);
+          pg.line(L, fy, R, fy, 1.5);
+          pg.fill(GREEN_DEEP);
+          pg.text((PW - width(RECEIPT_FOOT1, "B", 8.5)) / 2, fy + 16, RECEIPT_FOOT1, "B", 8.5);
+          pg.fill(MUTED);
+          wrap(RECEIPT_FOOT2, "R", 8, CW).forEach(function (ln, i) {
+            pg.text((PW - width(ln, "R", 8)) / 2, fy + 29 + i * 10, ln, "R", 8);
+          });
+          pg.text((PW - width("Generated: " + d.date, "R", 8)) / 2, fy + 29 + wrap(RECEIPT_FOOT2, "R", 8, CW).length * 10, "Generated: " + d.date, "R", 8);
+
+          /* ----- assemble the file ----- */
+          const parts = [];
+          const xref = [];
+          let off = 0;
+          function put(c) {
+            const b = typeof c === "string" ? latin1(c) : c;
+            parts.push(b);
+            off += b.length;
+          }
+          function obj(n, chunks) {
+            xref[n] = off;
+            put(n + " 0 obj\n");
+            chunks.forEach(put);
+            put("\nendobj\n");
+          }
+          function imgObj(n, info, bytes) {
+            obj(n, [
+              "<< /Type /XObject /Subtype /Image /Width " + info.w + " /Height " + info.h +
+                " /ColorSpace /" + (info.c === 1 ? "DeviceGray" : "DeviceRGB") +
+                " /BitsPerComponent 8 /Filter /DCTDecode /Length " + bytes.length + " >>\nstream\n",
+              bytes,
+              "\nendstream",
+            ]);
+          }
+          const content = latin1(pg.toString());
+          const nobj = photo ? 9 : 8;
+          put("%PDF-1.4\n%\u00e2\u00e3\u00cf\u00d3\n");
+          obj(1, ["<< /Type /Catalog /Pages 2 0 R >>"]);
+          obj(2, ["<< /Type /Pages /Kids [3 0 R] /Count 1 >>"]);
+          obj(3, [
+            "<< /Type /Page /Parent 2 0 R /MediaBox [0 0 " + PW + " " + PH + "] /Resources << /Font << /F1 5 0 R /F2 6 0 R >> /XObject << /Im1 8 0 R" +
+              (photo ? " /Im2 9 0 R" : "") + " >> >> /Contents 4 0 R >>",
+          ]);
+          obj(4, ["<< /Length " + content.length + " >>\nstream\n", content, "\nendstream"]);
+          obj(5, ["<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>"]);
+          obj(6, ["<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>"]);
+          const now = new Date();
+          const p2 = function (n) { return String(n).padStart(2, "0"); };
+          obj(7, [
+            "<< /Title (" + esc("Connect Power - Application Acknowledgement - " + d.appRef) + ") /Producer (Connect Power) /CreationDate (D:" +
+              now.getFullYear() + p2(now.getMonth() + 1) + p2(now.getDate()) + p2(now.getHours()) + p2(now.getMinutes()) + p2(now.getSeconds()) + ") >>",
+          ]);
+          imgObj(8, logo, logoBytes);
+          if (photo) imgObj(9, photo, photoBytes);
+          const xrefAt = off;
+          put("xref\n0 " + (nobj + 1) + "\n0000000000 65535 f \n");
+          for (let n = 1; n <= nobj; n++) put(String(xref[n]).padStart(10, "0") + " 00000 n \n");
+          put("trailer\n<< /Size " + (nobj + 1) + " /Root 1 0 R /Info 7 0 R >>\nstartxref\n" + xrefAt + "\n%%EOF");
+          return new Blob(parts, { type: "application/pdf" });
+        }
+
+        return {
+          create: function (d) {
+            const photoUrl = sessionStorage.getItem("cp_passport_photo");
+            return Promise.all([
+              toJpegBytes(logoSrc()),
+              photoUrl ? toJpegBytes(photoUrl).catch(function () { return null; }) : Promise.resolve(null),
+            ]).then(function (r) {
+              return build(d, r[0], r[1]);
+            });
+          },
+        };
+      })();
+
+      function setPdfMsg(text, cls) {
+        document.querySelectorAll("[data-pdf-msg]").forEach(function (p) {
+          p.textContent = text;
+          p.className = "status-msg " + (cls || "info");
+        });
+      }
+
+      function downloadReceiptPdf() {
+        if (!currentReceipt) return;
+        setPdfMsg("Preparing your PDF…", "info");
+        AckPdf.create(currentReceipt)
+          .then(function (blob) {
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download =
+              "ConnectPower-Acknowledgement-" + ref.replace(/[^A-Za-z0-9_-]/g, "") + ".pdf";
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+            setTimeout(function () {
+              URL.revokeObjectURL(url);
+            }, 5000);
+            setPdfMsg("Your PDF has been downloaded.", "info");
+          })
+          .catch(function () {
+            setPdfMsg(
+              "We could not create the PDF. Tap Print and choose “Save as PDF” instead.",
+              "error",
+            );
+          });
+      }
+
+      document.querySelectorAll("[data-act]").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          if (btn.dataset.act === "pdf") downloadReceiptPdf();
+          else window.print();
+        });
+      });
+
+      /* A refresh after payment must not lose the slip (or invite a second payment). */
+      (function restoreReceipt() {
+        const d = readStore("cp_receipt");
+        if (d && (d.kind === "success" || d.kind === "pending")) showReceipt(d);
+      })();
 
       function submitApplication(email, paystackReference) {
         statusMsg.textContent = "Submitting...";
