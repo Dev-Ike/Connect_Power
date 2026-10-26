@@ -538,7 +538,7 @@
   <body data-step="4">
     <header class="app-topbar">
       <div class="app-topbar-inner">
-        <a class="app-brand" href="index.html">
+        <a class="app-brand" href="/">
           <svg
             class="leaf"
             viewBox="0 0 48 48"
@@ -556,7 +556,7 @@
           >
         </a>
         <div class="app-topbar-actions">
-          <a class="pill" href="index.html">Back home</a>
+          <a class="pill" href="/">Back home</a>
           <!-- <button class="pill pill-solid" onclick="doLogout()">Logout</button> -->
           <button class="pill pill-solid" id="logout-btn" type="button">
             Log out
@@ -771,7 +771,7 @@
             <div class="card" id="upload-card">
               <h2>Document upload</h2>
               <p class="sub">
-                Required documents are marked with <span style="color: #c0392b; font-weight: bold">&#42</span> the rest are optional.
+                Required documents are marked with <span style="color: #c0392b; font-weight: bold">&#42;</span> the rest are optional.
               </p>
 
               <label class="upload-row" data-upload="nin">
@@ -789,7 +789,7 @@
                 </div>
                 <div class="upload-body">
                   <div class="label">National Identification Number (NIN)</div>
-                  <div class="hint"><span style="color: #c0392b; font-weight: bold">&#42</span> Required</div>
+                  <div class="hint"><span style="color: #c0392b; font-weight: bold">&#42;</span> Required</div>
                   <div class="filename"></div>
                 </div>
                 <span class="upload-btn">Upload</span>
@@ -811,7 +811,7 @@
                 </div>
                 <div class="upload-body">
                   <div class="label">Local Government Area Certificate</div>
-                  <div class="hint"><span style="color: #c0392b; font-weight: bold">&#42</span> Required</div>
+                  <div class="hint"><span style="color: #c0392b; font-weight: bold">&#42;</span> Required</div>
                   <div class="filename"></div>
                 </div>
                 <span class="upload-btn">Upload</span>
@@ -833,7 +833,7 @@
                 </div>
                 <div class="upload-body">
                   <div class="label">Passport Photograph</div>
-                  <div class="hint"><span style="color: #c0392b; font-weight: bold">&#42</span> Required</div>
+                  <div class="hint"><span style="color: #c0392b; font-weight: bold">&#42;</span> Required</div>
                   <div class="filename"></div>
                 </div>
                 <span class="upload-btn">Upload</span>
@@ -878,7 +878,7 @@
                 </div>
                 <div class="upload-body">
                   <div class="label">Birth Certificate or Age Declaration</div>
-                  <div class="hint"><span style="color: #c0392b; font-weight: bold">&#42</span> Required</div>
+                  <div class="hint"><span style="color: #c0392b; font-weight: bold">&#42;</span> Required</div>
                   <div class="filename"></div>
                 </div>
                 <span class="upload-btn">Upload</span>
@@ -902,7 +902,7 @@
                   <div class="label">
                     Tertiary Degree Certificate / Statement of Result
                   </div>
-                  <div class="hint"><span style="color: #c0392b; font-weight: bold">&#42</span> 
+                  <div class="hint"><span style="color: #c0392b; font-weight: bold">&#42;</span> 
                     Required — B.Sc, B.A, B.Tech or HND
                   </div>
                   <div class="filename"></div>
@@ -1024,7 +1024,7 @@
           "cp_docs",
         ].forEach((k) => localStorage.removeItem(k));
         sessionStorage.removeItem("cp_passport_photo");
-        window.location.href = "index.html";
+        window.location.href = "/";
       }
     </script>
 
@@ -1249,7 +1249,7 @@
           persistFields();
           refresh();
           if (!isComplete()) return;
-          window.location.href = "step5.html";
+          window.location.href = "/pages/step5.html";
         });
 
         renderDocs();
@@ -1260,7 +1260,7 @@
 
     <!-- Clerk logout (ES module; `import` is not allowed in a classic script) -->
     <script type="module">
-      import { setupLogoutButton } from "./src/logout.js";
+      import { setupLogoutButton } from "/src/logout.js";
       setupLogoutButton("#logout-btn");
     </script>
   </body>

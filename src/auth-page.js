@@ -5,10 +5,10 @@ const publishableKey = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 const container = document.getElementById('auth-container');
 
 const ROUTES = {
-    signIn: '/sign-in.html',
-    signUp: '/sign-up.html',
-    signInSuccess: '/step2.html',
-    signUpSuccess: '/sign-in.html?registered=true',
+    signIn: '/auth/sign-in.html',
+    signUp: '/auth/sign-up.html',
+    signInSuccess: '/pages/step2.html',
+    signUpSuccess: '/auth/sign-in.html?registered=true',
 };
 
 function getClerkDomain(key) {
@@ -61,7 +61,7 @@ async function initializeAuthPage() {
 
     // Clerk auto-signs users in after sign-up. End that session so the new
     // user is asked to sign in explicitly. Signing out reloads this page
-    // at a clean /sign-in.html, where a sign-in form is mounted.
+    // at a clean sign-in route, where a sign-in form is mounted.
     if (clerk.isSignedIn && justRegistered) {
         sessionStorage.setItem('showRegisteredNotice', '1');
         await clerk.signOut({ redirectUrl: ROUTES.signIn });
@@ -97,7 +97,7 @@ async function initializeAuthPage() {
         }
 
         sessionStorage.setItem(key, String(Date.now()));
-        window.location.replace('/step2.html');
+        window.location.replace(ROUTES.signInSuccess);
         return;
     }
 

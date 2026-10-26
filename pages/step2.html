@@ -327,7 +327,7 @@
   <body data-step="2" hidden>
     <header class="app-topbar">
       <div class="app-topbar-inner">
-        <a class="app-brand" href="index.html">
+        <a class="app-brand" href="/">
           <svg
             class="leaf"
             viewBox="0 0 48 48"
@@ -345,7 +345,7 @@
           >
         </a>
         <div class="app-topbar-actions">
-          <a class="pill" href="index.html">Back home</a>
+          <a class="pill" href="/">Back home</a>
           <!-- <button class="pill pill-solid" onclick="doLogout()">Logout</button> -->
           <button class="pill pill-solid" id="logout-btn" type="button">
             Log out
@@ -1551,11 +1551,11 @@
                 " " +
                 document.getElementById("surname").value.trim(),
             );
-            window.location.href = "step3.html";
+            window.location.href = "/pages/step3.html";
             return false;
           }
         </script>
-        <a href="step1.html" class="back-link">← Back to Step 1</a>
+        <a href="/pages/step1.html" class="back-link">← Back to Step 1</a>
       </div>
     </div>
 
@@ -1614,9 +1614,9 @@
           "cp_candidate_ref",
         ].forEach((k) => localStorage.removeItem(k));
         sessionStorage.removeItem("cp_passport_photo");
-        window.location.href = "index.html";
+        window.location.href = "/";
       }
-      import { setupLogoutButton } from "./src/logout.js";
+      import { setupLogoutButton } from "/src/logout.js";
       setupLogoutButton("#logout-btn");
     </script>
     <script type="module" src="/src/step2.js"></script>

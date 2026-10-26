@@ -34,10 +34,10 @@ export function getClerk() {
             const clerk = new Clerk(publishableKey);
             await clerk.load({
                 ui: { ClerkUI: window.__internal_ClerkUICtor },
-                signInUrl: '/sign-in.html',
-                signUpUrl: '/sign-up.html',
-                signInForceRedirectUrl: '/step2.html',
-                signUpForceRedirectUrl: '/sign-in.html?registered=true',
+                signInUrl: '/auth/sign-in.html',
+                signUpUrl: '/auth/sign-up.html',
+                signInForceRedirectUrl: '/pages/step2.html',
+                signUpForceRedirectUrl: '/auth/sign-in.html?registered=true',
                 afterSignOutUrl: '/',
             });
 

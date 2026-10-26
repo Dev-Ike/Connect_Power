@@ -2,7 +2,6 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>project</title>
   </head>
@@ -772,9 +771,9 @@
       <a href="#top">Home</a>
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
-      <a href="./sign-up.html" id="nav-signup">Sign Up</a>
-      <a href="./sign-in.html" id="nav-signin" class="nav-cta">Login</a>
-      <a href="admin-login.html" style="opacity: 0.75">🔒 Admin Portal</a>
+      <a href="/auth/sign-up.html" id="nav-signup">Sign Up</a>
+      <a href="/auth/sign-in.html" id="nav-signin" class="nav-cta">Login</a>
+      <a href="/admin/admin-login.html" style="opacity: 0.75">🔒 Admin Portal</a>
     </nav>
 
     <header id="top">
@@ -1122,7 +1121,7 @@
               if (data.success) {
                 localStorage.setItem("cp_reg_email", email);
                 localStorage.setItem("cp_reg_phone", phone);
-                window.location.href = "step1.html";
+                window.location.href = "/pages/step1.html";
               } else if (data.code === "email_exists") {
                 // This email already has an account — point the applicant to Log in.
                 regStatus.style.color = "#c0392b";
@@ -1169,7 +1168,7 @@
               if (data.success) {
                 localStorage.setItem("cp_reg_email", data.email);
                 localStorage.setItem("cp_reg_phone", data.phone || "");
-                window.location.href = "step1.html";
+                window.location.href = "/pages/step1.html";
               } else {
                 loginStatus.textContent =
                   data.message || "Incorrect email or password.";

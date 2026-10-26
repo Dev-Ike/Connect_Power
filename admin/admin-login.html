@@ -61,7 +61,7 @@
       <button type="submit" class="login-btn" id="login-btn">LOG IN →</button>
       <p id="error" class="error-msg"></p>
     </form>
-    <a href="index.html" class="back-link">← Back to home</a>
+    <a href="/" class="back-link">← Back to home</a>
   </div>
 </div>
 
@@ -90,7 +90,7 @@
           if (data.token) {
             try { localStorage.setItem('cp_admin_token', data.token); } catch (e) {}
           }
-          window.location.href = 'admin-dashboard.html';
+          window.location.href = '/admin/admin-dashboard.html';
         } else {
           errBox.textContent = data.message || 'Wrong username or password.';
         }

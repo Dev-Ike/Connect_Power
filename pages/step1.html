@@ -354,7 +354,7 @@
     <!-- Top bar: logo · logout · back home -->
     <header class="app-topbar">
       <div class="app-topbar-inner">
-        <a class="app-brand" href="index.html">
+        <a class="app-brand" href="/">
           <svg
             class="leaf"
             viewBox="0 0 48 48"
@@ -372,7 +372,7 @@
           >
         </a>
         <div class="app-topbar-actions">
-          <a class="pill" href="index.html">Back home</a>
+          <a class="pill" href="/">Back home</a>
           <!-- <button class="pill pill-solid" onclick="doLogout()">Logout</button> -->
           <button class="pill pill-solid" id="logout-btn" type="button">
             Log out
@@ -432,7 +432,7 @@
             Your NIN is used only to confirm your identity and is stored
             securely. It is never shared with third parties.
           </p>
-          <a href="index.html" class="back-link">← Back to home</a>
+          <a href="/" class="back-link">← Back to home</a>
         </div>
       </div>
     </div>
@@ -496,7 +496,7 @@
           "cp_candidate_ref",
         ].forEach((k) => localStorage.removeItem(k));
         sessionStorage.removeItem("cp_passport_photo");
-        window.location.href = "index.html";
+        window.location.href = "/";
       }
 
       /* ===== Step 1 validation ===== */
@@ -578,10 +578,10 @@
 
         errorBox.textContent = "";
         localStorage.setItem("cp_nin", nin);
-        window.location.href = "step2.html";
+        window.location.href = "/pages/step2.html";
         return false;
       }
-      import { setupLogoutButton } from "./src/logout.js";
+      import { setupLogoutButton } from "/src/logout.js";
       setupLogoutButton("#logout-btn");
     </script>
   </body>

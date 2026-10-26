@@ -338,7 +338,7 @@
   <body data-step="3">
     <header class="app-topbar">
       <div class="app-topbar-inner">
-        <a class="app-brand" href="index.html">
+        <a class="app-brand" href="/">
           <svg
             class="leaf"
             viewBox="0 0 48 48"
@@ -356,7 +356,7 @@
           >
         </a>
         <div class="app-topbar-actions">
-          <a class="pill" href="index.html">Back home</a>
+          <a class="pill" href="/">Back home</a>
           <!-- <button class="pill pill-solid" onclick="doLogout()">Logout</button> -->
           <button class="pill pill-solid" id="logout-btn" type="button">
             Log out
@@ -594,7 +594,7 @@
 
           <button type="submit" class="save-btn">SAVE &amp; CONTINUE →</button>
         </form>
-        <a href="step2.html" class="back-link">← Back to Step 2</a>
+        <a href="/pages/step2.html" class="back-link">← Back to Step 2</a>
       </div>
     </div>
 
@@ -657,7 +657,7 @@
           "cp_docs",
         ].forEach((k) => localStorage.removeItem(k));
         sessionStorage.removeItem("cp_passport_photo");
-        window.location.href = "index.html";
+        window.location.href = "/";
       }
     </script>
 
@@ -753,7 +753,7 @@
           validateYearRange();
           if (!form.reportValidity()) return;
           saveEducation();
-          window.location.href = "step4.html";
+          window.location.href = "/pages/step4.html";
         });
 
         // Restore any previously saved answers (also handles browsers
@@ -765,7 +765,7 @@
 
     <!-- Clerk logout (ES module; `import` is not allowed in a classic script) -->
     <script type="module">
-      import { setupLogoutButton } from "./src/logout.js";
+      import { setupLogoutButton } from "/src/logout.js";
       setupLogoutButton("#logout-btn");
     </script>
   </body>

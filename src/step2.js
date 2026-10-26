@@ -15,7 +15,7 @@ async function initializeStep2() {
 
     // Redirect ONLY when we are certain the user is signed out.
     if (!clerk.session) {
-        window.location.replace('/sign-in.html');
+        window.location.replace('/auth/sign-in.html');
         return;
     }
 
@@ -47,12 +47,12 @@ async function initializeStep2() {
             const clerk = new Clerk(publishableKey);
             await clerk.load({
                 ui: { ClerkUI: window.__internal_ClerkUICtor },
-                signInUrl: '/sign-in.html',
-                afterSignOutUrl: '/sign-in.html',
+                signInUrl: '/auth/sign-in.html',
+                afterSignOutUrl: '/auth/sign-in.html',
             });
 
             if (!clerk.isSignedIn) {
-                window.location.replace('/sign-in.html');
+                window.location.replace('/auth/sign-in.html');
                 return;
             }
 

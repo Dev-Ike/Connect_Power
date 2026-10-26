@@ -908,7 +908,7 @@
   <body data-step="5">
     <header class="app-topbar">
       <div class="app-topbar-inner">
-        <a class="app-brand" href="index.html">
+        <a class="app-brand" href="/">
           <svg
             class="leaf"
             viewBox="0 0 48 48"
@@ -926,7 +926,7 @@
           >
         </a>
         <div class="app-topbar-actions">
-          <a class="pill" href="index.html">Back home</a>
+          <a class="pill" href="/">Back home</a>
           <!-- <button class="pill pill-solid" onclick="doLogout()">Logout</button> -->
           <button class="pill pill-solid" id="logout-btn" type="button">
             Log out
@@ -1069,7 +1069,7 @@
             <p class="status-msg" data-pdf-msg></p>
           </div>
 
-          <a href="step4.html" class="back-link">← Back to Step 4</a>
+          <a href="/pages/step4.html" class="back-link">← Back to Step 4</a>
         </div>
       </div>
     </div>
@@ -1135,7 +1135,7 @@
           "cp_receipt",
         ].forEach((k) => localStorage.removeItem(k));
         sessionStorage.removeItem("cp_passport_photo");
-        window.location.href = "index.html";
+        window.location.href = "/";
       }
 
       /* ===== NIN IS COMPULSORY: block Step 5 entirely without a valid 11-digit NIN ===== */
@@ -1270,7 +1270,7 @@
 
         /* 1 — Identity */
         sections.appendChild(
-          section(1, "Identity", "step4.html", [
+          section(1, "Identity", "/pages/step4.html", [
             {
               label: "NIN",
               value: NIN,
@@ -1292,7 +1292,7 @@
 
         /* 2 — Personal details */
         sections.appendChild(
-          section(2, "Personal Details", "step4.html", [
+          section(2, "Personal Details", "/pages/step4.html", [
             { label: "Full name", value: fullName, required: true, step: "Step 4" },
             {
               label: "Date of birth",
@@ -1334,11 +1334,11 @@
             { label: "Highest qualification", value: "", required: true, step: "Step 3" },
           ];
         }
-        sections.appendChild(section(3, "Education & Qualifications", "step3.html", eduRows));
+        sections.appendChild(section(3, "Education & Qualifications", "/pages/step3.html", eduRows));
 
         /* 4 — Location */
         sections.appendChild(
-          section(4, "Location", "step4.html", [
+          section(4, "Location", "/pages/step4.html", [
             { label: "State of origin", value: s4.state, required: true, step: "Step 4" },
             { label: "Local Government Area (LGA)", value: s4.lga, required: true, step: "Step 4" },
             { label: "Residential address", value: s4.address, required: true, step: "Step 4" },
@@ -1347,7 +1347,7 @@
 
         /* 5 — Programme track */
         sections.appendChild(
-          section(5, "Programme Track", "step4.html", [
+          section(5, "Programme Track", "/pages/step4.html", [
             {
               label: "Selected track",
               value: track,
@@ -1372,7 +1372,7 @@
           section(
             6,
             "Uploaded Documents",
-            "step4.html",
+            "/pages/step4.html",
             DOCS.map(function (d) {
               const f = docsSaved[d[0]];
               return {
@@ -2236,7 +2236,7 @@
 
     <!-- Clerk logout (ES module; `import` is not allowed in a classic script) -->
     <script type="module">
-      import { setupLogoutButton } from "./src/logout.js";
+      import { setupLogoutButton } from "/src/logout.js";
       setupLogoutButton("#logout-btn");
     </script>
   </body>
