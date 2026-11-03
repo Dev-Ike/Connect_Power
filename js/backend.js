@@ -236,25 +236,67 @@ export function watchReceipt(uid, cb) {
   return function () { stop = true; clearTimeout(timer); };
 }
 
-async function api(path, opts) {
+
+async function api(path, opts = {}) {
   need();
-  const s = await sb.auth.getSession();
-  const token = s.data && s.data.session ? s.data.session.access_token : '';
+
+  let { data, error } = await sb.auth.getSession();
+
+  if (error) {
+    throw new Error('Unable to retrieve your login session. Please sign in again.');
+  }
+
+  let session = data?.session;
+
+  if (!session) {
+    throw new Error('You are not signed in. Please sign in again.');
+  }
+
+  // Refresh the session if it is expired or about to expire.
+  if (session.expires_at * 1000 <= Date.now() + 60_000) {
+    const refreshed = await sb.auth.refreshSession();
+
+    if (refreshed.error || !refreshed.data.session) {
+      throw new Error('Your session has expired. Please sign in again.');
+    }
+
+    session = refreshed.data.session;
+  }
+
+  const headers = {
+    'Content-Type': 'application/json',
+    ...(opts.headers || {}),
+    Authorization: `Bearer ${session.access_token}`
+  };
+
   const res = await fetch(path, {
-    method: (opts && opts.method) || 'GET',
-    headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + token },
-    body: opts && opts.body ? JSON.stringify(opts.body) : undefined
+    ...opts,
+    method: opts.method || 'GET',
+    headers,
+    body: opts.body ? JSON.stringify(opts.body) : undefined
   });
+
   let json = null;
-  try { json = await res.json(); } catch (e) { /* not json */ }
+
+  try {
+    json = await res.json();
+  } catch (e) {
+    // Response was not JSON.
+  }
+
   if (!res.ok) {
-    const er = (json && json.error) || {};
+    const er = json?.error || {};
     const e = new Error(er.message || 'Request failed');
-    e.code = 'functions/' + (er.code || (res.status === 401 ? 'unauthenticated' : 'internal'));
+
+    e.code = 'functions/' +
+      (er.code || (res.status === 401 ? 'unauthenticated' : 'internal'));
+
     throw e;
   }
+
   return json;
 }
+
 
 export function paymentInfo() { return api('/api/payment-info'); }
 export function initPayment() { return api('/api/initialize-payment', { method: 'POST', body: {} }); }
