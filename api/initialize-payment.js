@@ -27,7 +27,7 @@ module.exports = endpoint(async function (req, res) {
   const reference = checks.newReference();
   const amountKobo = Math.round(fee * 100);
 
-  const data = await paystack('/transaction/initialize', {
+  const data = await paystack('https://api.paystack.co/transaction/initialize', {
     method: 'POST',
     body: JSON.stringify({
       email: email,
