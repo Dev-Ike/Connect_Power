@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Connect Power – Skills and Jobs Programme</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/styles.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+<div id="boot" role="status" aria-live="polite">Loading...</div>
+<div id="cfgbar" role="alert" hidden></div>
+<header><div class="wrap bar">
+<a class="brand" href="#home" aria-label="Connect Power, home"><img src="assets/logo.jpg" alt="Connect Power" width="79" height="44"></a>
+<button class="menu" id="mb" aria-label="Menu" aria-expanded="false" aria-controls="nv"><span></span></button>
+<nav id="nv" aria-label="Main">
+<a href="#home" data-p="home">Home</a><a href="#about" data-p="about">About</a><a href="#news" data-p="news">News</a><a href="#signin" data-p="signin" class="cta">Login</a><button type="button" class="lo" id="lo" hidden>Logout</button>
+</nav></div></header>
+
+<main>
+<div class="page" id="home">
+<div class="hero"><div class="wrap hgrid"><div class="hl">
+<h1>Skills and jobs for Nigerians start Monday</h1>
+<p>Connect Power helps Nigerians learn practical skills and provides jobs to the masses across five sectors: Tech, Agro, Health, Build and Teach Connect.</p>
+<div class="mission"><b>Our mission</b><p>This website is built to promote learning and provide jobs for the Nigerian masses.</p></div>
+<div class="clock" role="timer" aria-label="Time until programme launch">
+<div><b id="d">00</b><span>Days</span></div><div><b id="h">00</b><span>Hours</span></div><div><b id="m">00</b><span>Minutes</span></div><div><b id="s">00</b><span>Seconds</span></div>
+</div>
+<p class="when" id="when">Launching Monday, 2 November 2026 at 9:00 AM (WAT)</p>
+<a class="btn gold" href="#signup">Create your account</a><a class="btn line" href="#about">How it works</a></div>
+<aside class="hr" aria-label="President of the Federal Republic of Nigeria"><figure class="pf" id="pres"><img src="assets/president.jpg" alt="Official portrait of His Excellency Bola Ahmed Tinubu, President, Commander-in-Chief of the Armed Forces of the Federal Republic of Nigeria" width="452" height="678"></figure></aside>
+</div></div>
+
+<section class="blk"><div class="wrap">
+<div class="sh"><h2>What drives Connect Power</h2><p>Our mission, vision and core purpose.</p></div>
+<div class="mvc">
+<article class="mv"><span class="mk">Mission</span><p>To empower individuals and organizations across Nigeria and Africa by connecting exceptional talent with meaningful opportunities.</p></article>
+<article class="mv"><span class="mk">Vision</span><p>A future where every African professional realizes their full potential through meaningful employment.</p></article>
+<article class="mv"><span class="mk">Core purpose: Achieve</span><p>We measure our success by the growth of our people and partners.</p></article>
+</div>
+<p style="margin:20px 0 0"><a class="lnk2" href="#about">Read our full mission, vision and core purpose &rarr;</a></p>
+</div></section>
+
+<section class="blk band" id="prg"><div class="wrap">
+<div class="sh"><h2>Our programmes</h2><p>Five sectors where Nigerians learn practical skills and are connected to real jobs.</p></div>
+<div class="mq" role="region" aria-roledescription="carousel" aria-label="Programmes"><div class="mt" id="pt"><div class="mset" id="pset"></div></div></div>
+<div class="cc"><button type="button" class="cb txt" id="pp-p" aria-label="Pause programmes slider">Pause</button></div>
+<div style="text-align:center;margin-top:24px"><a class="btn solid" href="#signup">Create your account to choose a track</a></div>
+</div></section>
+
+<section class="blk"><div class="wrap">
+<h2>Who the programme is for</h2>
+<div class="grid">
+<div class="card"><h3>School leavers and graduates</h3><p>Learn practical, job-ready skills in your chosen sector and take your first steps into work.</p></div>
+<div class="card"><h3>Artisans and tradespeople</h3><p>Sharpen and certify the skills you already have, and connect with the people who need them.</p></div>
+<div class="card"><h3>Career changers and professionals</h3><p>Retrain in a growing sector and move into new roles with confidence.</p></div>
+<div class="card"><h3>Employers and partners</h3><p>Work with us to train and employ people whose identity, qualifications and documents have been checked.</p></div>
+</div></div></section>
+
+<section class="blk" style="padding-top:0"><div class="wrap two">
+<div><h2>Five steps to join the programme</h2>
+<p style="color:var(--muted);margin:0 0 12px">Create your account or log in, then complete your application in five steps.</p>
+<ol class="steps">
+<li><div><b>Personal details</b><span>Enter your name, date of birth, phone number, employment status, state of origin and home address.</span></div></li>
+<li><div><b>Education and qualification</b><span>Tell us your highest qualification (Degree, HND, OND, NCE or SSCE) and where you studied.</span></div></li>
+<li><div><b>Programme stream</b><span>Choose one of the five programme tracks, then check your application review slip, including your NIN.</span></div></li>
+<li><div><b>Document upload</b><span>Upload your NIN, local government certificate, passport photograph, birth certificate or age declaration and CV as PDF, PNG or JPG files.</span></div></li>
+<li><div><b>Payment</b><span>Pay your application fee online, then download or print your acknowledgement slip.</span></div></li>
+</ol>
+<p style="margin:20px 0 0"><a class="btn solid" href="#signup">Start your application</a></p></div>
+<div><h2>Open in every state</h2><p style="color:var(--muted)">Programme centres and help desks will run in each zone, including Port Harcourt, Lagos, Abuja, Kano, Enugu, Ibadan and Kaduna.</p>
+<ul class="states"><li>Lagos</li><li>Abuja (FCT)</li><li>Rivers</li><li>Kano</li><li>Oyo</li><li>Enugu</li><li>Kaduna</li><li>Delta</li><li>Anambra</li><li>Ogun</li><li>Edo</li><li>+ 25 more</li></ul></div>
+</div></section>
+
+<section class="blk band" id="tst"><div class="wrap">
+<div class="sh"><h2>Success stories</h2><p>Hear from beneficiaries across Nigeria and what the programme has done for them.</p></div>
+<div class="mq" role="region" aria-roledescription="carousel" aria-label="Success stories"><div class="mt" id="tt"><div class="mset" id="tset">
+<article class="tc"><div class="tw"><span class="av" aria-hidden="true">CO</span><div><b>Chinedu Okafor</b><small>Anambra State &middot; Tech Connect</small></div></div><blockquote>I finished my HND with no clear path. Tech Connect taught me practical data skills, then connected me to an employer who needed them.</blockquote><p class="to">Outcome: placed as a junior data analyst</p></article>
+<article class="tc"><div class="tw"><span class="av" aria-hidden="true">AB</span><div><b>Aisha Bello</b><small>Kano State &middot; Agro Connect</small></div></div><blockquote>My family has farmed for generations. Through Agro Connect I learned modern processing and storage, and now I supply a food company.</blockquote><p class="to">Outcome: signed a supply contract for her produce</p></article>
+<article class="tc"><div class="tw"><span class="av" aria-hidden="true">GA</span><div><b>Grace Amadi</b><small>Rivers State &middot; Health Connect</small></div></div><blockquote>The training was practical and the support team answered every question. I now work at a community clinic close to home.</blockquote><p class="to">Outcome: employed as a community health worker</p></article>
+<article class="tc"><div class="tw"><span class="av" aria-hidden="true">TA</span><div><b>Tunde Adeyemi</b><small>Oyo State &middot; Build Connect</small></div></div><blockquote>I had the trade skills but no certificate or network. Build Connect trained and certified me, then connected me with a construction firm.</blockquote><p class="to">Outcome: hired as a site electrician</p></article>
+<article class="tc"><div class="tw"><span class="av" aria-hidden="true">FA</span><div><b>Fatima Abubakar</b><small>Borno State &middot; Teach Connect</small></div></div><blockquote>Teach Connect trained me in modern classroom methods and placed me in a school that needed a mathematics teacher.</blockquote><p class="to">Outcome: placed as a secondary school teacher</p></article>
+<article class="tc"><div class="tw"><span class="av" aria-hidden="true">YD</span><div><b>Yakubu Danjuma</b><small>Plateau State &middot; Tech Connect</small></div></div><blockquote>I trained for IT support while still a student. By the time I graduated I already had an interview waiting.</blockquote><p class="to">Outcome: secured an IT support role after graduation</p></article>
+</div></div></div>
+<div class="cc"><button type="button" class="cb txt" id="tp-p" aria-label="Pause success stories slider">Pause</button></div>
+</div></section>
+</div>
+
+<div class="page" id="about">
+<div class="phead"><div class="wrap"><h1>About Connect Power</h1><p>We help Nigerians learn practical skills and provide jobs to the masses across five sectors.</p></div></div>
+<section class="blk"><div class="wrap two">
+<div><h2>Who we are</h2><p>Connect Power is a learning and jobs platform for Nigerians. Many capable people lack access to practical training and to opportunities that match their skills, while businesses struggle to find trained, reliable people.</p>
+<p>We close that gap by combining skills learning with job opportunities in five sectors: Tech Connect, Agro Connect, Health Connect, Build Connect and Teach Connect.</p></div>
+<div class="grid" style="grid-template-columns:1fr">
+<div class="card"><h3>Learn practical skills</h3><p>Training built around the skills each sector needs, so you finish ready to work.</p></div>
+<div class="card"><h3>Connect to real jobs</h3><p>Pathways into work with partner employers and organisations that have been checked.</p></div>
+<div class="card"><h3>Open to everyone</h3><p>Open to Nigerians in all 36 states and the FCT, regardless of gender, religion or ethnicity.</p></div>
+</div></div></section>
+<section class="blk band"><div class="wrap"><div class="sh"><h2>Our five sectors</h2><p>Each programme track combines learning with a route into work.</p></div>
+<div class="grid five">
+<div class="card"><h3>Tech Connect</h3><p>Software development, data analysis, cybersecurity and IT support.</p></div>
+<div class="card"><h3>Agro Connect</h3><p>Modern farming, agribusiness, food processing and agri-tech.</p></div>
+<div class="card"><h3>Health Connect</h3><p>Community health, nursing support, laboratory and pharmacy skills.</p></div>
+<div class="card"><h3>Build Connect</h3><p>Construction, engineering and skilled trades such as welding, electrical work and plumbing.</p></div>
+<div class="card"><h3>Teach Connect</h3><p>Modern teaching, tutoring and school administration methods.</p></div>
+</div></div></section>
+<section class="blk"><div class="wrap"><div class="sh"><h2>Our mission, vision and core purpose</h2><p>What we stand for and how we measure our success.</p></div>
+<div class="mvc">
+<article class="mv"><span class="mk">Mission</span><p>To empower individuals and organizations across Nigeria and Africa by connecting exceptional talent with meaningful opportunities, ensuring every person finds purposeful work and every employer builds a thriving team.</p></article>
+<article class="mv"><span class="mk">Vision</span><p>To shape a future where every African professional realizes their full potential through meaningful employment and every business flourishes with the right people behind it.</p></article>
+<article class="mv"><span class="mk">Core purpose</span><h3>Achieve</h3><p>We measure our success by the growth of our people and partners. We are dedicated to helping talent land rewarding careers and empowering organizations to reach their highest ambitions.</p></article>
+</div></div></section>
+<section class="blk band"><div class="wrap"><h2>Our commitments</h2>
+<div class="grid"><div class="card"><h3>Your data is protected</h3><p>We handle personal data in line with the Nigeria Data Protection Act.</p></div>
+<div class="card"><h3>Clear communication</h3><p>Every application gets a status update by email or SMS.</p></div>
+<div class="card"><h3>Local support</h3><p>Help desks in each zone, reachable by phone and WhatsApp.</p></div>
+<div class="card"><h3>Fair and transparent</h3><p>Pay the application fee only on the official payment page. We never ask for money to a personal account.</p></div></div></div></section>
+</div>
+
+<div class="page" id="news">
+<div class="phead"><div class="wrap"><h1>News and updates</h1><p>Announcements about the programme, our training and employer partners, and application tips.</p></div></div>
+<section class="blk"><div class="wrap news">
+<article class="item"><time>31 Oct 2026</time><div><h3>Programme launches Monday, 2 November</h3><p>Registration opens at 9:00 AM WAT. Applicants can create accounts, choose a programme track and upload their documents from any phone or computer.</p></div></article>
+<article class="item"><time>29 Oct 2026</time><div><h3>First training and employer partners announced</h3><p>Organisations across technology, agriculture, health, construction and education have signed up to train and employ programme participants.</p></div></article>
+<article class="item"><time>27 Oct 2026</time><div><h3>How to prepare before launch</h3><p>Scan your NIN, certificates and passport photograph, and keep your CV to two pages, so you can upload them as PDF, PNG or JPG files.</p></div></article>
+<article class="item"><time>24 Oct 2026</time><div><h3>Beware of scams</h3><p>Pay your application fee only on the official payment page. Connect Power will never ask you to send money to a personal account or promise a job in return for cash.</p></div></article>
+</div></section>
+</div>
+
+<div class="page" id="signin"><div class="auth">
+<div class="aside"><h1>Welcome back</h1><p>Sign in to continue your application to the Connect Power programme.</p><ul><li>Complete your application in five steps</li><li>Choose from five sectors</li><li>Get your acknowledgement slip after payment</li></ul></div>
+<div class="pane"><div class="box">
+<div class="tabs"><a href="#signin" aria-current="page">Sign in</a><a href="#signup">Sign up</a></div>
+<h2>Sign in to your account</h2><p class="sub">Enter the email and password you registered with.</p>
+<form id="sif" novalidate>
+<label for="si-e">Email address</label><input id="si-e" type="email" autocomplete="email" placeholder="you@example.com">
+<div class="err-t" id="si-e-t"></div>
+<label for="si-p">Password</label><div class="pw"><input id="si-p" type="password" autocomplete="current-password"><button type="button" data-show="si-p" aria-label="Show password">Show</button></div>
+<div class="err-t" id="si-p-t"></div>
+<div class="fpr"><button type="button" class="lk" id="si-fp">Forgot your password?</button></div>
+<button class="btn" type="submit">Sign in</button>
+<div class="msg" id="si-m" role="alert"></div>
+</form>
+<div class="or"><span>or</span></div><button type="button" class="btn ggl" id="si-g"><svg width="18" height="18" viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.8-6.8C35.8 2.4 30.2 0 24 0 14.6 0 6.5 5.4 2.6 13.2l7.9 6.1C12.4 13.6 17.7 9.5 24 9.5z"/><path fill="#4285F4" d="M46.1 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.4c-.5 2.9-2.2 5.3-4.6 6.9l7.4 5.7c4.3-4 6.9-9.9 6.9-17.1z"/><path fill="#FBBC05" d="M10.5 28.7a14.5 14.5 0 0 1 0-9.4l-7.9-6.1a24 24 0 0 0 0 21.6l7.9-6.1z"/><path fill="#34A853" d="M24 48c6.2 0 11.4-2 15.2-5.5l-7.4-5.7c-2 1.4-4.7 2.2-7.8 2.2-6.3 0-11.6-4.1-13.5-9.8l-7.9 6.1C6.5 42.6 14.6 48 24 48z"/></svg>Continue with Google</button>
+<p class="alt">New to Connect Power? <a href="#signup">Create an account</a></p>
+</div></div></div></div>
+
+<div class="page" id="reset"><div class="auth">
+<div class="aside"><h1>Choose a new password</h1><p>Enter a new password for your Connect Power account.</p><ul><li>At least 8 characters</li><li>Use letters and numbers</li></ul></div>
+<div class="pane"><div class="box">
+<h2>Set a new password</h2><p class="sub">You opened a password reset link, so you can choose a new password here.</p>
+<form id="rsf" novalidate>
+<label for="rs-p">New password</label><div class="pw"><input id="rs-p" type="password" autocomplete="new-password"><button type="button" data-show="rs-p" aria-label="Show password">Show</button></div>
+<div class="err-t" id="rs-p-t"></div>
+<label for="rs-c">Confirm new password</label><input id="rs-c" type="password" autocomplete="new-password">
+<div class="err-t" id="rs-c-t"></div>
+<button class="btn" type="submit">Save new password</button>
+<div class="msg" id="rs-m" role="alert"></div>
+</form>
+<p class="alt"><a href="#signin">Back to sign in</a></p>
+</div></div></div></div>
+
+<div class="page" id="signup"><div class="auth">
+<div class="aside"><h1>Create your account</h1><p>Join before the programme opens and be among the first to learn and work in your chosen sector.</p><ul><li>Five sectors to choose from</li><li>Training and jobs in one place</li><li>Support desks in every zone</li></ul></div>
+<div class="pane"><div class="box">
+<div class="tabs"><a href="#signin">Sign in</a><a href="#signup" aria-current="page">Sign up</a></div>
+<h2>Sign up</h2><p class="sub">It takes about two minutes.</p>
+<form id="suf" novalidate>
+<div class="row2"><div><label for="su-f">First name</label><input id="su-f" autocomplete="given-name"><div class="err-t" id="su-f-t"></div></div><div><label for="su-l">Last name</label><input id="su-l" autocomplete="family-name"><div class="err-t" id="su-l-t"></div></div></div>
+<label for="su-e">Email address</label><input id="su-e" type="email" autocomplete="email" placeholder="you@example.com">
+<div class="err-t" id="su-e-t"></div>
+<label for="su-n">Phone number</label><input id="su-n" type="tel" autocomplete="tel" placeholder="0803 123 4567">
+<div class="err-t" id="su-n-t"></div>
+<label for="su-s">State</label><select id="su-s"></select><div class="err-t" id="su-s-t"></div>
+<label for="su-p">Password</label><div class="pw"><input id="su-p" type="password" autocomplete="new-password"><button type="button" data-show="su-p" aria-label="Show password">Show</button></div>
+<div class="meter"><i id="su-mi"></i></div><div class="hint" id="su-ph">Use at least 8 characters with letters and numbers.</div>
+<div class="err-t" id="su-p-t"></div>
+<label for="su-c">Confirm password</label><input id="su-c" type="password" autocomplete="new-password">
+<div class="err-t" id="su-c-t"></div>
+<label class="chk" for="su-t"><input id="su-t" type="checkbox"><span>I agree that my data will be handled under the Nigeria Data Protection Act and used only for the programme.</span></label>
+<div class="err-t" id="su-t-t"></div>
+<button class="btn" type="submit">Create account</button>
+<div class="msg" id="su-m" role="alert"></div>
+</form>
+<div class="or"><span>or</span></div><button type="button" class="btn ggl" id="su-g"><svg width="18" height="18" viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.8-6.8C35.8 2.4 30.2 0 24 0 14.6 0 6.5 5.4 2.6 13.2l7.9 6.1C12.4 13.6 17.7 9.5 24 9.5z"/><path fill="#4285F4" d="M46.1 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.4c-.5 2.9-2.2 5.3-4.6 6.9l7.4 5.7c4.3-4 6.9-9.9 6.9-17.1z"/><path fill="#FBBC05" d="M10.5 28.7a14.5 14.5 0 0 1 0-9.4l-7.9-6.1a24 24 0 0 0 0 21.6l7.9-6.1z"/><path fill="#34A853" d="M24 48c6.2 0 11.4-2 15.2-5.5l-7.4-5.7c-2 1.4-4.7 2.2-7.8 2.2-6.3 0-11.6-4.1-13.5-9.8l-7.9 6.1C6.5 42.6 14.6 48 24 48z"/></svg>Sign up with Google</button>
+<p class="alt">Already have an account? <a href="#signin">Sign in</a></p>
+</div></div></div></div>
+<div class="page" id="step1">
+<div class="phead"><div class="wrap"><h1>Personal details</h1><p>Step 1 of 5. Tell us about yourself so we can guide you to the right programme.</p></div></div>
+<div class="fwrap"><div class="panel" id="stp1"></div>
+<form class="sf panel" id="pdf" novalidate>
+<p class="note">Fields marked <span class="req" aria-hidden="true">*</span> are required.</p>
+<div class="fg">
+<div class="n3">
+<div class="f"><label for="pd-sn">Surname <span class="req" aria-hidden="true">*</span></label><input id="pd-sn" autocomplete="family-name" aria-required="true"><div class="err-t" id="pd-sn-t"></div></div>
+<div class="f"><label for="pd-fn">First name <span class="req" aria-hidden="true">*</span></label><input id="pd-fn" autocomplete="given-name" aria-required="true"><div class="err-t" id="pd-fn-t"></div></div>
+<div class="f"><label for="pd-mn">Middle name</label><input id="pd-mn" autocomplete="additional-name"><div class="err-t" id="pd-mn-t"></div></div>
+</div>
+<div class="f"><label for="pd-g">Gender <span class="req" aria-hidden="true">*</span></label><select id="pd-g" aria-required="true"><option value="">Select gender</option><option>Male</option><option>Female</option></select><div class="err-t" id="pd-g-t"></div></div>
+<div class="f"><label for="pd-ms">Marital status <span class="req" aria-hidden="true">*</span></label><select id="pd-ms" aria-required="true"><option value="">Select marital status</option><option>Single</option><option>Married</option><option>Divorced</option><option>Widowed</option></select><div class="err-t" id="pd-ms-t"></div></div>
+<div class="f"><label for="pd-dob">Date of birth <span class="req" aria-hidden="true">*</span></label><input id="pd-dob" type="date" autocomplete="bday" aria-required="true"><div class="err-t" id="pd-dob-t"></div></div>
+<div class="f"><label for="pd-ph">Phone number <span class="req" aria-hidden="true">*</span></label><input id="pd-ph" type="tel" inputmode="tel" autocomplete="tel" placeholder="0803 123 4567" aria-required="true"><div class="err-t" id="pd-ph-t"></div></div>
+<div class="f"><label for="pd-es">Employment status <span class="req" aria-hidden="true">*</span></label><select id="pd-es" aria-required="true"><option value="">Select employment status</option><option>Student</option><option>Unemployed</option><option>Self-Employed</option><option>Employed</option></select><div class="err-t" id="pd-es-t"></div></div>
+<div class="f"><label for="pd-pr">Current profession <span class="req" id="pd-prs" aria-hidden="true" style="display:none">*</span></label><select id="pd-pr"></select><div class="err-t" id="pd-pr-t"></div></div>
+<div class="f"><label for="pd-so">State of origin <span class="req" aria-hidden="true">*</span></label><select id="pd-so" aria-required="true"></select><div class="err-t" id="pd-so-t"></div></div>
+<div class="f"><label for="pd-lg">Local government area <span class="req" aria-hidden="true">*</span></label><select id="pd-lg" aria-required="true" disabled><option value="">Select a state first</option></select><div class="err-t" id="pd-lg-t"></div></div>
+<div class="f full"><label for="pd-ad">Residential address <span class="req" aria-hidden="true">*</span></label><textarea id="pd-ad" rows="3" maxlength="250" autocomplete="street-address" placeholder="House number, street, town or city" aria-required="true"></textarea><div class="err-t" id="pd-ad-t"></div></div>
+</div>
+<div class="msg" id="pd-m" role="alert"></div>
+<div class="actions"><a class="btn ghost" href="#signin">Back to previous page</a><button class="btn pri" type="submit">Save and Continue</button></div>
+</form></div></div>
+<div class="page" id="step2">
+<div class="phead"><div class="wrap"><h1>Education and qualification</h1><p>Step 2 of 5. Tell us about your highest level of education.</p></div></div>
+<div class="fwrap"><div class="panel" id="stp2"></div>
+<form class="sf panel" id="edf" novalidate>
+<p class="note">Fields marked <span class="req" aria-hidden="true">*</span> are required.</p>
+<div class="fg"><div class="f full"><label for="ed-q">Highest qualification <span class="req" aria-hidden="true">*</span></label><select id="ed-q" aria-required="true"><option value="">Select highest qualification</option><option>Degree</option><option>HND</option><option>OND</option><option>NCE</option><option>SSCE</option></select><div class="err-t" id="ed-q-t"></div></div></div>
+<p class="note" id="ed-hint">Choose your highest qualification above and the matching fields will appear.</p>
+<div id="ed-he" hidden><h3 class="sec">Institution details</h3><div class="fg">
+<div class="f"><label for="he-in">Institution name <span class="req" aria-hidden="true">*</span></label><input id="he-in" autocomplete="organization" placeholder="e.g. University of Ibadan" aria-required="true"><div class="err-t" id="he-in-t"></div></div>
+<div class="f"><label for="he-cs">Course of study <span class="req" aria-hidden="true">*</span></label><input id="he-cs" placeholder="e.g. Computer Science" aria-required="true"><div class="err-t" id="he-cs-t"></div></div>
+<div class="f"><label for="he-gr">Grade <span class="req" aria-hidden="true">*</span></label><select id="he-gr" aria-required="true"><option value="">Select grade</option></select><div class="err-t" id="he-gr-t"></div></div>
+<div class="f"><label for="he-gy">Graduation year <span class="req" aria-hidden="true">*</span></label><select id="he-gy" aria-required="true"></select><div class="err-t" id="he-gy-t"></div></div>
+<div class="f"><label for="he-sd">Start date <span class="req" aria-hidden="true">*</span></label><input id="he-sd" type="date" aria-required="true"><div class="err-t" id="he-sd-t"></div></div>
+<div class="f"><label for="he-ed">End date <span class="req" aria-hidden="true">*</span></label><input id="he-ed" type="date" aria-required="true"><div class="err-t" id="he-ed-t"></div></div>
+<div class="f"><label for="he-ny">NYSC status</label><select id="he-ny"><option value="">Select NYSC status (optional)</option><option>Not Applicable</option><option>Serving</option><option>Exempted</option><option>Completed</option></select><div class="err-t" id="he-ny-t"></div></div>
+</div></div>
+<div id="ed-ss" hidden><h3 class="sec">Secondary school details</h3><div class="fg">
+<div class="f"><label for="ss-eb">Examination body <span class="req" aria-hidden="true">*</span></label><select id="ss-eb" aria-required="true"><option value="">Select examination body</option><option>WAEC</option><option>NECO</option><option>NABTEB</option></select><div class="err-t" id="ss-eb-t"></div></div>
+<div class="f"><label for="ss-en">Examination number <span class="req" aria-hidden="true">*</span></label><input id="ss-en" autocomplete="off" autocapitalize="characters" maxlength="12" placeholder="Select examination body first" aria-required="true" aria-describedby="ss-enh"><div class="hint" id="ss-enh" style="margin-top:-8px">Select your examination body to see the format.</div><div class="err-t" id="ss-en-t"></div></div>
+<div class="f full"><label for="ss-sn">Name of school <span class="req" aria-hidden="true">*</span></label><input id="ss-sn" autocomplete="organization" aria-required="true"><div class="err-t" id="ss-sn-t"></div></div>
+<div class="f"><label for="ss-sy">Start year</label><select id="ss-sy"></select><div class="err-t" id="ss-sy-t"></div></div>
+<div class="f"><label for="ss-ey">End year</label><select id="ss-ey"></select><div class="err-t" id="ss-ey-t"></div></div>
+<div class="f"><label for="ss-gy">Graduation year <span class="req" aria-hidden="true">*</span></label><select id="ss-gy" aria-required="true"></select><div class="err-t" id="ss-gy-t"></div></div>
+</div></div>
+<div class="msg" id="ed-m" role="alert"></div>
+<div class="actions"><a class="btn ghost" href="#step1">Back to previous page</a><button class="btn pri" type="submit">Save and Continue</button></div>
+</form></div></div>
+<div class="page" id="step3">
+<div class="phead"><div class="wrap"><h1>Programme stream</h1><p>Step 3 of 5. Choose your programme track, then confirm your application review slip.</p></div></div>
+<div class="fwrap"><div class="panel" id="stp3"></div>
+<form class="sf panel" id="rvf" novalidate>
+<p class="note">Fields marked <span class="req" aria-hidden="true">*</span> are required.</p>
+<h3 class="sec first">Choose your programme track <span class="req" aria-hidden="true">*</span></h3>
+<p class="note">Select one track. You can change it before you continue.</p>
+<div class="tracks" role="radiogroup" aria-label="Programme track">
+<label class="trk"><input type="radio" name="trk" value="Tech Connect"><span class="ic" aria-hidden="true">💻</span><b>Tech Connect</b><small>Software, data, IT support and digital skills.</small><em class="ck" aria-hidden="true">✓</em></label>
+<label class="trk"><input type="radio" name="trk" value="Agro Connect"><span class="ic" aria-hidden="true">🌾</span><b>Agro Connect</b><small>Farming, agribusiness, processing and agri-tech.</small><em class="ck" aria-hidden="true">✓</em></label>
+<label class="trk"><input type="radio" name="trk" value="Health Connect"><span class="ic" aria-hidden="true">🩺</span><b>Health Connect</b><small>Nursing, community health, laboratory and pharmacy support.</small><em class="ck" aria-hidden="true">✓</em></label>
+<label class="trk"><input type="radio" name="trk" value="Build Connect"><span class="ic" aria-hidden="true">🏗️</span><b>Build Connect</b><small>Construction, engineering and skilled trades.</small><em class="ck" aria-hidden="true">✓</em></label>
+<label class="trk"><input type="radio" name="trk" value="Teach Connect"><span class="ic" aria-hidden="true">📚</span><b>Teach Connect</b><small>Teaching, tutoring, school administration and training.</small><em class="ck" aria-hidden="true">✓</em></label>
+</div>
+<div class="err-t" id="trk-t" role="alert"></div>
+<p class="note" id="tr-hint">Select a track to open your application review slip.</p>
+<div id="rv-sec" hidden>
+<h3 class="sec">Application review slip</h3>
+<p class="chosen">Selected track: <b id="tr-name"></b><button type="button" class="lk" id="tr-chg">Change track</button></p>
+<p class="note">Check that these details are correct. We filled in what you gave us in the earlier steps, and you can edit anything.</p>
+<div class="fg">
+<div class="f"><label for="rv-nin">National Identification Number (NIN) <span class="req" aria-hidden="true">*</span></label><input id="rv-nin" inputmode="numeric" maxlength="11" autocomplete="off" placeholder="11-digit NIN" aria-required="true"><div class="err-t" id="rv-nin-t"></div></div>
+<div class="f"><label for="rv-fn">Full name <span class="req" aria-hidden="true">*</span></label><input id="rv-fn" autocomplete="name" aria-required="true"><div class="err-t" id="rv-fn-t"></div></div>
+<div class="f"><label for="rv-em">Email address <span class="req" aria-hidden="true">*</span></label><input id="rv-em" type="email" autocomplete="email" placeholder="you@example.com" aria-required="true"><div class="err-t" id="rv-em-t"></div></div>
+<div class="f"><label for="rv-dob">Date of birth <span class="req" aria-hidden="true">*</span></label><input id="rv-dob" type="date" aria-required="true"><div class="err-t" id="rv-dob-t"></div></div>
+<div class="f"><label for="rv-g">Gender <span class="req" aria-hidden="true">*</span></label><select id="rv-g" aria-required="true"><option value="">Select gender</option><option>Male</option><option>Female</option></select><div class="err-t" id="rv-g-t"></div></div>
+<div class="f"><label for="rv-q">Qualification <span class="req" aria-hidden="true">*</span></label><select id="rv-q" aria-required="true"><option value="">Select qualification</option><option>Degree</option><option>HND</option><option>OND</option><option>NCE</option><option>SSCE</option></select><div class="err-t" id="rv-q-t"></div></div>
+<div class="f"><label for="rv-cs">Course <span class="req" id="rv-cst" aria-hidden="true" style="display:none">*</span></label><input id="rv-cs" placeholder="Optional for SSCE"><div class="err-t" id="rv-cs-t"></div></div>
+<div class="f"><label for="rv-so">State of origin <span class="req" aria-hidden="true">*</span></label><select id="rv-so" aria-required="true"></select><div class="err-t" id="rv-so-t"></div></div>
+<div class="f"><label for="rv-lg">Local government area <span class="req" aria-hidden="true">*</span></label><select id="rv-lg" aria-required="true" disabled><option value="">Select a state first</option></select><div class="err-t" id="rv-lg-t"></div></div>
+<div class="f full"><label for="rv-ad">Residential address <span class="req" aria-hidden="true">*</span></label><textarea id="rv-ad" rows="3" maxlength="250" autocomplete="street-address" aria-required="true"></textarea><div class="err-t" id="rv-ad-t"></div></div>
+</div></div>
+<div class="msg" id="rv-m" role="alert"></div>
+<div class="actions"><a class="btn ghost" href="#step2">Back to previous page</a><button class="btn pri" type="submit">Save and Continue</button></div>
+</form></div></div>
+<div class="page" id="step4">
+<div class="phead"><div class="wrap"><h1>Document upload</h1><p>Step 4 of 5. Upload clear copies of your documents in PDF, PNG or JPG format.</p></div></div>
+<div class="fwrap"><div class="panel" id="stp4"></div>
+<form class="sf panel" id="upf" novalidate>
+<p class="note">Fields marked <span class="req" aria-hidden="true">*</span> are required. Each file must be a PDF, PNG or JPG of 5 MB or less.</p>
+<div class="dgrid" id="dg"></div>
+<h3 class="sec">Payment email</h3>
+<div class="f"><label for="up-em">Email address <span class="req" aria-hidden="true">*</span></label><input id="up-em" type="email" autocomplete="email" placeholder="you@example.com" aria-required="true" aria-describedby="up-emh"><div class="hint" id="up-emh" style="margin:-8px 0 16px">We will use this email for your payment and receipt.</div><div class="err-t" id="up-em-t"></div></div>
+<div class="msg" id="up-m" role="alert"></div>
+<div class="actions"><a class="btn ghost" href="#step3">Back to previous page</a><button class="btn pri" type="submit">Continue to payment</button></div>
+</form></div></div>
+<div class="page" id="step5">
+<div class="phead"><div class="wrap"><h1>Payment</h1><p>Step 5 of 5. Pay your application fee to receive your acknowledgement slip.</p></div></div>
+<div class="fwrap"><div class="panel" id="stp5"></div>
+<div class="panel" style="margin-top:20px">
+<h3 class="sec first">Order summary</h3>
+<dl class="sum"><dt>Applicant</dt><dd id="pay-n"></dd><dt>Programme track</dt><dd id="pay-t"></dd><dt>Receipt email</dt><dd id="pay-e"></dd><dt>Application fee</dt><dd id="pay-f"></dd></dl>
+<div class="notice"><b>Secure payment with Paystack.</b> You will be taken to Paystack's secure payment page. When you finish, you will return here and your acknowledgement slip will be ready.</div>
+<div class="actions" id="pay-pre"><a class="btn ghost" href="#step4">Back to previous page</a><button class="btn pri" type="button" id="pay-go">Pay with Paystack</button></div>
+<div class="msg" id="pay-m" role="alert"></div>
+<div id="pay-ok" hidden><div class="msg ok" role="status">Payment confirmed. Your payment reference is <b id="pay-ref"></b>.</div><div class="actions" style="justify-content:flex-end"><a class="btn pri" href="#slip">View and print slip</a></div></div>
+</div></div></div>
+
+<div class="page" id="slip"><div class="slipw">
+<div class="slip-actions noprint"><div><h1 class="sl-t">Application slip</h1><p class="note" style="margin:0">Payment received. Use the button to save your slip as a PDF, which you can then print. If it does not download, your browser print window opens instead.</p></div><div class="sa-b"><a class="btn ghost" href="#home">Back to home</a><button class="btn pri" type="button" id="sl-dl">Download / Print slip</button></div></div>
+<div class="msg noprint" id="sl-ms" role="status" style="margin:0 0 16px"></div>
+<article class="slip" id="slip-doc" aria-label="Application acknowledgement slip"></article>
+</div></div>
+</main>
+
+<footer><div class="wrap"><span>© 2026 Connect Power. All rights reserved.</span><span>Skills and jobs for the Nigerian masses.</span></div></footer>
+
+<script type="module" src="js/app.js"></script>
+</body>
+</html>

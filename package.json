@@ -1,0 +1,17 @@
+{
+  "name": "connect-power",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Connect Power website (static site + serverless payment functions) for Vercel, with a Supabase backend.",
+  "scripts": {
+    "dev": "vercel dev",
+    "deploy": "vercel --prod",
+    "test:server": "node --check api/initialize-payment.js"
+  },
+  "engines": {
+    "node": "22.x"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.45.4"
+  }
+}
