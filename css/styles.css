@@ -1966,7 +1966,7 @@ footer {
 ============================== */
 
 .site-footer {
-  background: #05B60E;
+  background: var(--green2);
   color: #ffffff;
   padding: 55px 20px 0;
   font-family: Arial, sans-serif;
