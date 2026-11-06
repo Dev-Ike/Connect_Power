@@ -17,7 +17,6 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
     />
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   </head>
   <body>
@@ -45,7 +44,8 @@
           <a href="#home" data-p="home">Home</a
           ><a href="#about" data-p="about">About</a
           ><a href="#news" data-p="news">News</a
-          ><a href="#signin" data-p="signin" class="cta">Login</a
+          ><a href="#signup" data-p="signup" class="al su">Sign up</a
+          ><a href="#signin" data-p="signin" class="al cta">Login</a
           ><button type="button" class="lo" id="lo" hidden>Logout</button>
         </nav>
       </div>
@@ -56,7 +56,7 @@
         <div class="hero">
           <div class="wrap hgrid">
             <div class="hl">
-              <h1>Skills and jobs for Nigerians start Monday</h1>
+              <h1>Apply today for skills and jobs across Nigeria</h1>
               <p>
                 Connect Power helps Nigerians learn practical skills and
                 provides jobs to the masses across five sectors: Tech, Agro,
@@ -69,18 +69,14 @@
                   the Nigerian masses.
                 </p>
               </div>
-              <div
-                class="clock"
-                role="timer"
-                aria-label="Time until programme launch"
-              >
-                <div><b id="d">00</b><span>Days</span></div>
+              <div class="clock" role="timer" aria-label="Days left to apply">
+                <div><b id="d">00</b><span>Days left</span></div>
                 <div><b id="h">00</b><span>Hours</span></div>
                 <div><b id="m">00</b><span>Minutes</span></div>
                 <div><b id="s">00</b><span>Seconds</span></div>
               </div>
               <p class="when" id="when">
-                Launching Monday, 2 November 2026 at 9:00 AM (WAT)
+                Applications close on 30 November 2026 at 11:59 PM (WAT)
               </p>
               <a class="btn gold" href="#signup">Create your account</a
               ><a class="btn line" href="#about">How it works</a>
@@ -213,10 +209,10 @@
         <section class="blk" style="padding-top: 0">
           <div class="wrap two">
             <div>
-              <h2>Five steps to join the programme</h2>
+              <h2>Six steps to join the programme</h2>
               <p style="color: var(--muted); margin: 0 0 12px">
                 Create your account or log in, then complete your application in
-                five steps.
+                six steps.
               </p>
               <ol class="steps">
                 <li>
@@ -239,10 +235,19 @@
                 </li>
                 <li>
                   <div>
-                    <b>Programme stream</b
+                    <b>Programme track</b
                     ><span
-                      >Choose one of the five programme tracks, then check your
-                      application review slip, including your NIN.</span
+                      >Choose one of the five programme tracks: Tech, Agro,
+                      Health, Build or Teach Connect.</span
+                    >
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <b>Review</b
+                    ><span
+                      >Check your details, including your NIN, and correct
+                      anything before you continue.</span
                     >
                   </div>
                 </li>
@@ -314,7 +319,16 @@
                 <div class="mset" id="tset">
                   <article class="tc">
                     <div class="tw">
-                      <span class="av" aria-hidden="true">CO</span>
+                      <span class="av"
+                        ><b>CO</b
+                        ><img
+                          data-fb="av"
+                          src="assets/people/chinedu-okafor.jpg"
+                          alt="Photo of Chinedu Okafor"
+                          width="56"
+                          height="56"
+                          decoding="async"
+                      /></span>
                       <div>
                         <b>Chinedu Okafor</b
                         ><small>Anambra State &middot; Tech Connect</small>
@@ -329,7 +343,16 @@
                   </article>
                   <article class="tc">
                     <div class="tw">
-                      <span class="av" aria-hidden="true">AB</span>
+                      <span class="av"
+                        ><b>AB</b
+                        ><img
+                          data-fb="av"
+                          src="assets/people/aisha-bello.jpg"
+                          alt="Photo of Aisha Bello"
+                          width="56"
+                          height="56"
+                          decoding="async"
+                      /></span>
                       <div>
                         <b>Aisha Bello</b
                         ><small>Kano State &middot; Agro Connect</small>
@@ -346,7 +369,16 @@
                   </article>
                   <article class="tc">
                     <div class="tw">
-                      <span class="av" aria-hidden="true">GA</span>
+                      <span class="av"
+                        ><b>GA</b
+                        ><img
+                          data-fb="av"
+                          src="assets/people/grace-amadi.jpg"
+                          alt="Photo of Grace Amadi"
+                          width="56"
+                          height="56"
+                          decoding="async"
+                      /></span>
                       <div>
                         <b>Grace Amadi</b
                         ><small>Rivers State &middot; Health Connect</small>
@@ -363,7 +395,16 @@
                   </article>
                   <article class="tc">
                     <div class="tw">
-                      <span class="av" aria-hidden="true">TA</span>
+                      <span class="av"
+                        ><b>TA</b
+                        ><img
+                          data-fb="av"
+                          src="assets/people/tunde-adeyemi.jpg"
+                          alt="Photo of Tunde Adeyemi"
+                          width="56"
+                          height="56"
+                          decoding="async"
+                      /></span>
                       <div>
                         <b>Tunde Adeyemi</b
                         ><small>Oyo State &middot; Build Connect</small>
@@ -378,7 +419,16 @@
                   </article>
                   <article class="tc">
                     <div class="tw">
-                      <span class="av" aria-hidden="true">FA</span>
+                      <span class="av"
+                        ><b>FA</b
+                        ><img
+                          data-fb="av"
+                          src="assets/people/fatima-abubakar.jpg"
+                          alt="Photo of Fatima Abubakar"
+                          width="56"
+                          height="56"
+                          decoding="async"
+                      /></span>
                       <div>
                         <b>Fatima Abubakar</b
                         ><small>Borno State &middot; Teach Connect</small>
@@ -394,7 +444,16 @@
                   </article>
                   <article class="tc">
                     <div class="tw">
-                      <span class="av" aria-hidden="true">YD</span>
+                      <span class="av"
+                        ><b>YD</b
+                        ><img
+                          data-fb="av"
+                          src="assets/people/yakubu-danjuma.jpg"
+                          alt="Photo of Yakubu Danjuma"
+                          width="56"
+                          height="56"
+                          decoding="async"
+                      /></span>
                       <div>
                         <b>Yakubu Danjuma</b
                         ><small>Plateau State &middot; Tech Connect</small>
@@ -417,6 +476,36 @@
                 class="cb txt"
                 id="tp-p"
                 aria-label="Pause success stories slider"
+              >
+                Pause
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <section class="blk" id="gal">
+          <div class="wrap">
+            <div class="sh">
+              <h2>People we are helping</h2>
+              <p>
+                Nigerians being helped through government-supported Connect
+                Power programmes.
+              </p>
+            </div>
+            <div
+              class="mq"
+              role="region"
+              aria-roledescription="carousel"
+              aria-label="People being helped"
+            >
+              <div class="mt" id="gt"><div class="mset" id="gset"></div></div>
+            </div>
+            <div class="cc">
+              <button
+                type="button"
+                class="cb txt"
+                id="gp-p"
+                aria-label="Pause photo slider"
               >
                 Pause
               </button>
@@ -654,11 +743,11 @@
           <div class="aside">
             <h1>Welcome back</h1>
             <p>
-              Sign in to continue your application to the Connect Power
+              Log in to continue your application to the Connect Power
               programme.
             </p>
             <ul>
-              <li>Complete your application in five steps</li>
+              <li>Complete your application in six steps</li>
               <li>Choose from five sectors</li>
               <li>Get your acknowledgement slip after payment</li>
             </ul>
@@ -666,10 +755,10 @@
           <div class="pane">
             <div class="box">
               <div class="tabs">
-                <a href="#signin" aria-current="page">Sign in</a
+                <a href="#signin" aria-current="page">Login</a
                 ><a href="#signup">Sign up</a>
               </div>
-              <h2>Sign in to your account</h2>
+              <h2>Log in to your account</h2>
               <p class="sub">
                 Enter the email and password you registered with.
               </p>
@@ -702,35 +791,9 @@
                     Forgot your password?
                   </button>
                 </div>
-                <button class="btn" type="submit">Sign in</button>
+                <button class="btn" type="submit">Log in</button>
                 <div class="msg" id="si-m" role="alert"></div>
               </form>
-              <div class="or"><span>or</span></div>
-              <button type="button" class="btn ggl" id="si-g">
-                <svg
-                  width="18"
-                  height="18"
-                  viewBox="0 0 48 48"
-                  aria-hidden="true"
-                >
-                  <path
-                    fill="#EA4335"
-                    d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.8-6.8C35.8 2.4 30.2 0 24 0 14.6 0 6.5 5.4 2.6 13.2l7.9 6.1C12.4 13.6 17.7 9.5 24 9.5z"
-                  />
-                  <path
-                    fill="#4285F4"
-                    d="M46.1 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.4c-.5 2.9-2.2 5.3-4.6 6.9l7.4 5.7c4.3-4 6.9-9.9 6.9-17.1z"
-                  />
-                  <path
-                    fill="#FBBC05"
-                    d="M10.5 28.7a14.5 14.5 0 0 1 0-9.4l-7.9-6.1a24 24 0 0 0 0 21.6l7.9-6.1z"
-                  />
-                  <path
-                    fill="#34A853"
-                    d="M24 48c6.2 0 11.4-2 15.2-5.5l-7.4-5.7c-2 1.4-4.7 2.2-7.8 2.2-6.3 0-11.6-4.1-13.5-9.8l-7.9 6.1C6.5 42.6 14.6 48 24 48z"
-                  /></svg
-                >Continue with Google
-              </button>
               <p class="alt">
                 New to Connect Power? <a href="#signup">Create an account</a>
               </p>
@@ -778,7 +841,7 @@
                 <button class="btn" type="submit">Save new password</button>
                 <div class="msg" id="rs-m" role="alert"></div>
               </form>
-              <p class="alt"><a href="#signin">Back to sign in</a></p>
+              <p class="alt"><a href="#signin">Back to login</a></p>
             </div>
           </div>
         </div>
@@ -801,7 +864,7 @@
           <div class="pane">
             <div class="box">
               <div class="tabs">
-                <a href="#signin">Sign in</a
+                <a href="#signin">Login</a
                 ><a href="#signup" aria-current="page">Sign up</a>
               </div>
               <h2>Sign up</h2>
@@ -870,34 +933,8 @@
                 <button class="btn" type="submit">Create account</button>
                 <div class="msg" id="su-m" role="alert"></div>
               </form>
-              <div class="or"><span>or</span></div>
-              <button type="button" class="btn ggl" id="su-g">
-                <svg
-                  width="18"
-                  height="18"
-                  viewBox="0 0 48 48"
-                  aria-hidden="true"
-                >
-                  <path
-                    fill="#EA4335"
-                    d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.8-6.8C35.8 2.4 30.2 0 24 0 14.6 0 6.5 5.4 2.6 13.2l7.9 6.1C12.4 13.6 17.7 9.5 24 9.5z"
-                  />
-                  <path
-                    fill="#4285F4"
-                    d="M46.1 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.4c-.5 2.9-2.2 5.3-4.6 6.9l7.4 5.7c4.3-4 6.9-9.9 6.9-17.1z"
-                  />
-                  <path
-                    fill="#FBBC05"
-                    d="M10.5 28.7a14.5 14.5 0 0 1 0-9.4l-7.9-6.1a24 24 0 0 0 0 21.6l7.9-6.1z"
-                  />
-                  <path
-                    fill="#34A853"
-                    d="M24 48c6.2 0 11.4-2 15.2-5.5l-7.4-5.7c-2 1.4-4.7 2.2-7.8 2.2-6.3 0-11.6-4.1-13.5-9.8l-7.9 6.1C6.5 42.6 14.6 48 24 48z"
-                  /></svg
-                >Sign up with Google
-              </button>
               <p class="alt">
-                Already have an account? <a href="#signin">Sign in</a>
+                Already have an account? <a href="#signin">Login</a>
               </p>
             </div>
           </div>
@@ -908,7 +945,7 @@
           <div class="wrap">
             <h1>Personal details</h1>
             <p>
-              Step 1 of 5. Tell us about yourself so we can guide you to the
+              Step 1 of 6. Tell us about yourself so we can guide you to the
               right programme.
             </p>
           </div>
@@ -983,6 +1020,9 @@
                   autocomplete="bday"
                   aria-required="true"
                 />
+                <div class="hint" style="margin: -8px 0 12px">
+                  Applicants must be between 18 and 46 years old.
+                </div>
                 <div class="err-t" id="pd-dob-t"></div>
               </div>
               <div class="f">
@@ -1068,7 +1108,7 @@
         <div class="phead">
           <div class="wrap">
             <h1>Education and qualification</h1>
-            <p>Step 2 of 5. Tell us about your highest level of education.</p>
+            <p>Step 2 of 6. Tell us about your highest level of education.</p>
           </div>
         </div>
         <div class="fwrap">
@@ -1240,26 +1280,19 @@
       <div class="page" id="step3">
         <div class="phead">
           <div class="wrap">
-            <h1>Programme stream</h1>
-            <p>
-              Step 3 of 5. Choose your programme track, then confirm your
-              application review slip.
-            </p>
+            <h1>Programme track</h1>
+            <p>Step 3 of 6. Choose the programme track you want to join.</p>
           </div>
         </div>
         <div class="fwrap">
           <div class="panel" id="stp3"></div>
-          <form class="sf panel" id="rvf" novalidate>
-            <p class="note">
-              Fields marked <span class="req" aria-hidden="true">*</span> are
-              required.
-            </p>
+          <form class="sf panel" id="tkf" novalidate>
             <h3 class="sec first">
               Choose your programme track
               <span class="req" aria-hidden="true">*</span>
             </h3>
             <p class="note">
-              Select one track. You can change it before you continue.
+              Select one track. You can change it later from the review page.
             </p>
             <div class="tracks" role="radiogroup" aria-label="Programme track">
               <label class="trk"
@@ -1313,132 +1346,7 @@
               >
             </div>
             <div class="err-t" id="trk-t" role="alert"></div>
-            <p class="note" id="tr-hint">
-              Select a track to open your application review slip.
-            </p>
-            <div id="rv-sec" hidden>
-              <h3 class="sec">Application review slip</h3>
-              <p class="chosen">
-                Selected track: <b id="tr-name"></b
-                ><button type="button" class="lk" id="tr-chg">
-                  Change track
-                </button>
-              </p>
-              <p class="note">
-                Check that these details are correct. We filled in what you gave
-                us in the earlier steps, and you can edit anything.
-              </p>
-              <div class="fg">
-                <div class="f">
-                  <label for="rv-nin"
-                    >National Identification Number (NIN)
-                    <span class="req" aria-hidden="true">*</span></label
-                  ><input
-                    id="rv-nin"
-                    inputmode="numeric"
-                    maxlength="11"
-                    autocomplete="off"
-                    placeholder="11-digit NIN"
-                    aria-required="true"
-                  />
-                  <div class="err-t" id="rv-nin-t"></div>
-                </div>
-                <div class="f">
-                  <label for="rv-fn"
-                    >Full name
-                    <span class="req" aria-hidden="true">*</span></label
-                  ><input id="rv-fn" autocomplete="name" aria-required="true" />
-                  <div class="err-t" id="rv-fn-t"></div>
-                </div>
-                <div class="f">
-                  <label for="rv-em"
-                    >Email address
-                    <span class="req" aria-hidden="true">*</span></label
-                  ><input
-                    id="rv-em"
-                    type="email"
-                    autocomplete="email"
-                    placeholder="you@example.com"
-                    aria-required="true"
-                  />
-                  <div class="err-t" id="rv-em-t"></div>
-                </div>
-                <div class="f">
-                  <label for="rv-dob"
-                    >Date of birth
-                    <span class="req" aria-hidden="true">*</span></label
-                  ><input id="rv-dob" type="date" aria-required="true" />
-                  <div class="err-t" id="rv-dob-t"></div>
-                </div>
-                <div class="f">
-                  <label for="rv-g"
-                    >Gender <span class="req" aria-hidden="true">*</span></label
-                  ><select id="rv-g" aria-required="true">
-                    <option value="">Select gender</option>
-                    <option>Male</option>
-                    <option>Female</option>
-                  </select>
-                  <div class="err-t" id="rv-g-t"></div>
-                </div>
-                <div class="f">
-                  <label for="rv-q"
-                    >Qualification
-                    <span class="req" aria-hidden="true">*</span></label
-                  ><select id="rv-q" aria-required="true">
-                    <option value="">Select qualification</option>
-                    <option>Degree</option>
-                    <option>HND</option>
-                    <option>OND</option>
-                    <option>NCE</option>
-                    <option>SSCE</option>
-                  </select>
-                  <div class="err-t" id="rv-q-t"></div>
-                </div>
-                <div class="f">
-                  <label for="rv-cs"
-                    >Course
-                    <span
-                      class="req"
-                      id="rv-cst"
-                      aria-hidden="true"
-                      style="display: none"
-                      >*</span
-                    ></label
-                  ><input id="rv-cs" placeholder="Optional for SSCE" />
-                  <div class="err-t" id="rv-cs-t"></div>
-                </div>
-                <div class="f">
-                  <label for="rv-so"
-                    >State of origin
-                    <span class="req" aria-hidden="true">*</span></label
-                  ><select id="rv-so" aria-required="true"></select>
-                  <div class="err-t" id="rv-so-t"></div>
-                </div>
-                <div class="f">
-                  <label for="rv-lg"
-                    >Local government area
-                    <span class="req" aria-hidden="true">*</span></label
-                  ><select id="rv-lg" aria-required="true" disabled>
-                    <option value="">Select a state first</option>
-                  </select>
-                  <div class="err-t" id="rv-lg-t"></div>
-                </div>
-                <div class="f full">
-                  <label for="rv-ad"
-                    >Residential address
-                    <span class="req" aria-hidden="true">*</span></label
-                  ><textarea
-                    id="rv-ad"
-                    rows="3"
-                    maxlength="250"
-                    autocomplete="street-address"
-                    aria-required="true"
-                  ></textarea>
-                  <div class="err-t" id="rv-ad-t"></div>
-                </div>
-              </div>
-            </div>
-            <div class="msg" id="rv-m" role="alert"></div>
+            <div class="msg" id="tk-m" role="alert"></div>
             <div class="actions">
               <a class="btn ghost" href="#step2">Back to previous page</a
               ><button class="btn pri" type="submit">Save and Continue</button>
@@ -1449,15 +1357,155 @@
       <div class="page" id="step4">
         <div class="phead">
           <div class="wrap">
-            <h1>Document upload</h1>
+            <h1>Review your details</h1>
             <p>
-              Step 4 of 5. Upload clear copies of your documents in PDF, PNG or
-              JPG format.
+              Step 4 of 6. Check that everything is correct. You can correct the
+              review slip below, or use Edit to change an earlier step.
             </p>
           </div>
         </div>
         <div class="fwrap">
           <div class="panel" id="stp4"></div>
+          <div class="panel rvsum" id="rv-sum"></div>
+          <form class="sf panel" id="rvf" novalidate>
+            <h3 class="sec first">Application review slip</h3>
+            <p class="note">
+              Fields marked <span class="req" aria-hidden="true">*</span> are
+              required. We filled in what you gave us in the earlier steps, and
+              you can correct anything here.
+            </p>
+            <div class="fg">
+              <div class="f">
+                <label for="rv-nin"
+                  >National Identification Number (NIN)
+                  <span class="req" aria-hidden="true">*</span></label
+                ><input
+                  id="rv-nin"
+                  inputmode="numeric"
+                  maxlength="11"
+                  autocomplete="off"
+                  placeholder="11-digit NIN"
+                  aria-required="true"
+                />
+                <div class="err-t" id="rv-nin-t"></div>
+              </div>
+              <div class="f">
+                <label for="rv-fn"
+                  >Full name
+                  <span class="req" aria-hidden="true">*</span></label
+                ><input id="rv-fn" autocomplete="name" aria-required="true" />
+                <div class="err-t" id="rv-fn-t"></div>
+              </div>
+              <div class="f">
+                <label for="rv-em"
+                  >Email address
+                  <span class="req" aria-hidden="true">*</span></label
+                ><input
+                  id="rv-em"
+                  type="email"
+                  autocomplete="email"
+                  placeholder="you@example.com"
+                  aria-required="true"
+                />
+                <div class="err-t" id="rv-em-t"></div>
+              </div>
+              <div class="f">
+                <label for="rv-dob"
+                  >Date of birth
+                  <span class="req" aria-hidden="true">*</span></label
+                ><input id="rv-dob" type="date" aria-required="true" />
+                <div class="hint" style="margin: -8px 0 12px">
+                  Applicants must be between 18 and 46 years old.
+                </div>
+                <div class="err-t" id="rv-dob-t"></div>
+              </div>
+              <div class="f">
+                <label for="rv-g"
+                  >Gender <span class="req" aria-hidden="true">*</span></label
+                ><select id="rv-g" aria-required="true">
+                  <option value="">Select gender</option>
+                  <option>Male</option>
+                  <option>Female</option>
+                </select>
+                <div class="err-t" id="rv-g-t"></div>
+              </div>
+              <div class="f">
+                <label for="rv-q"
+                  >Qualification
+                  <span class="req" aria-hidden="true">*</span></label
+                ><select id="rv-q" aria-required="true">
+                  <option value="">Select qualification</option>
+                  <option>Degree</option>
+                  <option>HND</option>
+                  <option>OND</option>
+                  <option>NCE</option>
+                  <option>SSCE</option>
+                </select>
+                <div class="err-t" id="rv-q-t"></div>
+              </div>
+              <div class="f">
+                <label for="rv-cs"
+                  >Course
+                  <span
+                    class="req"
+                    id="rv-cst"
+                    aria-hidden="true"
+                    style="display: none"
+                    >*</span
+                  ></label
+                ><input id="rv-cs" placeholder="Optional for SSCE" />
+                <div class="err-t" id="rv-cs-t"></div>
+              </div>
+              <div class="f">
+                <label for="rv-so"
+                  >State of origin
+                  <span class="req" aria-hidden="true">*</span></label
+                ><select id="rv-so" aria-required="true"></select>
+                <div class="err-t" id="rv-so-t"></div>
+              </div>
+              <div class="f">
+                <label for="rv-lg"
+                  >Local government area
+                  <span class="req" aria-hidden="true">*</span></label
+                ><select id="rv-lg" aria-required="true" disabled>
+                  <option value="">Select a state first</option>
+                </select>
+                <div class="err-t" id="rv-lg-t"></div>
+              </div>
+              <div class="f full">
+                <label for="rv-ad"
+                  >Residential address
+                  <span class="req" aria-hidden="true">*</span></label
+                ><textarea
+                  id="rv-ad"
+                  rows="3"
+                  maxlength="250"
+                  autocomplete="street-address"
+                  aria-required="true"
+                ></textarea>
+                <div class="err-t" id="rv-ad-t"></div>
+              </div>
+            </div>
+            <div class="msg" id="rv-m" role="alert"></div>
+            <div class="actions">
+              <a class="btn ghost" href="#step3">Back to previous page</a
+              ><button class="btn pri" type="submit">Save and Continue</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="page" id="step5">
+        <div class="phead">
+          <div class="wrap">
+            <h1>Document upload</h1>
+            <p>
+              Step 5 of 6. Upload clear copies of your documents in PDF, PNG or
+              JPG format.
+            </p>
+          </div>
+        </div>
+        <div class="fwrap">
+          <div class="panel" id="stp5"></div>
           <form class="sf panel" id="upf" novalidate>
             <p class="note">
               Fields marked <span class="req" aria-hidden="true">*</span> are
@@ -1484,7 +1532,7 @@
             </div>
             <div class="msg" id="up-m" role="alert"></div>
             <div class="actions">
-              <a class="btn ghost" href="#step3">Back to previous page</a
+              <a class="btn ghost" href="#step4">Back to previous page</a
               ><button class="btn pri" type="submit">
                 Continue to payment
               </button>
@@ -1492,18 +1540,18 @@
           </form>
         </div>
       </div>
-      <div class="page" id="step5">
+      <div class="page" id="step6">
         <div class="phead">
           <div class="wrap">
             <h1>Payment</h1>
             <p>
-              Step 5 of 5. Pay your application fee to receive your
+              Step 6 of 6. Pay your application fee to receive your
               acknowledgement slip.
             </p>
           </div>
         </div>
         <div class="fwrap">
-          <div class="panel" id="stp5"></div>
+          <div class="panel" id="stp6"></div>
           <div class="panel" style="margin-top: 20px">
             <h3 class="sec first">Order summary</h3>
             <dl class="sum">
@@ -1522,7 +1570,7 @@
               here and your acknowledgement slip will be ready.
             </div>
             <div class="actions" id="pay-pre">
-              <a class="btn ghost" href="#step4">Back to previous page</a
+              <a class="btn ghost" href="#step5">Back to previous page</a
               ><button class="btn pri" type="button" id="pay-go">
                 Pay with Paystack
               </button>

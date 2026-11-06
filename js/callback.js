@@ -12,13 +12,13 @@
   }
 
   if (!reference) {
-    show('No payment found', 'We could not find a payment reference on this page.', './#step5', 'Back to payment');
+    show('No payment found', 'We could not find a payment reference on this page.', './#step6', 'Back to payment');
   } else if (!B || !B.configured) {
     show('Not connected', 'The site is not connected to Supabase yet.', './#home', 'Go to home page');
   } else {
     const unsub = B.onAuth(async (user) => {
       unsub();
-      if (!user) { show('Please sign in', 'Sign in again to confirm your payment. Your payment is safe.', './#signin', 'Sign in'); return; }
+      if (!user) { show('Please log in', 'Log in again to confirm your payment. Your payment is safe.', './#signin', 'Log in'); return; }
       try {
         let r = await B.verifyPayment(reference);
         // The bank can take a few seconds to confirm. Try a few more times.
@@ -30,12 +30,12 @@
           show('Payment confirmed', 'Thank you. Taking you to your acknowledgement slip…', './#slip', 'View my slip');
           setTimeout(() => { location.replace('./#slip'); }, 1500);
         } else if (r.status === 'pending') {
-          show('Still confirming', 'Your payment is still being confirmed. Your slip will appear in a few minutes.', './#step5', 'Back to payment');
+          show('Still confirming', 'Your payment is still being confirmed. Your slip will appear in a few minutes.', './#step6', 'Back to payment');
         } else {
-          show('Payment not completed', 'The payment was not completed, so you have not been charged. You can try again.', './#step5', 'Try again');
+          show('Payment not completed', 'The payment was not completed, so you have not been charged. You can try again.', './#step6', 'Try again');
         }
       } catch (e) {
-        show('We could not confirm yet', (e && e.message) ? e.message : 'Please try again in a moment.', './#step5', 'Back to payment');
+        show('We could not confirm yet', (e && e.message) ? e.message : 'Please try again in a moment.', './#step6', 'Back to payment');
       }
     });
   }

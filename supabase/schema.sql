@@ -21,7 +21,7 @@ create table if not exists public.profiles (
 
 create table if not exists public.applications (
   user_id     uuid primary key references auth.users (id) on delete cascade,
-  completed   integer not null default 0 check (completed between 0 and 4),
+  completed   integer not null default 0 check (completed between 0 and 5),
   personal    jsonb,
   education   jsonb,
   programme   jsonb,
@@ -57,6 +57,10 @@ create table if not exists public.receipts (
   channel             text,
   paid_at             timestamptz not null default now()
 );
+
+-- Applications now have 5 steps before payment (was 4). Safe to run on an existing database.
+alter table public.applications drop constraint if exists applications_completed_check;
+alter table public.applications add  constraint applications_completed_check check (completed between 0 and 5);
 
 create sequence if not exists public.application_seq;
 

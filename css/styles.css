@@ -725,7 +725,7 @@ label.chk input {
 }
 .stp {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(6, minmax(0, 1fr));
   list-style: none;
   margin: 0;
   padding: 0;
@@ -1917,36 +1917,6 @@ footer {
   text-align: right;
   margin: -6px 0 14px;
 }
-.or {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  color: var(--muted);
-  margin: 18px 0;
-  font-size: 0.9rem;
-}
-.or:before,
-.or:after {
-  content: "";
-  flex: 1;
-  height: 1px;
-  background: var(--line);
-}
-.ggl {
-  width: 100%;
-  background: #fff;
-  border: 2px solid var(--line);
-  color: var(--ink);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  cursor: pointer;
-  font-weight: 600;
-}
-.ggl:hover {
-  border-color: var(--green);
-}
 .pgb {
   height: 8px;
   border-radius: 4px;
@@ -1959,6 +1929,135 @@ footer {
   width: 0;
   background: var(--green);
   transition: width 0.15s;
+}
+
+/* Sign up / Login in the top bar */
+nav a.su {
+  border: 2px solid var(--green);
+  color: var(--green);
+  border-radius: 8px;
+  box-shadow: none;
+  padding: 6px 14px;
+  margin-right: 4px;
+}
+nav a.su:hover {
+  background: var(--surface);
+}
+nav a.cta {
+  padding: 8px 16px;
+}
+
+/* Review page */
+.rvsum {
+  margin-top: 20px;
+}
+.rvg {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+.rvb {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 16px;
+  background: var(--bg);
+  min-width: 0;
+}
+.rvh {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.rvh h3 {
+  margin: 0;
+  font-size: 1.05rem;
+}
+.rvh a {
+  font-weight: 600;
+  color: var(--link);
+}
+.rvl {
+  margin: 0;
+  display: grid;
+  gap: 8px;
+}
+.rvl div {
+  display: grid;
+  grid-template-columns: minmax(90px, 40%) 1fr;
+  gap: 8px;
+}
+.rvl dt {
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+.rvl dd {
+  margin: 0;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+/* Testimonial photos (initials show if a photo file is missing) */
+.av {
+  width: 56px;
+  height: 56px;
+  position: relative;
+  overflow: hidden;
+}
+.av img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* "People we are helping" photo slider with the Connect Power logo watermark */
+.gp {
+  position: relative;
+  flex: 0 0 min(340px, 82vw);
+  aspect-ratio: 4/3;
+  margin: 0;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: linear-gradient(135deg, #e8f4ea, #cfe6d3);
+}
+.gp img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.gp .wm {
+  position: absolute;
+  inset: 0;
+  background: url(../assets/watermark.png) center/52% no-repeat;
+  opacity: 0.42;
+  filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.95));
+  pointer-events: none;
+}
+.gp figcaption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 26px 14px 10px;
+  color: #fff;
+  font-weight: 600;
+  background: linear-gradient(transparent, rgba(1, 40, 6, 0.78));
+}
+.gp.ph:before {
+  content: "Photo to be added";
+  position: absolute;
+  top: 12px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  color: var(--muted);
+  font-weight: 600;
+  font-size: 0.9rem;
 }
 
 /* ==============================
@@ -2299,4 +2398,68 @@ footer {
   .social-links {
     gap: 9px;
   }
+}
+
+
+.pc {
+  position: relative;
+  overflow: hidden;
+  min-height: 300px;
+  padding: 24px;
+  border-radius: 16px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: flex-end;
+  color: #fff;
+}
+
+.pc::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.9),
+    rgba(0, 0, 0, 0.15)
+  );
+}
+
+.pc-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.pc h3 {
+  color: #fff;
+  margin: 20px 0 0 0;
+  font-size: 22px;
+}
+
+.pc p {
+  color: #f1f1f1;
+  margin: 0;
+  line-height: 1.7;
+}
+
+.pc .chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  list-style: none;
+  padding: 0;
+  margin: 4px 0 0;
+}
+
+.pc .chips li {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  padding: 7px 13px;
+  border-radius: 20px;
+  font-size: 12px;
+  color: #fff;
 }
