@@ -178,7 +178,7 @@ set search_path = public
 as $$
 declare n integer;
 begin
-  if p_key not in ('nin', 'lg', 'pp', 'pro', 'bc', 'deg', 'cv') then
+  if p_key not in ('nin', 'lg', 'pp', 'pro', 'bc', 'deg', 'wc') then
     raise exception 'invalid document key';
   end if;
   update public.applications
@@ -291,7 +291,7 @@ on conflict (id) do update
       file_size_limit = 5242880,
       allowed_mime_types = array['application/pdf', 'image/png', 'image/jpeg'];
 
--- Files live at  <user id>/<nin|lg|pp|pro|bc|deg|cv>.<pdf|png|jpg>
+-- Files live at  <user id>/<nin|lg|pp|pro|bc|deg|wc>.<pdf|png|jpg>
 drop policy if exists "documents: read own"   on storage.objects;
 drop policy if exists "documents: insert own" on storage.objects;
 drop policy if exists "documents: update own" on storage.objects;
@@ -306,7 +306,7 @@ create policy "documents: insert own" on storage.objects
   with check (
     bucket_id = 'documents'
     and (storage.foldername(name))[1] = auth.uid()::text
-    and name ~ '^[0-9a-f-]{36}/(nin|lg|pp|pro|bc|deg|cv)[.](pdf|png|jpg)$'
+    and name ~ '^[0-9a-f-]{36}/(nin|lg|pp|pro|bc|deg|wc)[.](pdf|png|jpg)$'
     and not exists (select 1 from public.receipts r where r.user_id = auth.uid())
   );
 
@@ -320,7 +320,7 @@ create policy "documents: update own" on storage.objects
   with check (
     bucket_id = 'documents'
     and (storage.foldername(name))[1] = auth.uid()::text
-    and name ~ '^[0-9a-f-]{36}/(nin|lg|pp|pro|bc|deg|cv)[.](pdf|png|jpg)$'
+    and name ~ '^[0-9a-f-]{36}/(nin|lg|pp|pro|bc|deg|wc)[.](pdf|png|jpg)$'
   );
 
 create policy "documents: delete own" on storage.objects

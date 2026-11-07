@@ -18,7 +18,7 @@ function incompleteReason(a, uid) {
   if (!e.q) return 'Your education details are incomplete.';
   if (!a.programme || TRACKS.indexOf(a.programme.track) < 0) return 'Choose a programme track before paying.';
   if (!/^\d{11}$/.test(r.nin || '')) return 'Your NIN must be exactly 11 digits.';
-  const need = ['nin', 'lg', 'pp', 'bc', 'cv'];
+  const need = ['nin', 'lg', 'pp', 'bc', 'wc'];
   if (HIGHER.indexOf(e.q) > -1) need.push('deg');
   const prefix = uid + '/';
   const missing = need.filter(function (k) {
